@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threshold Function Protocol — c-ECO</title>
+  <meta name="description" content="The Threshold Function Protocol — operational governance architecture for threshold-sensitive legal and institutional systems.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
+    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="tdr.html">TDR</a></li>
+      <li><a href="tfp.html" class="active">TFP</a></li>
+      <li><a href="amazon-lab.html">Amazon Lab</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">c-ECO</a> / <a href="framework.html">Framework</a> / TFP</div>
+    <p class="section-label">// Layer 02 — Operational Protocol</p>
+    <h1>Threshold Function Protocol</h1>
+    <p>The TFP specifies the activation conditions, legal trigger mechanisms, and institutional response sequences for governance instruments deployed at threshold proximity.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">// What is the TFP?</p>
+      <h2>Governance by<br>Threshold Signal</h2>
+      <p class="lead">The Threshold Function Protocol is the operational layer of c-ECO — the architecture that translates TDR threshold proximity signals into specific legal and institutional actions.</p>
+      <p>The TFP defines what governance instruments exist, under what conditions they activate, in what sequence they deploy, and what institutional actors hold authority at each stage of threshold proximity.</p>
+      <p>Unlike conventional governance protocols — which are typically event-triggered — the TFP is proximity-triggered: it operates before the threshold event, not in response to it.</p>
+    </div>
+    <div>
+      <div class="code-block">
+        <pre><span class="comment">// TFP Activation Sequence</span>
+
+TFP.states = [
+  MONITOR,      <span class="comment">// baseline operation</span>
+  ALERT,        <span class="comment">// P(Θ) > α₁</span>
+  PRECAUTION,   <span class="comment">// P(Θ) > α₂</span>
+  INTERVENTION, <span class="comment">// P(Θ) > α₃</span>
+  EMERGENCY     <span class="comment">// τ(P) < τ_critical</span>
+]
+
+<span class="comment">// Each state: specific legal instruments,
+// institutional authorities, response obligations</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--ink-light);">
+  <div class="section-inner">
+    <p class="section-label">// Protocol Architecture</p>
+    <h2>TFP Components</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">01</div>
+        <h3>Trigger Catalogue</h3>
+        <p>A structured catalogue of threshold proximity conditions and the specific governance triggers they activate. Each trigger maps TDR signals to institutional responses with defined authority and obligation.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">02</div>
+        <h3>Legal Instrument Specifications</h3>
+        <p>Detailed specifications for the legal instruments deployed at each TFP state — their legal basis, scope, duration, and conditions of deactivation.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">03</div>
+        <h3>Institutional Authority Matrix</h3>
+        <p>Mapping of institutional actors, their authorities under each TFP state, decision procedures, and coordination obligations between governance levels.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">04</div>
+        <h3>TFP–TDR Interface</h3>
+        <p>Technical specification of the data interface between TDR threshold proximity models and TFP activation logic — ensuring governance instruments receive accurate, timely signals.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">05</div>
+        <h3>Operational Variables</h3>
+        <p>Calibration parameters for TFP activation thresholds (α₁, α₂, α₃) and minimum time-to-threshold estimates (τ_min) — domain-specific values derived from TDR outputs.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="font-family:var(--mono);font-size:0.8rem;">06</div>
+        <h3>Audit &amp; Traceability</h3>
+        <p>Institutional logging requirements, decision audit trails, and accountability mechanisms for TFP activation and deactivation events.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-inner">
+    <p class="section-label">// Protocol States</p>
+    <h2>TFP State Transitions</h2>
+    <table>
+      <thead><tr><th>State</th><th>Condition</th><th>Governance Response</th><th>Authority</th></tr></thead>
+      <tbody>
+        <tr><td><strong class="cyan mono">MONITOR</strong></td><td>Baseline — P(Θ) below alert level</td><td>Continuous indicator monitoring, institutional readiness</td><td>Standard institutional authority</td></tr>
+        <tr><td><strong class="cyan mono">ALERT</strong></td><td>P(Θ) exceeds first threshold</td><td>Enhanced monitoring, stakeholder notification, preparatory measures</td><td>Designated alert authority</td></tr>
+        <tr><td><strong class="cyan mono">PRECAUTION</strong></td><td>P(Θ) exceeds second threshold</td><td>Precautionary legal instruments activated, resource mobilisation</td><td>Elevated governance council</td></tr>
+        <tr><td><strong class="cyan mono">INTERVENTION</strong></td><td>P(Θ) exceeds third threshold</td><td>Full intervention instrument deployment, coordination mandated</td><td>Designated intervention authority</td></tr>
+        <tr><td><strong class="cyan mono">EMERGENCY</strong></td><td>τ(P) below critical minimum</td><td>Emergency governance protocols, maximum instrument deployment</td><td>Emergency authority</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--ink-light);">
+  <div class="section-inner" style="max-width:720px;">
+    <p class="section-label">// Documentation</p>
+    <h2>Access TFP Documentation</h2>
+    <p>Full TFP documentation — trigger catalogues, legal instrument specifications, and operational variable sets — is available through the Publications section. For working documents and consultation drafts, contact the research team.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+      <a href="publications.html" class="btn">Publications</a>
+      <a href="contact.html" class="btn btn-ghost">Request Documents</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:0.82rem;">c-ECO</a>
+      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
+      <p style="margin-top:0.5rem;font-size:0.78rem;">A programme of the <a href="https://hasse.foundation" style="color:var(--cyan);text-decoration:none;">Hasse Foundation</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Research</h4>
+      <ul>
+        <li><a href="framework.html">c-ECO Framework</a></li>
+        <li><a href="tdr.html">Threshold Dynamics</a></li>
+        <li><a href="tfp.html">TFP</a></li>
+        <li><a href="amazon-lab.html">Amazon Lab</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Knowledge</h4>
+      <ul>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:tfp@c-eco.io">tfp@c-eco.io</a></li>
+        <li><a href="contact.html">Contact Form</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
+    <p><a href="mailto:tfp@c-eco.io" style="color:var(--text-muted);text-decoration:none;">tfp@c-eco.io</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

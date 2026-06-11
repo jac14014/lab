@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — c-ECO</title>
+  <meta name="description" content="Contact the c-ECO research team for collaboration, publications, and enquiries.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
+    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="tdr.html">TDR</a></li>
+      <li><a href="tfp.html">TFP</a></li>
+      <li><a href="amazon-lab.html">Amazon Lab</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">c-ECO</a> / Contact</div>
+    <p class="section-label">// Get in Touch</p>
+    <h1>Contact</h1>
+    <p>Research enquiries, collaboration proposals, publication requests, and general correspondence.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-inner two-col">
+    <div>
+      <p class="section-label">// Message</p>
+      <h2>Write to Us</h2>
+      <form action="mailto:dir@c-eco.io" method="get" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="org">Institution</label>
+          <input type="text" id="org" name="institution" placeholder="University, organisation, or independent">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="">Select topic</option>
+            <option value="research-collab">Research Collaboration</option>
+            <option value="publications">Publications Request</option>
+            <option value="amazon-lab">Amazon Living Lab</option>
+            <option value="tfp">TFP Enquiry</option>
+            <option value="framework">Framework Enquiry</option>
+            <option value="general">General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="body" placeholder="Describe your enquiry..."></textarea>
+        </div>
+        <button type="submit" class="btn" style="cursor:pointer;border:1px solid var(--cyan);background:transparent;">Send</button>
+      </form>
+    </div>
+
+    <div>
+      <p class="section-label">// Direct Contacts</p>
+      <h2>Contact Directory</h2>
+
+      <div style="margin-top:1.5rem;">
+        <div class="card" style="margin-bottom:1rem;">
+          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Director</p>
+          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Programme Direction &amp; Partnerships</h3>
+          <a href="mailto:dir@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">dir@c-eco.io</a>
+        </div>
+        <div class="card" style="margin-bottom:1rem;">
+          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Research Team</p>
+          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Research Collaboration &amp; Publications</h3>
+          <a href="mailto:research@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">research@c-eco.io</a>
+        </div>
+        <div class="card" style="margin-bottom:1rem;">
+          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">TFP Programme</p>
+          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Threshold Function Protocol</h3>
+          <a href="mailto:tfp@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">tfp@c-eco.io</a>
+        </div>
+        <div class="card">
+          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Amazon Living Lab</p>
+          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Field Research &amp; Lab Operations</h3>
+          <a href="mailto:lab@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">lab@c-eco.io</a>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;padding:1.5rem;background:var(--ink-light);border:1px solid var(--border);border-radius:3px;">
+        <p class="section-label" style="margin-bottom:0.75rem;">// Hasse Foundation</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;">For institutional matters, fellowship applications, and governance enquiries, contact the Hasse Foundation directly.</p>
+        <a href="https://hasse.foundation/contact.html" style="color:var(--cyan);font-size:0.85rem;text-decoration:none;">hasse.foundation/contact →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:0.82rem;">c-ECO</a>
+      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
+      <p style="margin-top:0.5rem;font-size:0.78rem;">A programme of the <a href="https://hasse.foundation" style="color:var(--cyan);text-decoration:none;">Hasse Foundation</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Research</h4>
+      <ul>
+        <li><a href="framework.html">c-ECO Framework</a></li>
+        <li><a href="tdr.html">Threshold Dynamics</a></li>
+        <li><a href="tfp.html">TFP</a></li>
+        <li><a href="amazon-lab.html">Amazon Lab</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Knowledge</h4>
+      <ul>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li>
+        <li><a href="mailto:research@c-eco.io">research@c-eco.io</a></li>
+        <li><a href="contact.html">Contact Form</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
+    <p><a href="mailto:dir@c-eco.io" style="color:var(--text-muted);text-decoration:none;">dir@c-eco.io</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
