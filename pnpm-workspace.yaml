@@ -1,4 +1,4 @@
 allowBuilds:
-  '@swc/core': true
+  '@swc/core': set this to true or false
   esbuild: true
 verifyDepsBeforeRun: false

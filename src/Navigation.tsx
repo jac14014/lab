@@ -1,111 +1,127 @@
-import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const navItems = [
-  { label: 'Platform', href: '#platform' },
-  { label: 'TFP', href: '#tfp' },
-  { label: 'Alerts', href: '#alerts' },
-  { label: 'Amazon', href: '#amazon' },
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'Research', href: '#research' },
+const NAV_ITEMS = [
+  { label: 'Foundation', href: '#foundation' },
+  { label: 'The Gap', href: '#gap' },
+  { label: 'Lineage', href: '#lineage' },
+  { label: 'c-ECO', href: '#ceco' },
+  { label: 'Publications', href: '#publications' },
+  { label: 'Governance', href: '#governance' },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('#platform');
+  const [activeSection, setActiveSection] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
 
-      const current = navItems.reduce(
-        (closest, item) => {
-          const element = document.querySelector(item.href);
-          if (!element) return closest;
-          const top = element.getBoundingClientRect().top;
-          return top <= 160 && top > closest.top ? { id: item.href, top } : closest;
-        },
-        { id: '#platform', top: -Infinity },
-      );
+      const sections = NAV_ITEMS.map(item => {
+        const el = document.querySelector(item.href);
+        if (!el) return { id: item.href, top: 0 };
+        const rect = el.getBoundingClientRect();
+        return { id: item.href, top: rect.top };
+      });
 
-      setActiveSection(current.id);
+      const current = sections.reduce((closest, section) => {
+        if (section.top <= 150 && section.top > closest.top) return section;
+        return closest;
+      }, { id: '', top: -Infinity });
+
+      if (current.id) setActiveSection(current.id);
     };
 
-    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    event.preventDefault();
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     setMobileOpen(false);
-    const element = document.querySelector(href);
-    if (!element) return;
-    const top = element.getBoundingClientRect().top + window.scrollY - 76;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const el = document.querySelector(href);
+    if (el) {
+      const offset = 80;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   };
 
   return (
     <nav
-      className={`fixed left-0 top-0 z-50 w-full transition-all duration-700 ${
-        scrolled ? 'border-b border-ceco-border2 bg-ceco-bg/90 backdrop-blur-md' : 'bg-transparent'
+      ref={navRef}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
+        scrolled
+          ? 'bg-[#0D0D0F]/90 backdrop-blur-md border-b border-hasse-border2'
+          : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a
-          href="#platform"
-          onClick={(event) => handleClick(event, '#platform')}
-          className="group flex items-center gap-3"
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-ceco-amber/40 transition-colors duration-500 group-hover:border-ceco-amber">
-            <span className="font-display text-xs text-ceco-amber">c</span>
-          </div>
-          <div className="hidden sm:block">
-            <div className="font-display text-sm tracking-wide text-ceco-text">c-ECO.IO</div>
-            <div className="-mt-0.5 text-[10px] uppercase tracking-[0.2em] text-ceco-text3">
-              Operational Governance Platform
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="flex items-center gap-3 group"
+          >
+            <div className="w-8 h-8 rounded-full border border-hasse-amber/40 flex items-center justify-center group-hover:border-hasse-amber transition-colors duration-500">
+              <span className="font-display text-hasse-amber text-xs">H</span>
             </div>
+            <div className="hidden sm:block">
+              <div className="font-display text-hasse-text text-sm tracking-wide">HASSE FOUNDATION</div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-hasse-text3 -mt-0.5">Law · Memory · Living Systems</div>
+            </div>
+          </a>
+
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
+                className={`relative px-3 py-1.5 text-[11px] uppercase tracking-[0.15em] transition-colors duration-300 ${
+                  activeSection === item.href
+                    ? 'text-hasse-amber'
+                    : 'text-hasse-text2 hover:text-hasse-text'
+                }`}
+              >
+                {item.label}
+                {activeSection === item.href && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-hasse-amber" />
+                )}
+              </a>
+            ))}
           </div>
-        </a>
 
-        <div className="hidden items-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(event) => handleClick(event, item.href)}
-              className={`relative px-3 py-1.5 text-[11px] uppercase tracking-[0.15em] transition-colors duration-300 ${
-                activeSection === item.href ? 'text-ceco-amber' : 'text-ceco-text2 hover:text-ceco-text'
-              }`}
-            >
-              {item.label}
-              {activeSection === item.href && (
-                <span className="absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-ceco-amber" />
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden text-hasse-text2 hover:text-hasse-text p-2"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               )}
-            </a>
-          ))}
+            </svg>
+          </button>
         </div>
-
-        <button
-          type="button"
-          aria-label="Toggle navigation"
-          onClick={() => setMobileOpen((open) => !open)}
-          className="rounded-sm p-2 text-ceco-text2 transition-colors hover:text-ceco-text lg:hidden"
-        >
-          {mobileOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
-        </button>
       </div>
 
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-ceco-border2 bg-ceco-bg/95 px-6 pb-6 pt-4 backdrop-blur-md lg:hidden">
-          {navItems.map((item) => (
+        <div className="lg:hidden bg-[#0D0D0F]/95 backdrop-blur-md border-t border-hasse-border2 px-6 pb-6 pt-4">
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              onClick={(event) => handleClick(event, item.href)}
+              onClick={(e) => handleClick(e, item.href)}
               className={`block py-3 text-sm uppercase tracking-[0.12em] transition-colors ${
-                activeSection === item.href ? 'text-ceco-amber' : 'text-ceco-text2'
+                activeSection === item.href ? 'text-hasse-amber' : 'text-hasse-text2'
               }`}
             >
               {item.label}
