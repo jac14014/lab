@@ -3,336 +3,847 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>c-ECO — Threshold Governance Research Platform</title>
-  <meta name="description" content="Operational research infrastructure for governing ecological and social systems at the edge of irreversibility. TFP · TDR · Science → Clause.">
-  <meta property="og:title" content="c-ECO — Threshold Governance Research">
-  <meta property="og:description" content="Where science becomes enforceable.">
+  <title>c-ECO.io — Living Labs, TDR, TFP & Fellowship</title>
+  <meta name="description" content="c-ECO.io is the operational entry point for Living Labs, Amazon Living Lab, TDR, TFP, Fellowship and practitioner training.">
+  <meta property="og:title" content="c-ECO.io — Living Labs, TDR, TFP & Fellowship">
+  <meta property="og:description" content="Amazon Living Lab, Threshold Dynamics Research, Threshold Function Protocol and Fellowship pathways.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://c-eco.io">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ── INDEX-ONLY OVERRIDES ─────────────────────── */
+    :root {
+      --bg: #080b0c;
+      --panel: #0f1515;
+      --panel-2: #151d1a;
+      --text: #f4efe6;
+      --muted: #a79e91;
+      --dim: #6f756d;
+      --gold: #d6bc7e;
+      --gold-soft: rgba(214, 188, 126, .18);
+      --red: #8e1717;
+      --forest: #183327;
+      --clay: #9b5f3f;
+      --line: rgba(244, 239, 230, .12);
+      --line-strong: rgba(214, 188, 126, .28);
+      --radius: 8px;
+      --max: 1180px;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: "Libre Baskerville", Georgia, serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
 
-    /* Platform badge cards */
-    .platform-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    @media (max-width: 768px) { .platform-grid { grid-template-columns: 1fr; } }
-
-    .platform-card {
-      background: var(--ink-mid);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--cyan);
-      padding: 2rem 1.75rem;
-      text-decoration: none;
-      display: block;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .platform-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
-    .platform-card .card-tag {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 1rem;
-    }
-    .platform-card h3 {
-      font-family: 'Georgia', serif;
-      font-size: 1.2rem;
-      font-weight: normal;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(8, 11, 12, .94), rgba(8, 11, 12, .99)),
+        radial-gradient(circle at 85% 10%, rgba(142, 23, 23, .24), transparent 34%),
+        radial-gradient(circle at 18% 28%, rgba(28, 82, 57, .32), transparent 28%),
+        var(--bg);
       color: var(--text);
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-    }
-    .platform-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-    }
-    .platform-card .card-link {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--cyan-dim);
-    }
-    .platform-card:hover .card-link { color: var(--cyan); }
-
-    /* Signal strip */
-    .signal-strip {
-      display: flex;
-      gap: 0;
-      border: 1px solid var(--border);
-      margin-top: 3rem;
-      overflow: hidden;
-    }
-    .signal-item {
-      flex: 1;
-      padding: 1.5rem;
-      border-right: 1px solid var(--border);
-      text-align: center;
-    }
-    .signal-item:last-child { border-right: none; }
-    .signal-band {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      border-radius: 2px;
-      margin-bottom: 0.6rem;
-    }
-    .band-green  { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
-    .band-amber  { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
-    .band-red    { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-    .band-black  { background: rgba(200,200,200,0.1); color: #d1d5db; border: 1px solid rgba(200,200,200,0.2); }
-    .signal-item .s-label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+      font-family: var(--sans);
+      line-height: 1.55;
+      min-height: 100vh;
     }
 
-    /* Pages row */
-    .pages-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-    @media (max-width: 768px) { .pages-row { grid-template-columns: repeat(2, 1fr); } }
-    .pages-item {
-      background: var(--ink);
-      padding: 1.5rem;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-    .pages-item:hover { background: var(--ink-mid); }
-    .pages-item .pi-num {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      color: var(--cyan-dim);
-      letter-spacing: 0.12em;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .pages-item .pi-title {
-      font-size: 0.9rem;
-      color: var(--text);
-      display: block;
-      margin-bottom: 0.35rem;
-    }
-    .pages-item .pi-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: var(--mono);
-    }
+    a { color: inherit; }
 
-    /* Eco link to c-eco.org */
-    .org-bar {
-      margin-top: 3rem;
-      padding: 2rem;
-      border: 1px solid var(--border);
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 11, 12, .84);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      height: 74px;
+      margin: 0 auto;
+      padding: 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      gap: 24px;
     }
-    @media (max-width: 600px) { .org-bar { flex-direction: column; align-items: flex-start; } }
-    .org-bar-text p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 0.35rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 210px;
     }
-    .org-bar-text strong {
+    .brand img {
+      width: 42px;
+      height: 36px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+    .brand span {
+      display: block;
       font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--text);
-      letter-spacing: 0.05em;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--gold);
+      line-height: 1.35;
     }
-    .org-bar .btn { white-space: nowrap; }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      letter-spacing: .08em;
+      font-size: 9px;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .18s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+    .nav-menu-btn {
+      display: none;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      background: rgba(255,255,255,.03);
+      width: 42px;
+      height: 38px;
+      border-radius: 6px;
+      font-size: 18px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 74px);
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8,11,12,.95) 0%, rgba(8,11,12,.72) 50%, rgba(8,11,12,.5) 100%),
+        url("assets/img/amazon-rainforest.avif") center/cover;
+      filter: saturate(.9) contrast(1.04);
+      transform: scale(1.01);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(214,188,126,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(214,188,126,.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(90deg, rgba(0,0,0,.75), transparent 76%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: var(--max);
+      padding: 74px 22px 64px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .72fr);
+      gap: 40px;
+      align-items: end;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 7.2vw, 86px);
+      line-height: .98;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+    .hero-lede {
+      max-width: 660px;
+      margin: 24px 0 30px;
+      color: #d8d0c2;
+      font-size: clamp(16px, 2vw, 20px);
+    }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--line-strong);
+      background: rgba(8, 11, 12, .58);
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold);
+      background: rgba(214, 188, 126, .12);
+    }
+    .btn.primary {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #111;
+      font-weight: 800;
+    }
+
+    .hero-console {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: rgba(10, 15, 14, .76);
+      box-shadow: 0 30px 90px rgba(0,0,0,.34);
+      overflow: hidden;
+    }
+    .console-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .sigma-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      color: var(--gold);
+      background: rgba(214,188,126,.08);
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .console-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+    .metric {
+      display: grid;
+      grid-template-columns: 92px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .meter {
+      height: 7px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .meter span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--red));
+    }
+    .state-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .state {
+      padding: 10px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+    .state.amber { color: #f2c94c; border-color: rgba(242,201,76,.38); }
+    .state.red { color: #ff7777; border-color: rgba(255,119,119,.35); }
+    .state.black { color: #fff; background: rgba(255,255,255,.05); }
+
+    main section {
+      padding: 86px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .section-kicker {
+      margin: 0 0 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    h2 {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: clamp(30px, 4.3vw, 52px);
+      line-height: 1.08;
+    }
+    .section-lede {
+      margin: 18px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    .grid.two { grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .panel {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      padding: 24px;
+      overflow: hidden;
+    }
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: .7;
+    }
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .panel a {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--gold);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .big-feature {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 36px;
+      background: var(--panel);
+    }
+    .feature-media {
+      min-height: 430px;
+      background: url("assets/img/amazon-rainforest.avif") center/cover;
+      position: relative;
+    }
+    .feature-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(8,11,12,.4));
+    }
+    .feature-copy {
+      padding: clamp(26px, 5vw, 52px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .lab-facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .fact {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      background: rgba(255,255,255,.025);
+    }
+    .fact strong {
+      display: block;
+      color: var(--text);
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+    .fact span {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .engine {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .formula {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 30px;
+      background: #070909;
+    }
+    .formula .eq {
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 58px);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+    .var-list {
+      display: grid;
+      gap: 10px;
+    }
+    .var {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .var b {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 22px;
+    }
+    .var span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .bands {
+      display: grid;
+      gap: 10px;
+    }
+    .band {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      background: rgba(255,255,255,.02);
+    }
+    .band b {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .band span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .band.watch b { color: #76d88a; }
+    .band.amber b { color: #f2c94c; }
+    .band.red b { color: #ff7777; }
+    .band.black b { color: #fff; }
+
+    .fellowship-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 36px;
+      background: #0b0d0d;
+    }
+    .poster-wrap {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(142,23,23,.22), transparent 56%),
+        #111;
+      padding: 30px;
+    }
+    .poster-wrap img {
+      width: min(100%, 360px);
+      max-height: 480px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 70px rgba(0,0,0,.38);
+    }
+    .fellowship-copy {
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .logo-lockup img {
+      width: 58px;
+      height: 42px;
+      object-fit: contain;
+    }
+    .sigma-inline {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 22px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 34px;
+    }
+    .link-card {
+      min-height: 132px;
+      padding: 18px;
+      background: var(--bg);
+      text-decoration: none;
+      transition: background .18s ease;
+    }
+    .link-card:hover { background: var(--panel); }
+    .link-card small {
+      display: block;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .link-card strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .link-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 44px 22px;
+      background: #060707;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-inner a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 12px 22px 18px;
+        background: rgba(8, 11, 12, .98);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open a { display: block; padding: 11px 0; }
+      .nav-menu-btn { display: block; }
+      .hero-inner,
+      .big-feature,
+      .engine,
+      .fellowship-strip { grid-template-columns: 1fr; }
+      .grid.three,
+      .grid.two,
+      .link-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .brand { min-width: 0; }
+      .brand span { font-size: 10px; }
+      .hero-inner { padding-top: 48px; }
+      .hero-console { margin-top: 10px; }
+      .grid.three,
+      .grid.two,
+      .link-grid,
+      .lab-facts { grid-template-columns: 1fr; }
+      .feature-media { min-height: 280px; }
+      .poster-wrap { min-height: 420px; }
+      .metric { grid-template-columns: 72px 1fr; }
+      .metric small { grid-column: 2; }
+      .footer-inner { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
-    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="framework.html">Framework</a></li>
-      <li><a href="tdr.html">TDR</a></li>
-      <li><a href="tfp.html">TFP</a></li>
-      <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="hero-label">// c-eco.io — Operational Platform</div>
-    <h1>Governing systems<br>at the edge of <em>irreversibility</em></h1>
-    <p>An operational research infrastructure for detecting threshold proximity, translating scientific signals into enforceable legal effects, and deploying practitioner-ready governance instruments.</p>
-    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="tfp.html" class="btn">→ TFP Protocol</a>
-      <a href="tdr.html" class="btn" style="border-color:var(--cyan-dim); color:var(--text-muted);">→ TDR Research</a>
-      <a href="training.html" class="btn" style="border-color:var(--cyan-dim); color:var(--text-muted);">→ Training</a>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="c-ECO.io home">
+        <img src="assets/img/fellowship-logo.PNG" alt="c-ECO">
+        <span>c-ECO.io <small>Living Lab Intelligence</small></span>
+      </a>
+      <button class="nav-menu-btn" type="button" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Open menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="amazon-lab.html">Amazon Lab</a></li>
+        <li><a href="tdr.html">TDR</a></li>
+        <li><a href="tfp.html">TFP</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section>
-  <div class="section-inner">
-    <div class="section-label">// Platform Architecture</div>
-    <h2>Three Layers, One System</h2>
-    <p class="lead">c-ECO operates as an integrated stack: threshold science below, governance translation in the middle, practitioner deployment above.</p>
-
-    <div class="platform-grid">
-      <a href="tdr.html" class="platform-card">
-        <div class="card-tag">// Layer 01 — Science</div>
-        <h3>Threshold Dynamics Research</h3>
-        <p>Detection and classification of threshold proximity in complex ecological and social systems. Produces the quantitative signal Γ = f(P, ΔV, σ, Lr) that governance instruments require.</p>
-        <span class="card-link">Explore TDR →</span>
-      </a>
-      <a href="tfp.html" class="platform-card">
-        <div class="card-tag">// Layer 02 — Governance</div>
-        <h3>Threshold Function Protocol</h3>
-        <p>Translates continuous systemic states into graduated legal effects. Green / Amber / Red / Black band system. Pre-threshold juridical relevance. Model Clauses A–E.</p>
-        <span class="card-link">Explore TFP →</span>
-      </a>
-      <a href="training.html" class="platform-card">
-        <div class="card-tag">// Layer 03 — Deployment</div>
-        <h3>Operational Training Platform</h3>
-        <p>Six-module practitioner curriculum for legal professionals, financial analysts, data custodians, operators, and policy advisors. Three certification levels.</p>
-        <span class="card-link">Enter Training →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section style="background:var(--ink-light); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div class="section-label">// TFP Band System</div>
-    <h2>Graduated Activation</h2>
-    <p class="lead">Legal effects scale continuously with systemic state. No binary on/off trigger — graduated activation proportional to remaining reversibility margin.</p>
-
-    <div class="signal-strip">
-      <div class="signal-item">
-        <span class="signal-band band-green">GREEN</span>
-        <span class="s-label">Routine monitoring<br>P &lt; 0.5 · P<sub>crit</sub></span>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Amazon Living Lab · TDR · TFP · Fellowship</div>
+        <h1>Field intelligence for threshold governance.</h1>
+        <p class="hero-lede">
+          c-ECO.io is the operational entry point for the Living Labs network: a place where Amazon field evidence, Threshold Dynamics Research, TFP legal triggers, and Fellowship formation become one deployable system.
+        </p>
+        <div class="action-row">
+          <a href="amazon-lab.html" class="btn primary">Enter Amazon Lab</a>
+          <a href="training.html" class="btn">Training Platform</a>
+          <a href="https://c-eco.org/sectors/living-labs.html" class="btn" target="_blank" rel="noopener">Living Labs on .org</a>
+        </div>
       </div>
-      <div class="signal-item">
-        <span class="signal-band band-amber">AMBER</span>
-        <span class="s-label">Precautionary obligations<br>active — Enhanced reporting</span>
+
+      <aside class="hero-console" aria-label="c-ECO system preview">
+        <div class="console-top">
+          <span>Σ System Signal</span>
+          <span class="sigma-mark">Σ</span>
+        </div>
+        <div class="console-body">
+          <div class="metric">
+            <span>Amazon</span>
+            <div class="meter"><span style="width: 76%"></span></div>
+            <small>Core Lab L1.1</small>
+          </div>
+          <div class="metric">
+            <span>TDR</span>
+            <div class="meter"><span style="width: 68%"></span></div>
+            <small>EWS / CSD</small>
+          </div>
+          <div class="metric">
+            <span>TFP</span>
+            <div class="meter"><span style="width: 58%"></span></div>
+            <small>Γ function</small>
+          </div>
+          <div class="state-row" aria-label="TFP response states">
+            <div class="state">Watch</div>
+            <div class="state amber">Amber</div>
+            <div class="state red">Safe Mode</div>
+            <div class="state black">Restoration</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="living-labs">
+      <div class="section-inner">
+        <p class="section-kicker">01 · Living Labs Network</p>
+        <h2>The interface between ecological signals and institutional action.</h2>
+        <p class="section-lede">
+          The Living Labs architecture turns c-ECO from doctrine into operating infrastructure. Each lab links monitored territories, technical indicators, legal triggers, finance instruments, and trained practitioners.
+        </p>
+
+        <div class="big-feature">
+          <div class="feature-media" role="img" aria-label="Amazon rainforest"></div>
+          <div class="feature-copy">
+            <p class="section-kicker">Amazon Core Lab · Belém, Brazil</p>
+            <h2>Amazon Living Lab is the first field anchor.</h2>
+            <p class="section-lede">
+              The Amazon Lab concentrates the c-ECO system around forest and hydrological thresholds, satellite monitoring, regional coordination, and field-linked governance diagnostics.
+            </p>
+            <div class="lab-facts">
+              <div class="fact"><strong>L1.1</strong><span>Alpha lab code</span></div>
+              <div class="fact"><strong>24/7</strong><span>Sensor and signal logic</span></div>
+              <div class="fact"><strong>TFP</strong><span>Trigger integration</span></div>
+              <div class="fact"><strong>Belém</strong><span>Amazon coordination node</span></div>
+            </div>
+            <div class="action-row" style="margin-top: 26px;">
+              <a href="amazon-lab.html" class="btn primary">Open Amazon Lab</a>
+              <a href="https://c-eco.org/amazon-lab/amazon-lab.html" class="btn" target="_blank" rel="noopener">Deep file on .org</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="signal-item">
-        <span class="signal-band band-red">RED</span>
-        <span class="s-label">Restoration fund release<br>Solve et repete operative</span>
+    </section>
+
+    <section id="engine">
+      <div class="section-inner">
+        <p class="section-kicker">02 · TDR to TFP Engine</p>
+        <h2>Science does not sit beside governance. It feeds the trigger.</h2>
+        <p class="section-lede">
+          Threshold Dynamics Research detects resilience loss and threshold proximity. The Threshold Function Protocol translates those signals into graduated, auditable legal and financial effects.
+        </p>
+
+        <div class="engine">
+          <div class="formula">
+            <div class="eq">Γ = f(P, ΔV, σ, Lr)</div>
+            <div class="var-list">
+              <div class="var"><b>P</b><span>Position relative to safe operating boundaries.</span></div>
+              <div class="var"><b>ΔV</b><span>Velocity and direction of deterioration or recovery.</span></div>
+              <div class="var"><b>σ</b><span>Uncertainty treated as a conservative prudential factor.</span></div>
+              <div class="var"><b>Lr</b><span>Reversibility liquidity: resources available before irreversibility.</span></div>
+            </div>
+          </div>
+
+          <div class="bands" aria-label="TFP response bands">
+            <div class="band watch"><b>Watch</b><span>Enhanced monitoring when early signals begin to matter.</span></div>
+            <div class="band amber"><b>Amber</b><span>Prudential adjustment, reporting, buffers and conditionality.</span></div>
+            <div class="band red"><b>Red / Safe Mode</b><span>Execution reconfiguration before destructive default or collapse.</span></div>
+            <div class="band black"><b>Black / Restoration First</b><span>Restoration primacy when reversibility is at decisive risk.</span></div>
+          </div>
+        </div>
+
+        <div class="grid three">
+          <div class="panel">
+            <h3>TDR</h3>
+            <p>Early Warning Signals, Critical Slowing Down, resilience diagnostics, state-machine logic and field calibration.</p>
+            <a href="tdr.html">Explore TDR</a>
+          </div>
+          <div class="panel">
+            <h3>TFP</h3>
+            <p>Pre-threshold governance, non-discretionary classifications, Safe Mode, and Restoration First effects.</p>
+            <a href="tfp.html">Explore TFP</a>
+          </div>
+          <div class="panel">
+            <h3>Operational Training</h3>
+            <p>Practitioner modules for legal, financial, scientific and operational professionals working inside the system.</p>
+            <a href="training.html">Enter Training</a>
+          </div>
+        </div>
       </div>
-      <div class="signal-item">
-        <span class="signal-band band-black">BLACK</span>
-        <span class="s-label">Financial finality<br>Full guarantee conversion</span>
+    </section>
+
+    <section id="fellowship">
+      <div class="section-inner">
+        <p class="section-kicker">03 · Fellowship Pathway</p>
+        <h2>The human layer for applied threshold governance.</h2>
+        <p class="section-lede">
+          The Fellowship is the controlled entry layer for qualified participants: a bridge from doctrine to supervised case work, Living Lab exposure, sectoral analysis and methodological fidelity.
+        </p>
+
+        <div class="fellowship-strip">
+          <div class="poster-wrap">
+            <img src="assets/img/fellowship-poster.png" alt="c-ECO Fellowship poster">
+          </div>
+          <div class="fellowship-copy">
+            <div class="logo-lockup">
+              <img src="assets/img/fellowship-logo.PNG" alt="c-ECO Fellowship logo">
+              <span class="sigma-inline">Σ</span>
+            </div>
+            <h2>Fellowship, Training and Living Lab work should feel like one system.</h2>
+            <p class="section-lede">
+              The shield marks the Fellowship identity. Σ marks the system logic: signals, thresholds, classifications, protocols and auditability.
+            </p>
+            <div class="action-row" style="margin-top: 26px;">
+              <a href="training.html" class="btn primary">Training Platform</a>
+              <a href="https://c-eco.org/fellowship/fellowship.html" class="btn" target="_blank" rel="noopener">Fellowship on .org</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <p style="margin-top:1.5rem; font-family:var(--mono); font-size:0.75rem; color:var(--text-muted);">
-      Trigger function: Γ = f(P, ΔV, σ, Lr) — Proximity · Rate of change · Uncertainty · Reversibility Liquidity
-    </p>
-  </div>
-</section>
+    <section id="index">
+      <div class="section-inner">
+        <p class="section-kicker">04 · System Index</p>
+        <h2>Move from field signal to doctrine, protocol and participation.</h2>
 
-<section>
-  <div class="section-inner">
-    <div class="section-label">// Pages</div>
-    <h2>Platform Index</h2>
-
-    <div class="pages-row">
-      <a href="framework.html" class="pages-item">
-        <span class="pi-num">// 00</span>
-        <span class="pi-title">Framework</span>
-        <span class="pi-sub">Architecture overview</span>
-      </a>
-      <a href="tdr.html" class="pages-item">
-        <span class="pi-num">// 01</span>
-        <span class="pi-title">TDR</span>
-        <span class="pi-sub">Threshold Dynamics Research</span>
-      </a>
-      <a href="tfp.html" class="pages-item">
-        <span class="pi-num">// 02</span>
-        <span class="pi-title">TFP Protocol</span>
-        <span class="pi-sub">Governance translation layer</span>
-      </a>
-      <a href="amazon-lab.html" class="pages-item">
-        <span class="pi-num">// 03</span>
-        <span class="pi-title">Amazon Lab</span>
-        <span class="pi-sub">Living laboratory</span>
-      </a>
-      <a href="research.html" class="pages-item">
-        <span class="pi-num">// 04</span>
-        <span class="pi-title">Research</span>
-        <span class="pi-sub">Working papers & data</span>
-      </a>
-      <a href="publications.html" class="pages-item">
-        <span class="pi-num">// 05</span>
-        <span class="pi-title">Publications</span>
-        <span class="pi-sub">External outputs</span>
-      </a>
-      <a href="training.html" class="pages-item">
-        <span class="pi-num">// 06</span>
-        <span class="pi-title">Training</span>
-        <span class="pi-sub">Practitioner curriculum</span>
-      </a>
-      <a href="contact.html" class="pages-item">
-        <span class="pi-num">// 07</span>
-        <span class="pi-title">Contact</span>
-        <span class="pi-sub">Access & partnerships</span>
-      </a>
-    </div>
-
-    <div class="org-bar">
-      <div class="org-bar-text">
-        <strong>c-eco.org</strong>
-        <p>Editorial magazine — Science → Clause doctrine, Field Notes, Case Files, Observatory, Fellowship programme.</p>
+        <div class="link-grid">
+          <a href="amazon-lab.html" class="link-card"><small>Field</small><strong>Amazon Lab</strong><span>Primary Living Lab interface.</span></a>
+          <a href="tdr.html" class="link-card"><small>Science</small><strong>TDR</strong><span>Threshold dynamics and early warnings.</span></a>
+          <a href="tfp.html" class="link-card"><small>Protocol</small><strong>TFP</strong><span>Trigger logic and legal effects.</span></a>
+          <a href="training.html" class="link-card"><small>Entry</small><strong>Training</strong><span>Practitioner curriculum.</span></a>
+          <a href="research.html" class="link-card"><small>Research</small><strong>Working Program</strong><span>Data, diagnostics and studies.</span></a>
+          <a href="publications.html" class="link-card"><small>Outputs</small><strong>Publications</strong><span>Reports and external materials.</span></a>
+          <a href="https://c-eco.org/sectors/living-labs.html" class="link-card" target="_blank" rel="noopener"><small>.org</small><strong>Living Labs</strong><span>Full network architecture.</span></a>
+          <a href="contact.html" class="link-card"><small>Access</small><strong>Contact</strong><span>Institutional and partnership routes.</span></a>
+        </div>
       </div>
-      <a href="https://c-eco.org" class="btn" target="_blank" rel="noopener">Visit c-eco.org ↗</a>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">c-ECO</div>
-      <p>Threshold Governance Research Platform<br>Operational infrastructure for pre-threshold juridical relevance.</p>
+  <footer>
+    <div class="footer-inner">
+      <div>c-ECO.io · Living Lab Intelligence · TDR · TFP · Fellowship</div>
+      <div><a href="https://c-eco.org" target="_blank" rel="noopener">c-eco.org</a> · <a href="contact.html">Contact</a></div>
     </div>
-    <div class="footer-links">
-      <a href="framework.html">Framework</a>
-      <a href="tdr.html">TDR</a>
-      <a href="tfp.html">TFP</a>
-      <a href="amazon-lab.html">Amazon Lab</a>
-      <a href="training.html">Training</a>
-      <a href="https://c-eco.org" target="_blank" rel="noopener">c-eco.org ↗</a>
-      <a href="https://hasse.foundation" target="_blank" rel="noopener">hasse.foundation ↗</a>
-    </div>
-    <div class="footer-copy">
-      © 2026 c-ECO Research · <a href="contact.html">Contact</a>
-    </div>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
