@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO Operational Training Platform | c-eco.io</title>
+  <meta name="description" content="The practitioner curriculum for implementing TFP-governed contracts, trigger monitoring, and restoration finance instruments. Tracks for legal, financial, scientific, and operational professionals." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --sidebar-width: 320px;
+    --forest:        #1e3a2f;
+    --navy:          #1a2b3c;
+    --gold:          #c8963e;
+    --gold-lt:       #ddb96a;
+    --bg:            #f5f0e8;
+    --bg-warm:       #ede8df;
+    --white:         #ffffff;
+    --text:          #1a1a1a;
+    --muted:         #5a5248;
+    --dim:           #8a847a;
+    --border:        #d8d0c4;
+    --border-lt:     #e8e2d8;
+    --accent:        #8b5e3c;
+    --alert-red:     #7a2020;
+    --amber:         #7a5a18;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform .3s ease;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sidebar-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .sidebar-title {
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--forest);
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .search-wrap {
+    margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 10;
+    padding-bottom: 8px;
+  }
+
+  #sidebarSearch {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  #sidebarSearch:focus { border-color: var(--gold); }
+
+  .nav-list { list-style: none; padding: 0; margin: 0; }
+
+  .nav-section {
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 14px;
+    border-top: 1px solid var(--border-lt);
+    padding-top: 10px 0 5px;
+    padding: 10px 0 5px;
+  }
+
+  .nav-sub {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--dim);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin: 8px 0 3px 8px;
+  }
+
+  .nav-item a {
+    display: block;
+    padding: 5px 8px;
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.35;
+    transition: .15s;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item a:hover {
+    background: rgba(200,150,62,.08);
+    border-left-color: var(--gold);
+    color: var(--forest);
+  }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-width);
+    padding: 40px 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .doc {
+    background: var(--white);
+    width: 100%;
+    max-width: 860px;
+    padding: 0;
+    box-shadow: 0 4px 28px rgba(0,0,0,.07);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1a2b3c 0%, #1e3a2f 100%);
+    color: #fff;
+    padding: 36px 40px 32px;
+    border-bottom: 3px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(200,150,62,.06);
+    pointer-events: none;
+  }
+
+  .hero-pre {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .hero-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    opacity: .95;
+  }
+
+  .hero-domain {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+    line-height: 1.3;
+  }
+
+  .hero-domain span {
+    display: block;
+    font-weight: 400;
+    font-size: 9px;
+    color: rgba(255,255,255,.55);
+    letter-spacing: .6px;
+    margin-top: 2px;
+  }
+
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 14px 0;
+    color: #fff;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255,255,255,.82);
+    max-width: 700px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .hero-tag {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.18);
+    color: rgba(255,255,255,.8);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  /* ── DOC BODY ── */
+  .doc-body { padding: 32px 40px 50px; }
+
+  /* ── SECTION HEADER ── */
+  .sec-hd {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--forest);
+    margin: 36px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--gold);
+    scroll-margin-top: 24px;
+  }
+
+  .sec-hd:first-child { margin-top: 0; }
+
+  .subsec {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--forest);
+    margin: 24px 0 12px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+
+  /* ── PROSE ── */
+  .caput {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13.5px;
+    line-height: 1.72;
+    text-align: justify;
+    margin-bottom: 12px;
+    color: #222;
+  }
+
+  .para {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 8px;
+    margin-left: 24px;
+  }
+
+  .bullet {
+    font-size: 12.5px;
+    color: #333;
+    margin-left: 40px;
+    margin-bottom: 6px;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .box {
+    padding: 16px 20px;
+    margin: 16px 0 22px;
+    border-left: 4px solid var(--gold);
+    background: #fdf9f3;
+  }
+
+  .box.green { background: #f0f7f4; border-left-color: var(--forest); }
+  .box.alert { background: #fdf0f0; border-left-color: var(--alert-red); }
+  .box.amber { background: #fdf6e8; border-left-color: var(--amber); }
+  .box.dark  { background: var(--forest); color: rgba(255,255,255,.9); border-left-color: var(--gold); }
+
+  .box-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .box.dark .box-title { color: var(--gold-lt); }
+  .box.alert .box-title { color: var(--alert-red); }
+  .box.amber .box-title { color: var(--amber); }
+
+  /* ── MODULE CARDS ── */
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 18px 0 24px;
+  }
+
+  .module-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+    padding: 18px 18px 22px;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+
+  .module-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: .7;
+  }
+
+  .module-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,.08);
+    border-color: var(--gold);
+  }
+
+  .module-n {
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .module-title {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--forest);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .module-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .module-track {
+    margin-top: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+  }
+
+  /* ── TRACK CARDS ── */
+  .track-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 18px 0 24px;
+  }
+
+  .track-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+    padding: 16px 18px;
+  }
+
+  .track-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .track-title {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .track-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .track-modules {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+  }
+
+  /* ── BAND TABLE ── */
+  .proto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+
+  .proto-table th {
+    background: var(--forest);
+    color: #fff;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: .6px;
+  }
+
+  .proto-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-lt);
+    vertical-align: top;
+    line-height: 1.55;
+    color: #333;
+  }
+
+  .proto-table tr:nth-child(even) td { background: #fdf9f3; }
+
+  .band {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  .band-g { background: #c6f6d5; color: #22543d; }
+  .band-a { background: #fefcbf; color: #744210; }
+  .band-r { background: #fed7d7; color: #742a2a; }
+  .band-b { background: #1a202c; color: #fff; }
+
+  /* ── PATHWAY STEPS ── */
+  .pathway {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 18px 0;
+  }
+
+  .step {
+    background: var(--white);
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .step.active { background: var(--bg); }
+
+  .step-n {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 36px;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .step-label {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+
+  .step-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    color: var(--forest);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+
+  .step-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── CTA ── */
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    transition: .2s;
+    cursor: pointer;
+    border: 1px solid;
+  }
+
+  .btn-primary {
+    background: var(--forest);
+    color: #fff;
+    border-color: var(--forest);
+  }
+
+  .btn-primary:hover { background: #162e24; }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--forest);
+    border-color: var(--forest);
+  }
+
+  .btn-secondary:hover { background: var(--bg); }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+  }
+
+  .btn-gold:hover { background: #b07c2c; }
+
+  /* ── INCISO LIST ── */
+  .inciso {
+    margin-left: 48px;
+    font-size: 12.5px;
+    margin-bottom: 7px;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  /* ── CERT CARD ── */
+  .cert-card {
+    background: linear-gradient(135deg, #1a2b3c 0%, #1e3a2f 100%);
+    color: #fff;
+    padding: 24px 28px;
+    border: 1px solid var(--gold);
+    margin: 18px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: 'Σ';
+    position: absolute;
+    right: 24px; top: 14px;
+    font-size: 56px;
+    color: rgba(200,150,62,.1);
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .cert-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+    margin-bottom: 8px;
+  }
+
+  .cert-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+    line-height: 1.25;
+  }
+
+  .cert-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,.75);
+    line-height: 1.65;
+    max-width: 560px;
+    margin-bottom: 16px;
+  }
+
+  .cert-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 11px;
+    color: rgba(255,255,255,.55);
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+
+  .cert-meta span { font-weight: 600; color: rgba(255,255,255,.8); }
+
+  /* ── LAYER CARDS ── */
+  .layer-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+
+  .layer-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .layer-n {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    color: var(--border);
+    line-height: 1;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .layer-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13.5px;
+    color: var(--forest);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .layer-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .layer-gate {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin-top: 6px;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--forest);
+    color: rgba(255,255,255,.7);
+    padding: 20px 40px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .doc-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,.85);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .doc-footer-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    opacity: .85;
+  }
+
+  /* ── MOBILE ── */
+  .mobile-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px; right: 20px;
+    background: var(--forest);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    font-weight: 800;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,.3);
+    cursor: pointer;
+    letter-spacing: .5px;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 1024px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+      box-shadow: 10px 0 30px rgba(0,0,0,.22);
+    }
+    .main {
+      margin-left: 0;
+      padding: 16px;
+    }
+    .doc-body { padding: 20px 22px 40px; }
+    .hero { padding: 24px 22px 20px; }
+    .hero h1 { font-size: 22px; }
+    .module-grid { grid-template-columns: 1fr; }
+    .track-grid { grid-template-columns: 1fr; }
+    .pathway { grid-template-columns: 1fr 1fr; }
+    .mobile-btn { display: block; }
+    .doc-footer { padding: 16px 22px; flex-direction: column; align-items: flex-start; }
+  }
+  </style>
+</head>
+
+<body>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">MENU</button>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar" aria-label="Training Navigation">
+    <div class="sidebar-top">
+      <img src="assets/fellow.png" alt="c-ECO Fellowship" class="logo-img" />
+      <div class="sidebar-title">c-ECO Operational<br>Training Platform</div>
+    </div>
+
+    <div class="search-wrap">
+      <input type="text" id="sidebarSearch" placeholder="Search section..." aria-label="Search" />
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section">Platform</li>
+        <li class="nav-item"><a href="#OVERVIEW">1. What Is This Platform</a></li>
+        <li class="nav-item"><a href="#AUDIENCE">2. Who Is This For</a></li>
+        <li class="nav-item"><a href="#DISTINCTION">3. Training vs. Fellowship</a></li>
+
+        <li class="nav-section">Curriculum</li>
+        <li class="nav-item"><a href="#MODULES">4. The Six Modules</a></li>
+        <li class="nav-item"><a href="#MODULE-1">Module 1 — Foundation</a></li>
+        <li class="nav-item"><a href="#MODULE-2">Module 2 — Signal Reading</a></li>
+        <li class="nav-item"><a href="#MODULE-3">Module 3 — Clause Architecture</a></li>
+        <li class="nav-item"><a href="#MODULE-4">Module 4 — Financial Instruments</a></li>
+        <li class="nav-item"><a href="#MODULE-5">Module 5 — Sector Applications</a></li>
+        <li class="nav-item"><a href="#MODULE-6">Module 6 — Arbitration & Review</a></li>
+
+        <li class="nav-section">Tracks</li>
+        <li class="nav-item"><a href="#TRACKS">5. Professional Tracks</a></li>
+        <li class="nav-item"><a href="#TRACK-LEGAL">Legal Track</a></li>
+        <li class="nav-item"><a href="#TRACK-FINANCE">Financial Track</a></li>
+        <li class="nav-item"><a href="#TRACK-SCIENCE">Data Custodian Track</a></li>
+        <li class="nav-item"><a href="#TRACK-OPS">Operational Track</a></li>
+
+        <li class="nav-section">Certification</li>
+        <li class="nav-item"><a href="#PATHWAY">6. Certification Pathway</a></li>
+        <li class="nav-item"><a href="#LEVELS">7. Practitioner Levels</a></li>
+        <li class="nav-item"><a href="#VALIDITY">8. Validity & Renewal</a></li>
+
+        <li class="nav-section">Access</li>
+        <li class="nav-item"><a href="#ACCESS">9. Access & Application</a></li>
+        <li class="nav-item"><a href="#RESOURCES">10. Core Resources</a></li>
+
+        <li class="nav-section">Legal</li>
+        <li class="nav-item"><a href="#COPYRIGHT">Copyright</a></li>
+        <li class="nav-item"><a href="https://c-eco.org" target="_blank">c-eco.org Editorial ↗</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+    <article class="doc">
+
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-pre">
+          <img src="assets/fellow.png" alt="c-ECO" class="hero-logo" />
+          <div class="hero-domain">
+            c-eco.io · Operational Training Platform
+            <span>Powered by the c-ECO Systemic Governance Initiative · Hasse Foundation</span>
+          </div>
+        </div>
+        <h1>Practitioner Training in Threshold Governance</h1>
+        <div class="hero-sub">
+          This platform trains legal, financial, scientific, and operational professionals in the implementation of TFP-governed instruments — from clause drafting to trigger monitoring to restoration finance. It is not a theory program. It is a deployment curriculum.
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">TFP Implementation</span>
+          <span class="hero-tag">Model Clause Drafting</span>
+          <span class="hero-tag">Trigger Monitoring</span>
+          <span class="hero-tag">Restoration Finance</span>
+          <span class="hero-tag">Data Custodian Certification</span>
+          <span class="hero-tag">Sector Applications</span>
+        </div>
+      </header>
+
+      <div class="doc-body">
+
+        <!-- ── SECTION 1: OVERVIEW ── -->
+        <div class="sec-hd" id="OVERVIEW">SECTION 1 — WHAT IS THIS PLATFORM</div>
+
+        <div class="caput">
+          c-eco.io is the operational layer of the c-ECO Systemic Governance Initiative. Where c-eco.org presents the doctrine and editorial content, c-eco.io provides the practitioner tools, training curriculum, and technical documentation required to implement the c-ECO framework in real contracts, real monitoring systems, and real financial instruments.
+        </div>
+
+        <div class="caput">
+          The Operational Training Platform is structured around a central problem: understanding the Pre-Threshold Principle and the TFP trigger logic is not sufficient to implement them. A lawyer needs to know how to insert Clause B into a project finance agreement. A financial analyst needs to know how to calibrate Reversibility Liquidity (Lr) in a restoration finance structure. A scientist needs to know how to certify threshold exceedance under Article 36. This platform provides that operational knowledge.
+        </div>
+
+        <div class="box green">
+          <div class="box-title">Platform Character</div>
+          <div class="caput" style="margin:0;">
+            This is a practitioner deployment curriculum — not a theoretical course. Each module produces a deliverable: a drafted clause, a calibrated trigger, a certified signal, a structured financial instrument. Completion is measured by implementation capacity, not by comprehension alone.
+          </div>
+        </div>
+
+        <div class="subsec" id="WHAT-NOT">What This Platform Is Not</div>
+        <div class="inciso">I — Not a general environmental law course or ESG certification program</div>
+        <div class="inciso">II — Not a substitute for the c-ECO Fellowship (which is a 12-month applied formation system)</div>
+        <div class="inciso">III — Not a regulatory compliance tool — c-ECO operates through contractual incorporation, not through regulatory mandates</div>
+        <div class="inciso">IV — Not jurisdiction-specific — the framework is designed for international commercial application</div>
+        <div class="inciso">V — Not a passive learning environment — modules require active engagement with real or simulated case environments</div>
+
+        <!-- ── SECTION 2: AUDIENCE ── -->
+        <div class="sec-hd" id="AUDIENCE">SECTION 2 — WHO IS THIS FOR</div>
+
+        <div class="caput">
+          The c-ECO operational framework cuts across four professional communities. The trigger logic is shared; the implementation deliverable differs by professional role. Each track is calibrated to the specific output a practitioner needs to produce in their professional context.
+        </div>
+
+        <div class="track-grid" id="TRACKS">
+          <div class="track-card" id="TRACK-LEGAL">
+            <span class="track-icon">⚖</span>
+            <div class="track-title">Legal Practitioners</div>
+            <div class="track-desc">Corporate lawyers, project finance attorneys, environmental counsel, international arbitrators, in-house counsel at infrastructure and extractive companies. Needs: clause drafting, IEX architecture, arbitration protocol, cross-default exclusions, solve et repete mechanics.</div>
+            <div class="track-modules">Modules 1 · 3 · 6 · Clause Architecture focus</div>
+          </div>
+          <div class="track-card" id="TRACK-FINANCE">
+            <span class="track-icon">◈</span>
+            <div class="track-title">Financial Professionals</div>
+            <div class="track-desc">IFC/DFI officers, ESG/impact investors, insurance underwriters, credit risk analysts, bond structurers, sustainability-linked finance practitioners. Needs: Restoration Fund mechanics, Performance Bond calibration, parametric insurance, Lr computation, SLL/SLB distinction.</div>
+            <div class="track-modules">Modules 1 · 4 · 5 · Financial Architecture focus</div>
+          </div>
+          <div class="track-card" id="TRACK-SCIENCE">
+            <span class="track-icon">◉</span>
+            <div class="track-title">Data Custodians</div>
+            <div class="track-desc">Environmental scientists, satellite data analysts, remote sensing specialists, field monitors, ecologists, hydrologists. Needs: TFP variable calibration, sensor certification, Trigger Function Γ computation, band classification, Article 36 evidentiary standards, Calibration Council protocols.</div>
+            <div class="track-modules">Modules 1 · 2 · 5 · Signal Science focus</div>
+          </div>
+          <div class="track-card" id="TRACK-OPS">
+            <span class="track-icon">▣</span>
+            <div class="track-title">Operational Managers</div>
+            <div class="track-desc">Infrastructure operators, mining and energy executives, project directors, compliance officers. Needs: Safe Mode entry and exit protocols, Joint Duty Committee mechanics, operational reconfiguration under Red Band, Restoration Provider engagement, Black Band decommissioning.</div>
+            <div class="track-modules">Modules 1 · 3 · 4 · 5 · Operations focus</div>
+          </div>
+        </div>
+
+        <div class="box amber">
+          <div class="box-title">Regulatory and Policy Advisors</div>
+          <div class="caput" style="margin:0; font-size:12.5px;">
+            A fifth audience — IFI staff, national regulators, government procurement officers, policy advisors at multilateral bodies — may use the Legal and Financial tracks with supplemental material on the UNIDROIT and Earth System Law alignment dimensions. Contact Hasse Foundation for tailored institutional engagement.
+          </div>
+        </div>
+
+        <!-- ── SECTION 3: DISTINCTION ── -->
+        <div class="sec-hd" id="DISTINCTION">SECTION 3 — TRAINING vs. FELLOWSHIP</div>
+
+        <table class="proto-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Operational Training (c-eco.io)</th>
+              <th>Fellowship Program (c-ECO FP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Duration</strong></td>
+              <td>Modular — each module 2–4 weeks, full curriculum 4–6 months</td>
+              <td>12 months — 8-week intensive immersion + applied project</td>
+            </tr>
+            <tr>
+              <td><strong>Format</strong></td>
+              <td>Self-paced, deliverable-based, sector-specific</td>
+              <td>Cohort-based, contractually governed, institutionally supervised</td>
+            </tr>
+            <tr>
+              <td><strong>Audience</strong></td>
+              <td>Working professionals seeking implementation capacity</td>
+              <td>Selected participants entering systemic governance environment</td>
+            </tr>
+            <tr>
+              <td><strong>Certification</strong></td>
+              <td>c-ECO Certified Practitioner (track-specific, 18-month validity)</td>
+              <td>c-ECO Fellow (24-month validity, renewable, governed by Fellowship contractual stack)</td>
+            </tr>
+            <tr>
+              <td><strong>Entry</strong></td>
+              <td>Open enrollment with basic professional eligibility screening</td>
+              <td>Competitive selection process with institutional review</td>
+            </tr>
+            <tr>
+              <td><strong>Output</strong></td>
+              <td>Implementation-ready professional with certified competencies</td>
+              <td>Fellow with applied governance formation and research contribution</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ── SECTION 4: MODULES ── -->
+        <div class="sec-hd" id="MODULES">SECTION 4 — THE SIX MODULES</div>
+
+        <div class="caput">
+          The curriculum is organized as six sequential modules, structured from foundational doctrine to sector-specific deployment. Each module requires active engagement with the c-ECO Model Law articles, TFP Manual provisions, and a case environment. Practitioners may complete the full curriculum or enter at the module most relevant to their track.
+        </div>
+
+        <div class="module-grid">
+          <div class="module-card" id="MODULE-1">
+            <div class="module-n">Module 01 · Foundation</div>
+            <div class="module-title">Systemic Governance Paradigm</div>
+            <div class="module-desc">The Pre-Threshold Principle. Recognition–Action Gap. Three failures of existing law. Canonical formula. Safe Operating Space. Why the foundational question shifts from "is this permitted?" to "does this preserve reversibility?"</div>
+            <div class="module-track">All Tracks · c-eco.org: Science → Clause</div>
+          </div>
+          <div class="module-card" id="MODULE-2">
+            <div class="module-n">Module 02 · Signal Reading</div>
+            <div class="module-title">The TFP Trigger Function</div>
+            <div class="module-desc">Trigger Function Γ = f(P, ΔV, σ, Lr). Reading Position (P), Velocity (ΔV), Uncertainty (σ), Reversibility Liquidity (Lr). Band classification Green/Amber/Red/Black. InSAR deformation data. NDVI. Hydrological thresholds. Article 36 evidentiary standards. Calibration Council protocols.</div>
+            <div class="module-track">Data Custodian Track primary · All Tracks</div>
+          </div>
+          <div class="module-card" id="MODULE-3">
+            <div class="module-n">Module 03 · Clause Architecture</div>
+            <div class="module-title">Model Clauses A–E: Drafting and Integration</div>
+            <div class="module-desc">Verbatim integration of Clauses A–E into project finance, concession, offtake, and supply chain agreements. Clause A (Incorporation). Clause B (Trigger Mechanism — non-discretionary, no override). Clause C (Safe Mode — NOT default). Clause D (Restoration First — asset conversion). Clause E (Arbitration — solve et repete, limited scope).</div>
+            <div class="module-track">Legal Track primary · Operational Track</div>
+          </div>
+          <div class="module-card" id="MODULE-4">
+            <div class="module-n">Module 04 · Financial Instruments</div>
+            <div class="module-title">Restoration Finance Architecture</div>
+            <div class="module-desc">Restoration Fund (ring-fenced, trigger-linked). Performance Bond (parametrically callable, MCRC calibration). Environmental Insurance (parametric payouts, no damage assessment). Asset Pledge (auto-converts on trigger, no foreclosure). Systemic Margin Call (Amber → Red circuit-breaker). Graduated band activation. Reversibility Liquidity (Lr) computation. SLL/SLB distinction from c-ECO triggers.</div>
+            <div class="module-track">Financial Track primary · Legal Track</div>
+          </div>
+          <div class="module-card" id="MODULE-5">
+            <div class="module-n">Module 05 · Sector Applications</div>
+            <div class="module-title">Case Studies and Sector Deployment</div>
+            <div class="module-desc">Mining / Dam safety: Brumadinho case, InSAR deformation pipeline, TFP Article 36. Amazon / Forest: NDVI and deforestation thresholds, Amazon Living Lab. Energy systems: Yemen fragile governance environment, fuel supply, humanitarian criticality. Marine / High Seas: BBNJ Treaty (entry into force 17 Jan 2026), cumulative impacts. Space operations: satellite licensing, debris footprint.</div>
+            <div class="module-track">All Tracks · Sector-specific exit modules</div>
+          </div>
+          <div class="module-card" id="MODULE-6">
+            <div class="module-n">Module 06 · Arbitration & Review</div>
+            <div class="module-title">Technical Curatorship Chamber</div>
+            <div class="module-desc">Clause E mechanics. Art. 222 limited arbitral review. Scope exclusions: no review of ecological merit, economic desirability, policy. Admissible grounds: procedural failure, data corruption, material measurement error, fraud. Solve et repete: effects operative during proceedings. UNIDROIT 2.1.14 / ICC Art. 25 compatibility. IEX as autonomous category distinct from force majeure and hardship.</div>
+            <div class="module-track">Legal Track primary · All Tracks</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="box-title">Module Access and Sequencing</div>
+          <div class="caput" style="margin:0; font-size:12.5px;">
+            Module 1 is mandatory for all tracks. Modules 2–6 may be taken in any order after Module 1, though the sequence above is recommended. Full certification requires completion of all six modules plus a sector-specific practitioner deliverable reviewed by the Hasse Foundation.
+          </div>
+        </div>
+
+        <!-- ── SECTION 5: PATHWAY ── -->
+        <div class="sec-hd" id="PATHWAY">SECTION 5 — CERTIFICATION PATHWAY</div>
+
+        <div class="pathway">
+          <div class="step">
+            <div class="step-n">01</div>
+            <div class="step-label">Eligibility</div>
+            <div class="step-title">Professional Screening</div>
+            <div class="step-desc">Professional background verification. Track assignment. Module plan confirmation.</div>
+          </div>
+          <div class="step active">
+            <div class="step-n">02</div>
+            <div class="step-label">Curriculum</div>
+            <div class="step-title">Six Modules</div>
+            <div class="step-desc">Complete all six modules including practitioner deliverables for each. Estimated 4–6 months at professional pace.</div>
+          </div>
+          <div class="step">
+            <div class="step-n">03</div>
+            <div class="step-label">Deliverable</div>
+            <div class="step-title">Sector Assessment</div>
+            <div class="step-desc">One sector-specific implementation deliverable: drafted clause package, calibrated trigger set, or structured financial instrument reviewed by Foundation.</div>
+          </div>
+          <div class="step">
+            <div class="step-n">04</div>
+            <div class="step-label">Certification</div>
+            <div class="step-title">c-ECO Certified Practitioner</div>
+            <div class="step-desc">Issue of track-specific certification. 18-month validity. Renewable upon demonstrated continued compliance and active engagement.</div>
+          </div>
+        </div>
+
+        <!-- ── SECTION 6: LEVELS ── -->
+        <div class="sec-hd" id="LEVELS">SECTION 6 — PRACTITIONER LEVELS</div>
+
+        <div class="layer-grid">
+          <div class="layer-card">
+            <div class="layer-n">I</div>
+            <div>
+              <div class="layer-title">c-ECO Practitioner — Associate</div>
+              <div class="layer-desc">Completed Modules 1–3. Competent in foundational doctrine and clause architecture. Can integrate c-ECO clauses into standard contracts with supervision.</div>
+              <div class="layer-gate">Validity: 12 months · Track-specific designation</div>
+            </div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-n">II</div>
+            <div>
+              <div class="layer-title">c-ECO Certified Practitioner</div>
+              <div class="layer-desc">Completed all 6 modules plus sector deliverable. Independent implementation capacity. Can draft, calibrate, and certify c-ECO instruments in their professional track without supervision.</div>
+              <div class="layer-gate">Validity: 18 months · Renewable · Foundation seal of recognition</div>
+            </div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-n">III</div>
+            <div>
+              <div class="layer-title">c-ECO Senior Practitioner</div>
+              <div class="layer-desc">Level II plus: demonstrated application in at least one real or supervised case environment, reviewed and validated by the Hasse Foundation. Eligible to supervise Associate-level practitioners and appear as technical expert in Clause E arbitrations.</div>
+              <div class="layer-gate">Validity: 24 months · Application-based · Technical Curatorship Chamber eligible</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SECTION 7: CERT CARD ── -->
+        <div class="sec-hd" id="VALIDITY">SECTION 7 — CERTIFICATION VALIDITY & RENEWAL</div>
+
+        <div class="cert-card">
+          <div class="cert-label">c-ECO Certification · Validity Framework</div>
+          <div class="cert-title">Time-Bound Recognition Under Active Institutional Governance</div>
+          <div class="cert-desc">
+            Certification under the c-ECO framework is not permanent licensure. It is time-bound institutional recognition, valid only within the current methodological cycle. The TFP and Model Law are living instruments — updated by the Hasse Foundation's Technical Standards Committee. Certification requires renewal to remain current with the operative version.
+          </div>
+          <div class="cert-meta">
+            <div>Associate: <span>12 months</span></div>
+            <div>Certified Practitioner: <span>18 months</span></div>
+            <div>Senior Practitioner: <span>24 months</span></div>
+            <div>Renewal: <span>Active engagement required</span></div>
+            <div>Governing document: <span>c-ECO-STATUTE-001 current version</span></div>
+          </div>
+        </div>
+
+        <div class="caput">
+          Renewal does not require re-completion of all modules. It requires: (a) demonstration of continued professional activity in c-ECO governed contexts; (b) acknowledgement of methodological updates since last certification; (c) a renewal assessment appropriate to the practitioner level.
+        </div>
+
+        <!-- ── SECTION 8: ACCESS ── -->
+        <div class="sec-hd" id="ACCESS">SECTION 8 — ACCESS & APPLICATION</div>
+
+        <div class="caput">
+          The Operational Training Platform operates on rolling enrollment. There is no cohort-based admission calendar — practitioners may begin at any point subject to eligibility screening. Eligibility requires: (a) demonstrated professional background in a relevant track domain; (b) understanding of the platform terms and methodological commitment; (c) acceptance of the c-ECO Practitioner Agreement governing certification conduct and IP obligations.
+        </div>
+
+        <div class="box alert">
+          <div class="box-title">Important — Not Open Access</div>
+          <div class="caput" style="margin:0; font-size:12.5px;">
+            The training curriculum, module content, and case materials are not publicly available. Access is gated by eligibility screening and agreement execution. This is a controlled professional formation environment — not a MOOC or open courseware platform.
+          </div>
+        </div>
+
+        <div class="subsec">Eligibility Criteria</div>
+        <div class="inciso">I — Active professional in legal, financial, scientific, or operational fields relevant to c-ECO application contexts</div>
+        <div class="inciso">II — Completion of the platform orientation session (mandatory, free of charge)</div>
+        <div class="inciso">III — Execution of the c-ECO Practitioner Agreement (available upon eligibility confirmation)</div>
+        <div class="inciso">IV — No current conflict of interest with the c-ECO methodology as defined in the Agreement</div>
+
+        <div class="cta-row">
+          <a href="contact.html" class="btn btn-primary">Request Access →</a>
+          <a href="https://c-eco.org/science-clause/index.html" class="btn btn-secondary" target="_blank">Read the Doctrine First</a>
+          <a href="https://c-eco.org/field-notes/index.html" class="btn btn-secondary" target="_blank">Field Notes Nº 1</a>
+        </div>
+
+        <!-- ── SECTION 9: RESOURCES ── -->
+        <div class="sec-hd" id="RESOURCES">SECTION 9 — CORE RESOURCES</div>
+
+        <div class="caput">
+          Practitioners admitted to the platform have access to the following primary source documents, available in the c-ECO Document Library:
+        </div>
+
+        <div class="track-grid">
+          <div class="track-card">
+            <div class="track-title">Pre-Threshold Principle</div>
+            <div class="track-desc">Canonical academic paper. Foundational doctrine. Recognition–Action Gap. Three failures of existing law. Canonical formula.</div>
+            <div class="track-modules">Module 1 core reading · content/article01</div>
+          </div>
+          <div class="track-card">
+            <div class="track-title">c-ECO Model Law & TFP Manual</div>
+            <div class="track-desc">CECO-STATUTE-001 and CECO-IOM-001. All model articles, trigger protocol, band system, arbitration regime, state machine architecture.</div>
+            <div class="track-modules">Modules 2–6 · doctrine/model-law · doctrine/tfp-manual</div>
+          </div>
+          <div class="track-card">
+            <div class="track-title">Model Clauses A–E</div>
+            <div class="track-desc">Verbatim contractual language for all five clause types. Incorporation, Trigger, Safe Mode, Restoration First, Arbitration. Placement guidance included.</div>
+            <div class="track-modules">Module 3 core · doctrine/model-law</div>
+          </div>
+          <div class="track-card">
+            <div class="track-title">Brumadinho Case File</div>
+            <div class="track-desc">Full case analysis. InSAR deformation data. TFP Article 36 pipeline. 47-day window reconstruction. Dam I collapse timeline.</div>
+            <div class="track-modules">Module 5 · analysis/brum · case-file/brumadinho</div>
+          </div>
+          <div class="track-card">
+            <div class="track-title">ESL & UNIDROIT Analyses</div>
+            <div class="track-desc">Three-clause validation packages submitted to Earth System Law and UNIDROIT academic reviewers. Alignment and distinction from hardship, force majeure, IEX as autonomous category.</div>
+            <div class="track-modules">Module 6 · doctrine/esl · doctrine/unidroit</div>
+          </div>
+          <div class="track-card">
+            <div class="track-title">TDR Financial Architecture</div>
+            <div class="track-desc">Restoration Fund, Performance Bond, Environmental Insurance, Asset Pledge, Systemic Margin Call mechanics. Graduated financial activation by band. Lr computation framework.</div>
+            <div class="track-modules">Module 4 · tdr/tdr-financial-architecture</div>
+          </div>
+        </div>
+
+        <!-- COPYRIGHT -->
+        <section id="COPYRIGHT" style="margin-top:36px;padding-top:24px;border-top:2px solid var(--border);font-size:11px;color:#555;line-height:1.65;">
+          <div style="font-weight:700;color:var(--forest);margin-bottom:8px;">© 2026 c-ECO Systemic Governance Initiative · Hasse Foundation. All rights reserved.</div>
+          <div>Licensed under CC BY-NC-ND 4.0. Non-commercial use only. No derivatives without authorization.</div>
+          <div style="margin-top:6px;"><strong>Platform:</strong> c-ECO Operational Training · c-eco.io · Version 1.0 · June 2026</div>
+          <div style="margin-top:4px;font-size:10px;color:#888;"><strong>Disclaimer:</strong> This platform constitutes professional training material, not legal advice. Implementation of c-ECO instruments requires qualified professional engagement in applicable jurisdictions.</div>
+        </section>
+
+      </div><!-- /doc-body -->
+
+      <!-- FOOTER -->
+      <footer class="doc-footer">
+        <div class="doc-footer-brand">
+          <img src="assets/fellow.png" alt="c-ECO" class="doc-footer-logo" />
+          c-eco.io · Operational Training Platform
+        </div>
+        <div>Hasse Foundation · Johann Christian Hasse · c-ECO Systemic Governance</div>
+        <div><a href="https://c-eco.org" style="color:var(--gold-lt);">c-eco.org</a> · <a href="contact.html" style="color:rgba(255,255,255,.5);">Contact</a></div>
+      </footer>
+
+    </article>
+  </main>
+
+  <script>
+    const search = document.getElementById('sidebarSearch');
+    const items  = document.querySelectorAll('.nav-item');
+    const sects  = document.querySelectorAll('.nav-section');
+
+    search.addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      items.forEach(i => {
+        i.classList.toggle('hidden', q.length > 0 && !i.textContent.toLowerCase().includes(q));
+      });
+      sects.forEach(s => s.classList.toggle('hidden', q.length > 0));
+    });
+  </script>
+
+</body>
+</html>
