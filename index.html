@@ -1,12 +1,338 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hasse Foundation</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>c-ECO — Threshold Governance Research Platform</title>
+  <meta name="description" content="Operational research infrastructure for governing ecological and social systems at the edge of irreversibility. TFP · TDR · Science → Clause.">
+  <meta property="og:title" content="c-ECO — Threshold Governance Research">
+  <meta property="og:description" content="Where science becomes enforceable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://c-eco.io">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── INDEX-ONLY OVERRIDES ─────────────────────── */
+
+    /* Platform badge cards */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) { .platform-grid { grid-template-columns: 1fr; } }
+
+    .platform-card {
+      background: var(--ink-mid);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--cyan);
+      padding: 2rem 1.75rem;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .platform-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+    .platform-card .card-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+    .platform-card h3 {
+      font-family: 'Georgia', serif;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .platform-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .platform-card .card-link {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--cyan-dim);
+    }
+    .platform-card:hover .card-link { color: var(--cyan); }
+
+    /* Signal strip */
+    .signal-strip {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+      overflow: hidden;
+    }
+    .signal-item {
+      flex: 1;
+      padding: 1.5rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .signal-item:last-child { border-right: none; }
+    .signal-band {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+      margin-bottom: 0.6rem;
+    }
+    .band-green  { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .band-amber  { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .band-red    { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+    .band-black  { background: rgba(200,200,200,0.1); color: #d1d5db; border: 1px solid rgba(200,200,200,0.2); }
+    .signal-item .s-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Pages row */
+    .pages-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) { .pages-row { grid-template-columns: repeat(2, 1fr); } }
+    .pages-item {
+      background: var(--ink);
+      padding: 1.5rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .pages-item:hover { background: var(--ink-mid); }
+    .pages-item .pi-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--cyan-dim);
+      letter-spacing: 0.12em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .pages-item .pi-title {
+      font-size: 0.9rem;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .pages-item .pi-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    /* Eco link to c-eco.org */
+    .org-bar {
+      margin-top: 3rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .org-bar { flex-direction: column; align-items: flex-start; } }
+    .org-bar-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+    .org-bar-text strong {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+    .org-bar .btn { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
+    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="tdr.html">TDR</a></li>
+      <li><a href="tfp.html">TFP</a></li>
+      <li><a href="amazon-lab.html">Amazon Lab</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-label">// c-eco.io — Operational Platform</div>
+    <h1>Governing systems<br>at the edge of <em>irreversibility</em></h1>
+    <p>An operational research infrastructure for detecting threshold proximity, translating scientific signals into enforceable legal effects, and deploying practitioner-ready governance instruments.</p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="tfp.html" class="btn">→ TFP Protocol</a>
+      <a href="tdr.html" class="btn" style="border-color:var(--cyan-dim); color:var(--text-muted);">→ TDR Research</a>
+      <a href="training.html" class="btn" style="border-color:var(--cyan-dim); color:var(--text-muted);">→ Training</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-label">// Platform Architecture</div>
+    <h2>Three Layers, One System</h2>
+    <p class="lead">c-ECO operates as an integrated stack: threshold science below, governance translation in the middle, practitioner deployment above.</p>
+
+    <div class="platform-grid">
+      <a href="tdr.html" class="platform-card">
+        <div class="card-tag">// Layer 01 — Science</div>
+        <h3>Threshold Dynamics Research</h3>
+        <p>Detection and classification of threshold proximity in complex ecological and social systems. Produces the quantitative signal Γ = f(P, ΔV, σ, Lr) that governance instruments require.</p>
+        <span class="card-link">Explore TDR →</span>
+      </a>
+      <a href="tfp.html" class="platform-card">
+        <div class="card-tag">// Layer 02 — Governance</div>
+        <h3>Threshold Function Protocol</h3>
+        <p>Translates continuous systemic states into graduated legal effects. Green / Amber / Red / Black band system. Pre-threshold juridical relevance. Model Clauses A–E.</p>
+        <span class="card-link">Explore TFP →</span>
+      </a>
+      <a href="training.html" class="platform-card">
+        <div class="card-tag">// Layer 03 — Deployment</div>
+        <h3>Operational Training Platform</h3>
+        <p>Six-module practitioner curriculum for legal professionals, financial analysts, data custodians, operators, and policy advisors. Three certification levels.</p>
+        <span class="card-link">Enter Training →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--ink-light); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-label">// TFP Band System</div>
+    <h2>Graduated Activation</h2>
+    <p class="lead">Legal effects scale continuously with systemic state. No binary on/off trigger — graduated activation proportional to remaining reversibility margin.</p>
+
+    <div class="signal-strip">
+      <div class="signal-item">
+        <span class="signal-band band-green">GREEN</span>
+        <span class="s-label">Routine monitoring<br>P &lt; 0.5 · P<sub>crit</sub></span>
+      </div>
+      <div class="signal-item">
+        <span class="signal-band band-amber">AMBER</span>
+        <span class="s-label">Precautionary obligations<br>active — Enhanced reporting</span>
+      </div>
+      <div class="signal-item">
+        <span class="signal-band band-red">RED</span>
+        <span class="s-label">Restoration fund release<br>Solve et repete operative</span>
+      </div>
+      <div class="signal-item">
+        <span class="signal-band band-black">BLACK</span>
+        <span class="s-label">Financial finality<br>Full guarantee conversion</span>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem; font-family:var(--mono); font-size:0.75rem; color:var(--text-muted);">
+      Trigger function: Γ = f(P, ΔV, σ, Lr) — Proximity · Rate of change · Uncertainty · Reversibility Liquidity
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-label">// Pages</div>
+    <h2>Platform Index</h2>
+
+    <div class="pages-row">
+      <a href="framework.html" class="pages-item">
+        <span class="pi-num">// 00</span>
+        <span class="pi-title">Framework</span>
+        <span class="pi-sub">Architecture overview</span>
+      </a>
+      <a href="tdr.html" class="pages-item">
+        <span class="pi-num">// 01</span>
+        <span class="pi-title">TDR</span>
+        <span class="pi-sub">Threshold Dynamics Research</span>
+      </a>
+      <a href="tfp.html" class="pages-item">
+        <span class="pi-num">// 02</span>
+        <span class="pi-title">TFP Protocol</span>
+        <span class="pi-sub">Governance translation layer</span>
+      </a>
+      <a href="amazon-lab.html" class="pages-item">
+        <span class="pi-num">// 03</span>
+        <span class="pi-title">Amazon Lab</span>
+        <span class="pi-sub">Living laboratory</span>
+      </a>
+      <a href="research.html" class="pages-item">
+        <span class="pi-num">// 04</span>
+        <span class="pi-title">Research</span>
+        <span class="pi-sub">Working papers & data</span>
+      </a>
+      <a href="publications.html" class="pages-item">
+        <span class="pi-num">// 05</span>
+        <span class="pi-title">Publications</span>
+        <span class="pi-sub">External outputs</span>
+      </a>
+      <a href="training.html" class="pages-item">
+        <span class="pi-num">// 06</span>
+        <span class="pi-title">Training</span>
+        <span class="pi-sub">Practitioner curriculum</span>
+      </a>
+      <a href="contact.html" class="pages-item">
+        <span class="pi-num">// 07</span>
+        <span class="pi-title">Contact</span>
+        <span class="pi-sub">Access & partnerships</span>
+      </a>
+    </div>
+
+    <div class="org-bar">
+      <div class="org-bar-text">
+        <strong>c-eco.org</strong>
+        <p>Editorial magazine — Science → Clause doctrine, Field Notes, Case Files, Observatory, Fellowship programme.</p>
+      </div>
+      <a href="https://c-eco.org" class="btn" target="_blank" rel="noopener">Visit c-eco.org ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">c-ECO</div>
+      <p>Threshold Governance Research Platform<br>Operational infrastructure for pre-threshold juridical relevance.</p>
+    </div>
+    <div class="footer-links">
+      <a href="framework.html">Framework</a>
+      <a href="tdr.html">TDR</a>
+      <a href="tfp.html">TFP</a>
+      <a href="amazon-lab.html">Amazon Lab</a>
+      <a href="training.html">Training</a>
+      <a href="https://c-eco.org" target="_blank" rel="noopener">c-eco.org ↗</a>
+      <a href="https://hasse.foundation" target="_blank" rel="noopener">hasse.foundation ↗</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 c-ECO Research · <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
 </html>
