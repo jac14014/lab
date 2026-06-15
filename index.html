@@ -1,473 +1,416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>c-ECO — Threshold Governance Research Platform</title>
-  <meta name="description" content="Operational research infrastructure for governing ecological and social systems at the edge of irreversibility. TFP · TDR · Science → Clause.">
-  <meta property="og:title" content="c-ECO — Threshold Governance Research">
-  <meta property="og:description" content="Where science becomes enforceable.">
+  <title>c-ECO — Threshold Governance</title>
+  <meta name="description" content="Sistema antecipatório para governança de sistemas ecológicos, financeiros e sociais no limiar da irreversibilidade.">
+  <meta property="og:title" content="c-ECO — Threshold Governance">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://c-eco.io">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
-    /* ── INDEX-ONLY ─────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #000; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { text-decoration: none; }
 
-    /* Hero formula block */
-    .hero-formula {
-      margin: 2.25rem 0;
-      padding: 1.5rem 1.75rem;
-      background: rgba(78,205,196,0.04);
-      border: 1px solid var(--border);
-      border-left: 2px solid rgba(78,205,196,0.32);
-      display: inline-block;
-      max-width: 420px;
+  /* ── NAV ── */
+  #s-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 48px;
+    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s;
+  }
+  #s-nav.scrolled {
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .s-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+  .s-logo span {
+    font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35);
+    margin-left: 10px; font-weight: 400;
+  }
+  .s-nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .s-nav-links a {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); transition: color 0.18s;
+  }
+  .s-nav-links a:hover { color: rgba(255,255,255,0.9); }
+  .s-nav-btn {
+    display: none; background: none; border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em;
+  }
+  @media (max-width: 880px) {
+    .s-nav-links { display: none; }
+    .s-nav-btn { display: block; }
+    .s-nav-links.open {
+      display: flex; flex-direction: column; gap: 0;
+      position: absolute; top: 60px; left: 0; right: 0;
+      background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1rem 48px;
     }
-    .hf-label {
-      font-family: var(--mono);
-      font-size: 0.57rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-    .hf-eq {
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      color: var(--cyan);
-      margin-bottom: 1.1rem;
-      letter-spacing: 0.04em;
-    }
-    .hf-row {
-      display: grid;
-      grid-template-columns: 20px 24px 1fr;
-      gap: 6px;
-      margin-bottom: 0.3rem;
-      align-items: baseline;
-    }
-    .hf-tree { font-family: var(--mono); font-size: 0.65rem; color: var(--border-hi); opacity: 0.65; }
-    .hf-key  { font-family: var(--mono); font-size: 0.68rem; color: var(--cyan); }
-    .hf-desc { font-family: var(--mono); font-size: 0.63rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    #s-nav { padding: 18px 24px; }
+    #s-nav.scrolled { padding: 12px 24px; }
+  }
 
-    /* Hero actions */
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  /* ── SCENES ── */
+  .scene {
+    position: relative; width: 100%;
+    min-height: 100vh; display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .scene.align-center { align-items: center; justify-content: center; }
+  .scene-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    will-change: transform;
+  }
+  .scene-body {
+    position: relative; z-index: 2;
+    padding: 0 80px 120px; max-width: 860px;
+  }
+  .scene-body.center {
+    text-align: center; max-width: 780px;
+    margin: 0 auto; padding: 0 48px;
+  }
+  .scene-body.right {
+    margin-left: auto; padding-right: 80px;
+  }
+  .scene-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42); margin-bottom: 1.5rem; display: block;
+  }
+  .scene-h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 800; line-height: 0.97;
+    color: #fff; margin-bottom: 1.5rem; letter-spacing: -0.025em;
+  }
+  .scene-h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800; line-height: 0.97;
+    color: #fff; margin-bottom: 1.25rem; letter-spacing: -0.025em;
+  }
+  .scene-sub {
+    font-size: 1rem; line-height: 1.72;
+    color: rgba(255,255,255,0.58); margin-bottom: 2.5rem;
+    max-width: 520px; font-weight: 400;
+  }
+  .scene-body.center .scene-sub { margin: 0 auto 2.5rem; }
+  .scene-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
 
-    /* Platform cards */
-    .platform-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      margin-top: 3rem;
-      background: var(--border-lo);
-      border: 1px solid var(--border);
-    }
-    @media (max-width: 768px) { .platform-grid { grid-template-columns: 1fr; } }
+  /* BUTTONS */
+  .cta-p {
+    display: inline-block; padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+    color: #fff; font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cta-p:hover { background: #fff; color: #000; }
+  .cta-s {
+    display: inline-block; padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent; color: rgba(255,255,255,0.6);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .cta-s:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
 
-    .platform-card {
-      background: var(--ink-light);
-      padding: 2.25rem 2rem;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: background 0.18s;
-      position: relative;
-    }
-    .platform-card::after {
-      content: '';
-      position: absolute; top: -1px; left: 0; right: 0;
-      height: 1px;
-      background: var(--border);
-      transition: background 0.18s;
-    }
-    .platform-card:hover { background: var(--ink-mid); }
-    .platform-card:hover::after { background: var(--cyan); }
+  /* SCROLL HINT */
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    animation: sb 2.2s ease-in-out infinite;
+  }
+  @keyframes sb {
+    0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.28; }
+    50% { transform: translateX(-50%) translateY(7px); opacity: 0.5; }
+  }
 
-    .pc-num {
-      font-family: var(--mono);
-      font-size: 0.57rem;
-      letter-spacing: 0.14em;
-      color: var(--cyan);
-      opacity: 0.5;
-      margin-bottom: 1.5rem;
-    }
-    .pc-layer {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.65rem;
-    }
-    .platform-card h3 {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 0.875rem;
-      line-height: 1.22;
-    }
-    .platform-card p {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.78;
-      flex: 1;
-      margin-bottom: 1.5rem;
-    }
-    .card-link {
-      font-family: var(--mono);
-      font-size: 0.67rem;
-      letter-spacing: 0.06em;
-      color: var(--cyan-dim);
-      transition: color 0.15s;
-    }
-    .platform-card:hover .card-link { color: var(--cyan); }
+  /* ── STATS BAND ── */
+  .stats-band {
+    display: flex; align-items: center; justify-content: center;
+    background: #050505; padding: 90px 48px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .stat-item { text-align: center; padding: 0 72px; }
+  .stat-n {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 3.25rem; font-weight: 300;
+    color: #fff; line-height: 1; letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .stat-l {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+  }
+  .stat-div { width: 1px; height: 72px; background: rgba(255,255,255,0.07); flex-shrink: 0; }
 
-    /* Band system */
-    .band-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      margin-top: 3rem;
-      background: var(--border-lo);
-      border: 1px solid var(--border);
-    }
-    @media (max-width: 768px) { .band-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 420px) { .band-grid { grid-template-columns: 1fr; } }
+  /* ── DARK SCENE ── */
+  .scene-dark {
+    background: #040404; min-height: 75vh;
+  }
 
-    .band-item {
-      background: var(--ink-light);
-      padding: 1.75rem 1.5rem;
-    }
-    .band-pill {
-      display: inline-block;
-      padding: 0.2rem 0.65rem;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.14em;
-      margin-bottom: 1rem;
-    }
-    .band-green  { background: rgba(34,197,94,0.08);   color: #4ade80; border: 1px solid rgba(34,197,94,0.22); }
-    .band-amber  { background: rgba(251,191,36,0.08);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.22); }
-    .band-red    { background: rgba(239,68,68,0.08);   color: #f87171; border: 1px solid rgba(239,68,68,0.22); }
-    .band-black  { background: rgba(148,163,184,0.07); color: #94a3b8; border: 1px solid rgba(148,163,184,0.16); }
+  /* ── FOOTER ── */
+  footer {
+    background: #000; border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 72px 80px 48px;
+  }
+  .ft-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .ft-brand-name {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem;
+    letter-spacing: 0.25em; color: rgba(255,255,255,0.5);
+    display: block; margin-bottom: 1rem;
+  }
+  .ft-brand p { color: rgba(255,255,255,0.25); font-size: 0.78rem; line-height: 1.8; max-width: 260px; }
+  .ft-brand a { color: rgba(168,184,200,0.45); }
+  .ft-col h4 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.18); margin-bottom: 1rem; font-weight: 400;
+  }
+  .ft-col ul { list-style: none; }
+  .ft-col li { margin-bottom: 0.55rem; }
+  .ft-col a {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+    color: rgba(255,255,255,0.3); transition: color 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .ft-col a:hover { color: rgba(255,255,255,0.7); }
+  .ft-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1.5rem; display: flex; justify-content: space-between;
+  }
+  .ft-bottom p { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
+  .ft-bottom a { color: rgba(255,255,255,0.18); }
 
-    .band-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-    .band-thresh {
-      font-family: var(--mono);
-      font-size: 0.63rem;
-      color: var(--text-muted);
-      margin-bottom: 0.65rem;
-      letter-spacing: 0.02em;
-    }
-    .band-action {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-    .formula-note {
-      margin-top: 1.5rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border-lo);
-    }
-
-    /* Pages grid */
-    .pages-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      margin-top: 3rem;
-      background: var(--border-lo);
-      border: 1px solid var(--border);
-    }
-    @media (max-width: 768px) { .pages-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 380px) { .pages-grid { grid-template-columns: 1fr; } }
-
-    .page-card {
-      background: var(--ink);
-      padding: 1.5rem 1.25rem;
-      text-decoration: none;
-      transition: background 0.15s;
-      display: flex; flex-direction: column; gap: 5px;
-    }
-    .page-card:hover { background: var(--ink-mid); }
-    .pc-code {
-      font-family: var(--mono);
-      font-size: 0.57rem;
-      letter-spacing: 0.12em;
-      color: var(--cyan);
-      opacity: 0.5;
-    }
-    .pc-name {
-      font-size: 0.9rem;
-      color: var(--text);
-      display: block;
-    }
-    .pc-sub {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    /* Org bar — link to c-eco.org */
-    .org-bar {
-      margin-top: 3rem;
-      padding: 2rem 2.25rem;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      background: var(--ink-light);
-    }
-    @media (max-width: 600px) { .org-bar { flex-direction: column; align-items: flex-start; } }
-    .org-bar-label {
-      font-family: var(--mono);
-      font-size: 0.57rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.35rem;
-    }
-    .org-bar-name {
-      font-family: var(--mono);
-      font-size: 0.88rem;
-      color: var(--cyan);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.35rem;
-    }
-    .org-bar p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin: 0;
-      max-width: 480px;
-      line-height: 1.68;
-    }
-    .org-bar .btn { white-space: nowrap; flex-shrink: 0; }
+  @media (max-width: 900px) {
+    .scene-body { padding: 0 28px 100px; }
+    .scene-body.right { margin-left: 0; padding-right: 28px; }
+    .stats-band { flex-direction: column; gap: 52px; padding: 72px 28px; }
+    .stat-div { width: 60px; height: 1px; }
+    .stat-item { padding: 0; }
+    footer { padding: 56px 28px 36px; }
+    .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .ft-bottom { flex-direction: column; gap: 6px; }
+  }
+  @media (max-width: 580px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .scene-h1 { font-size: clamp(3rem, 12vw, 4rem); }
+    .scene-h2 { font-size: clamp(2.2rem, 9vw, 3rem); }
+    .cta-p, .cta-s { padding: 12px 22px; font-size: 0.6rem; }
+    .scene-ctas { flex-direction: column; }
+  }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
-    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="framework.html">Framework</a></li>
-      <li><a href="tdr.html">TDR</a></li>
-      <li><a href="tfp.html">TFP</a></li>
-      <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+<!-- NAV -->
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="tdr.html">TDR</a></li>
+    <li><a href="tfp.html">TFP</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="sil.html">SIL</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="hero-label">c-eco.io — Operational Platform</div>
-    <h1>Governing systems<br>at the edge of <em>irreversibility</em></h1>
-    <p>Operational research infrastructure for detecting threshold proximity, translating scientific signals into enforceable legal effects, and deploying governance instruments that act before systems cross the point of no return.</p>
-
-    <div class="hero-formula">
-      <div class="hf-label">// Trigger function</div>
-      <div class="hf-eq">Γ = f(P, ΔV, σ, Lr)</div>
-      <div class="hf-row"><span class="hf-tree">├─</span><span class="hf-key">P</span><span class="hf-desc">Proximity to critical threshold</span></div>
-      <div class="hf-row"><span class="hf-tree">├─</span><span class="hf-key">ΔV</span><span class="hf-desc">Rate-of-change velocity</span></div>
-      <div class="hf-row"><span class="hf-tree">├─</span><span class="hf-key">σ</span><span class="hf-desc">Uncertainty coefficient</span></div>
-      <div class="hf-row"><span class="hf-tree">└─</span><span class="hf-key">Lr</span><span class="hf-desc">Reversibility liquidity</span></div>
+<!-- SCENE 01 — HERO -->
+<section class="scene" id="scene-hero">
+  <div class="scene-bg" id="bg-hero"></div>
+  <div class="scene-body">
+    <span class="scene-kicker">c-ECO — Threshold Governance Research Platform</span>
+    <h1 class="scene-h1">Antes do<br>colapso.</h1>
+    <p class="scene-sub">Sistema antecipatório de governança para sistemas ecológicos, financeiros e sociais no limiar da irreversibilidade.</p>
+    <div class="scene-ctas">
+      <a href="framework.html" class="cta-p">Framework →</a>
+      <a href="sil.html" class="cta-s">Dashboard SIL</a>
     </div>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</section>
 
-    <div class="hero-actions">
-      <a href="tfp.html" class="btn">TFP Protocol →</a>
-      <a href="tdr.html" class="btn btn-ghost">TDR Research →</a>
-      <a href="training.html" class="btn btn-ghost">Training →</a>
-    </div>
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-n">1,247</span>
+    <span class="stat-l">Indicadores Monitorados</span>
+  </div>
+  <div class="stat-div"></div>
+  <div class="stat-item">
+    <span class="stat-n">83</span>
+    <span class="stat-l">Alertas Ativos</span>
+  </div>
+  <div class="stat-div"></div>
+  <div class="stat-item">
+    <span class="stat-n">12</span>
+    <span class="stat-l">Ações Antecipatórias</span>
+  </div>
+</div>
+
+<!-- SCENE 02 — FRAMEWORK -->
+<section class="scene" id="scene-framework">
+  <div class="scene-bg" id="bg-framework"></div>
+  <div class="scene-body">
+    <span class="scene-kicker">// c-ECO Framework — TDR + TFP</span>
+    <h2 class="scene-h2">Detecta.<br>Classifica.<br>Age.</h2>
+    <p class="scene-sub">Da ciência ao instrumento jurídico — antecipatório, não reativo.</p>
+    <a href="framework.html" class="cta-p">Explorar Framework →</a>
   </div>
 </section>
 
-<section>
-  <div class="section-inner">
-    <div class="section-label">// Platform Architecture</div>
-    <h2>Three layers, one system</h2>
-    <p class="lead">c-ECO operates as an integrated stack: threshold science below, governance translation in the middle, practitioner deployment above.</p>
-
-    <div class="platform-grid">
-      <a href="tdr.html" class="platform-card">
-        <div class="pc-num">01</div>
-        <div class="pc-layer">Science Layer</div>
-        <h3>Threshold Dynamics Research</h3>
-        <p>Detection and classification of threshold proximity in complex ecological and social systems. Produces the quantitative signal Γ = f(P, ΔV, σ, Lr) that governance instruments require.</p>
-        <span class="card-link">Explore TDR →</span>
-      </a>
-      <a href="tfp.html" class="platform-card">
-        <div class="pc-num">02</div>
-        <div class="pc-layer">Governance Layer</div>
-        <h3>Threshold Function Protocol</h3>
-        <p>Translates continuous systemic states into graduated legal effects. Green / Amber / Red / Black band system with non-discretionary triggers and pre-threshold juridical relevance.</p>
-        <span class="card-link">Explore TFP →</span>
-      </a>
-      <a href="training.html" class="platform-card">
-        <div class="pc-num">03</div>
-        <div class="pc-layer">Deployment Layer</div>
-        <h3>Operational Training Platform</h3>
-        <p>Six-module practitioner curriculum for legal professionals, financial analysts, data custodians, operators, and policy advisors. Three certification levels.</p>
-        <span class="card-link">Enter Training →</span>
-      </a>
-    </div>
+<!-- SCENE 03 — AMAZON LAB -->
+<section class="scene" id="scene-amazon">
+  <div class="scene-bg" id="bg-amazon"></div>
+  <div class="scene-body right">
+    <span class="scene-kicker">// Amazon Living Lab</span>
+    <h2 class="scene-h2">8 estações.<br>1 bioma.<br>Tempo real.</h2>
+    <p class="scene-sub">O maior laboratório de governança ecológica em operação no mundo.</p>
+    <a href="amazon-lab.html" class="cta-p">Amazon Lab →</a>
   </div>
 </section>
 
-<section style="background:var(--ink-light); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div class="section-label">// TFP Band System</div>
-    <h2>Graduated activation</h2>
-    <p class="lead">Legal effects scale continuously with systemic state. No binary on/off trigger — graduated activation proportional to remaining reversibility margin.</p>
-
-    <div class="band-grid">
-      <div class="band-item">
-        <div class="band-pill band-green">GREEN</div>
-        <div class="band-title">Routine monitoring</div>
-        <div class="band-thresh">P &lt; 0.5 · P<sub>crit</sub></div>
-        <div class="band-action">Quarterly reporting. No escalation required.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-pill band-amber">AMBER</div>
-        <div class="band-title">Precautionary activation</div>
-        <div class="band-thresh">0.5 ≤ P/P<sub>crit</sub> &lt; 0.85</div>
-        <div class="band-action">Enhanced reporting. Precautionary obligations active.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-pill band-red">RED</div>
-        <div class="band-title">Trigger execution</div>
-        <div class="band-thresh">P/P<sub>crit</sub> ≥ 0.85</div>
-        <div class="band-action">Restoration fund release. Solve et repete operative.</div>
-      </div>
-      <div class="band-item">
-        <div class="band-pill band-black">BLACK</div>
-        <div class="band-title">Financial finality</div>
-        <div class="band-thresh">Threshold breached</div>
-        <div class="band-action">Full guarantee conversion. No discretion.</div>
-      </div>
-    </div>
-
-    <p class="formula-note">Γ = f(P, ΔV, σ, Lr) — Proximity · Rate of change · Uncertainty · Reversibility Liquidity</p>
+<!-- SCENE 04 — TFP (dark) -->
+<section class="scene scene-dark align-center" id="scene-tfp">
+  <div class="scene-body center">
+    <span class="scene-kicker">// Threshold Function Protocol</span>
+    <h2 class="scene-h2">Ativado<br>por sinal.</h2>
+    <p class="scene-sub">Instrumentos jurídicos mapeados a cada banda de proximidade ao limiar — não ao colapso.</p>
+    <a href="tfp.html" class="cta-p">Protocolo TFP →</a>
   </div>
 </section>
 
-<section>
-  <div class="section-inner">
-    <div class="section-label">// Pages</div>
-    <h2>Platform index</h2>
-
-    <div class="pages-grid">
-      <a href="framework.html" class="page-card">
-        <span class="pc-code">// 00</span>
-        <span class="pc-name">Framework</span>
-        <span class="pc-sub">Architecture overview</span>
-      </a>
-      <a href="tdr.html" class="page-card">
-        <span class="pc-code">// 01</span>
-        <span class="pc-name">TDR</span>
-        <span class="pc-sub">Threshold Dynamics Research</span>
-      </a>
-      <a href="tfp.html" class="page-card">
-        <span class="pc-code">// 02</span>
-        <span class="pc-name">TFP Protocol</span>
-        <span class="pc-sub">Governance translation layer</span>
-      </a>
-      <a href="amazon-lab.html" class="page-card">
-        <span class="pc-code">// 03</span>
-        <span class="pc-name">Amazon Lab</span>
-        <span class="pc-sub">Living laboratory</span>
-      </a>
-      <a href="research.html" class="page-card">
-        <span class="pc-code">// 04</span>
-        <span class="pc-name">Research</span>
-        <span class="pc-sub">Working papers & data</span>
-      </a>
-      <a href="publications.html" class="page-card">
-        <span class="pc-code">// 05</span>
-        <span class="pc-name">Publications</span>
-        <span class="pc-sub">External outputs</span>
-      </a>
-      <a href="training.html" class="page-card">
-        <span class="pc-code">// 06</span>
-        <span class="pc-name">Training</span>
-        <span class="pc-sub">Practitioner curriculum</span>
-      </a>
-      <a href="contact.html" class="page-card">
-        <span class="pc-code">// 07</span>
-        <span class="pc-name">Contact</span>
-        <span class="pc-sub">Access & partnerships</span>
-      </a>
-    </div>
-
-    <div class="org-bar">
-      <div>
-        <div class="org-bar-label">// Editorial site</div>
-        <div class="org-bar-name">c-eco.org</div>
-        <p>Science → Clause doctrine, Field Notes, Case Files, Observatory, and the Fellowship programme.</p>
-      </div>
-      <a href="https://c-eco.org" class="btn" target="_blank" rel="noopener">Visit c-eco.org ↗</a>
-    </div>
+<!-- SCENE 05 — SIL -->
+<section class="scene" id="scene-sil">
+  <div class="scene-bg" id="bg-sil"></div>
+  <div class="scene-body center" style="max-width:680px;">
+    <span class="scene-kicker">// Sistema de Informação Legal</span>
+    <h2 class="scene-h2">Pipeline.<br>Tempo real.</h2>
+    <p class="scene-sub">Estado de ativação jurídica para cada sistema sob observação c-ECO.</p>
+    <a href="sil.html" class="cta-p">Dashboard SIL →</a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">c-ECO</div>
-      <p>Threshold Governance Research Platform. Operational infrastructure for pre-threshold juridical relevance.</p>
-      <p style="margin-top:0.6rem; font-size:0.75rem; color:var(--text-muted);">A programme of the <a href="https://hasse.foundation" style="color:var(--cyan);text-decoration:none;" target="_blank" rel="noopener">Hasse Foundation</a></p>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <span class="ft-brand-name">c-ECO</span>
+      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
+      <p style="margin-top:0.6rem;">A programme of the <a href="https://hasse.foundation">Hasse Foundation</a></p>
     </div>
-    <div class="footer-col">
-      <h4>Platform</h4>
+    <div class="ft-col">
+      <h4>Research</h4>
       <ul>
-        <li><a href="framework.html">Framework</a></li>
-        <li><a href="tdr.html">TDR</a></li>
+        <li><a href="framework.html">c-ECO Framework</a></li>
+        <li><a href="tdr.html">Threshold Dynamics</a></li>
         <li><a href="tfp.html">TFP Protocol</a></li>
         <li><a href="amazon-lab.html">Amazon Lab</a></li>
+        <li><a href="sil.html">SIL Dashboard</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Research</h4>
+    <div class="ft-col">
+      <h4>Knowledge</h4>
       <ul>
         <li><a href="research.html">Research</a></li>
         <li><a href="publications.html">Publications</a></li>
         <li><a href="training.html">Training</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Network</h4>
+    <div class="ft-col">
+      <h4>Contact</h4>
       <ul>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="https://c-eco.org" target="_blank" rel="noopener">c-eco.org ↗</a></li>
-        <li><a href="https://hasse.foundation" target="_blank" rel="noopener">hasse.foundation ↗</a></li>
+        <li><a href="mailto:research@c-eco.io">research@c-eco.io</a></li>
+        <li><a href="contact.html">Contact Form</a></li>
+        <li><a href="https://c-eco.org">c-eco.org ↗</a></li>
+        <li><a href="https://hasse.foundation">hasse.foundation ↗</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 c-ECO Research · Threshold Governance Platform</p>
-    <p><a href="contact.html">contact@c-eco.io</a></p>
+  <div class="ft-bottom">
+    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
+    <p><a href="mailto:research@c-eco.io">research@c-eco.io</a></p>
   </div>
 </footer>
 
+<script>
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('s-nav');
+const navBtn = document.getElementById('nav-btn');
+const navLinks = document.getElementById('nav-links');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+/* ── BACKGROUND SCENES ──
+   Each scene uses a CSS gradient that simulates cinematic aerial imagery.
+   Replace with: background-image: url('your-photo.jpg') or <video> element inside .scene-bg
+   For best results, use 1920×1080+ photos with dark tones or apply the gradient overlay.
+*/
+const scenes = {
+  'bg-hero':
+    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 100%),
+     radial-gradient(ellipse 120% 80% at 55% 35%, rgba(6,20,12,1) 0%, rgba(2,10,5,1) 55%, rgba(0,4,2,1) 100%)`,
+  'bg-framework':
+    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%),
+     linear-gradient(145deg, rgba(4,16,8,1) 0%, rgba(8,22,12,1) 45%, rgba(2,8,4,1) 100%)`,
+  'bg-amazon':
+    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.42) 55%, rgba(0,0,0,0.15) 100%),
+     radial-gradient(ellipse 150% 90% at 70% 40%, rgba(4,18,10,1) 0%, rgba(2,12,6,1) 50%, rgba(0,6,3,1) 100%)`,
+  'bg-sil':
+    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%),
+     radial-gradient(ellipse at 50% 50%, rgba(6,8,18,1) 0%, rgba(2,4,10,1) 60%, rgba(0,0,4,1) 100%)`
+};
+
+Object.entries(scenes).forEach(([id, bg]) => {
+  const el = document.getElementById(id);
+  if (el) el.style.background = bg;
+});
+
+/* ── PARALLAX (subtle) ── */
+const bgs = document.querySelectorAll('.scene-bg');
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  bgs.forEach(bg => {
+    const scene = bg.parentElement;
+    const top = scene.getBoundingClientRect().top + sy;
+    const offset = (sy - top) * 0.15;
+    bg.style.transform = `translateY(${offset}px)`;
+  });
+}, { passive: true });
+</script>
 </body>
 </html>
