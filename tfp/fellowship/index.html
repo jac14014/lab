@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>c-ECO Fellowship — Applied Formation in Threshold Governance</title>
+  <meta name="description" content="The c-ECO Fellowship is a 12-month applied formation system for legal, scientific, financial, and operational professionals working at the threshold of ecological and institutional governance.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --forest:  #1e3a2f;
+    --gold:    #c8963e;
+    --gold-lt: #ddb96a;
+    --bg:      #f5f0e8;
+    --bg-warm: #ede8df;
+    --white:   #ffffff;
+    --text:    #1a1a1a;
+    --muted:   #5a5248;
+    --dim:     #8a847a;
+    --border:  #d8d0c4;
+    --accent:  #8b5e3c;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ── */
+  nav {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: var(--white);
+    border-bottom: 2px solid var(--gold);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-brand img {
+    width: 28px;
+    height: auto;
+    object-fit: contain;
+  }
+  .nav-brand-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--forest);
+    font-weight: 500;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--forest); }
+  .nav-apply {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--forest);
+    color: var(--white) !important;
+    padding: 6px 16px;
+    transition: background 0.15s;
+  }
+  .nav-apply:hover { background: #2d5442 !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 48px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-shield {
+    width: 100px;
+    height: auto;
+    margin-bottom: 32px;
+  }
+  .hero-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.12;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 560px;
+  }
+  .hero-rule {
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 40px;
+  }
+  .hero-desc {
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 48px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 13px 36px;
+    background: var(--forest);
+    color: var(--white);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.18s;
+  }
+  .btn-primary:hover { background: #2d5442; color: var(--white); }
+  .btn-secondary {
+    display: inline-block;
+    padding: 13px 36px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: border-color 0.18s, color 0.18s;
+  }
+  .btn-secondary:hover { border-color: var(--muted); color: var(--text); }
+
+  /* ── STATS ── */
+  .stats {
+    display: flex;
+    justify-content: center;
+    background: var(--bg-warm);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    padding: 48px 60px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-n {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2rem;
+    color: var(--forest);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .stat-l {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.53rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* ── CURRICULUM ── */
+  .curriculum {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .curriculum h2 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+  .module-list {
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+  .module-item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .module-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    width: 64px;
+  }
+  .module-title {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .module-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .track-badge {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--dim);
+  }
+  .badge.active {
+    border-color: var(--gold);
+    color: var(--accent);
+  }
+
+  /* ── TRACKS ── */
+  .tracks {
+    background: var(--bg-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 48px;
+  }
+  .tracks-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 36px;
+  }
+  .track-card {
+    background: var(--white);
+    padding: 28px 24px;
+  }
+  .track-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .track-name {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 1rem;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .track-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CTA BLOCK ── */
+  .cta-block {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    text-align: center;
+  }
+  .cta-block h2 {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 16px;
+  }
+  .cta-block p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 36px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    background: var(--white);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p, footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+  }
+  footer a:hover { color: var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 24px 52px; }
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
+    .stat:last-child { border-bottom: none; }
+    .curriculum, .cta-block { padding: 56px 24px; }
+    .tracks { padding: 56px 24px; }
+    .module-item { flex-wrap: wrap; gap: 12px; }
+    .track-badge { margin-left: 0; margin-top: 8px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <img src="../../assets/img/fellowship-logo.PNG" alt="c-ECO Fellowship">
+    <span class="nav-brand-text">c-ECO Fellowship</span>
+  </div>
+  <div class="nav-links">
+    <a href="../../tfp.html">TFP</a>
+    <a href="../../training.html">Training</a>
+    <a href="../../framework.html">Framework</a>
+    <a href="https://c-eco.org/fellowship/fellowship.html" class="nav-apply">Apply →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <img src="../../assets/img/fellowship-logo.PNG" alt="c-ECO Fellowship" class="hero-shield">
+  <p class="hero-kicker">c-ECO Fellowship Program · July 2026 Cohort</p>
+  <h1>Applied Formation in<br>Threshold Governance</h1>
+  <p class="hero-sub">12 months. Case-based. Field-linked.</p>
+  <div class="hero-rule"></div>
+  <p class="hero-desc">
+    The c-ECO Fellowship is not an academic program. It is a 12-month applied formation system
+    designed to move selected participants from doctrinal immersion to governed case mandate —
+    producing trained analysts, architects, and practitioners of threshold governance instruments.
+  </p>
+  <div class="cta-row">
+    <a href="https://c-eco.org/fellowship/fellowship.html" class="btn-primary">View Current Call →</a>
+    <a href="../../training.html" class="btn-secondary">Training Platform</a>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-n">12</span>
+    <span class="stat-l">Months Duration</span>
+  </div>
+  <div class="stat">
+    <span class="stat-n">6</span>
+    <span class="stat-l">Modules</span>
+  </div>
+  <div class="stat">
+    <span class="stat-n">2</span>
+    <span class="stat-l">Sector Tracks</span>
+  </div>
+  <div class="stat">
+    <span class="stat-n">1</span>
+    <span class="stat-l">Case per Fellow</span>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<section class="curriculum">
+  <p class="section-label">// Fellowship Curriculum</p>
+  <h2>Six-Module Formation Structure</h2>
+  <ul class="module-list">
+    <li class="module-item">
+      <span class="module-num">Module 01</span>
+      <div>
+        <div class="module-title">Foundation — Systemic Governance Paradigm</div>
+        <div class="module-sub">Threshold logic, pre-threshold principle, c-ECO architecture</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+    <li class="module-item">
+      <span class="module-num">Module 02</span>
+      <div>
+        <div class="module-title">TFP Variables — Mathematics of Systemic Risk</div>
+        <div class="module-sub">Threshold proximity functions, signal calibration, TDR integration</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+    <li class="module-item">
+      <span class="module-num">Module 03</span>
+      <div>
+        <div class="module-title">Threshold Logic — Pre-Threshold Signals</div>
+        <div class="module-sub">Early warning indicators, signal processing, activation conditions</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+    <li class="module-item">
+      <span class="module-num">Module 04</span>
+      <div>
+        <div class="module-title">Temporal Validity — Windows of Opportunity</div>
+        <div class="module-sub">Time-to-threshold estimation, mandate design, institutional timing</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+    <li class="module-item">
+      <span class="module-num">Module 05</span>
+      <div>
+        <div class="module-title">Application — Sector Governance</div>
+        <div class="module-sub">ESG as systemic governance · Mining as systemic governance</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+    <li class="module-item">
+      <span class="module-num">Module 06</span>
+      <div>
+        <div class="module-title">Capstone — Integration and Certification</div>
+        <div class="module-sub">Case finalization, analytical mandate, Fellow certification</div>
+      </div>
+      <div class="track-badge">
+        <span class="badge active">Finance</span>
+        <span class="badge active">Mining</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- TRACKS -->
+<section class="tracks">
+  <div class="tracks-inner">
+    <p class="section-label">// Sector Tracks</p>
+    <h2 style="font-family:'Libre Baskerville',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:400;color:var(--forest);margin-bottom:0;line-height:1.2;">Two Applied Pathways</h2>
+    <div class="track-grid">
+      <div class="track-card">
+        <span class="track-icon">Track A — Finance</span>
+        <div class="track-name">Financial Systems</div>
+        <p class="track-desc">TFP variables applied to financial risk architecture, ESG governance instruments, and restoration finance structures.</p>
+      </div>
+      <div class="track-card">
+        <span class="track-icon">Track B — Mining</span>
+        <div class="track-name">Extractive Industries</div>
+        <p class="track-desc">Threshold logic applied to mining operations, mineral extraction governance, and pre-collapse mandate design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BLOCK -->
+<section class="cta-block">
+  <p class="section-label">// July 2026 Cohort</p>
+  <h2>Applications Now Open</h2>
+  <p>
+    Admission is based on case viability, not credentials alone.
+    The Fellowship operates as a conditioned applied system — participation
+    is governed by methodological fidelity and institutional review.
+  </p>
+  <div class="cta-row" style="justify-content:center;">
+    <a href="https://c-eco.org/fellowship/fellowship.html" class="btn-primary">Access Fellowship Portal →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Johann Christian Hasse Foundation · c-ECO Fellowship Program</p>
+  <p><a href="mailto:fellowship@c-eco.org">fellowship@c-eco.org</a></p>
+</footer>
+
+</body>
+</html>
