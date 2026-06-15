@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIL — Systemic Intelligence Layer · c-ECO</title>
+  <meta name="description" content="The Systemic Intelligence Layer — real-time legal activation status for every system under c-ECO observation.">
+  <meta property="og:title" content="SIL — Systemic Intelligence Layer · c-ECO">
+  <meta property="og:url" content="https://c-eco.io/sil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #02030a; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { text-decoration: none; }
+
+  /* ── NAV ── */
+  #s-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 48px;
+    transition: background 0.4s, padding 0.3s;
+  }
+  #s-nav.scrolled {
+    background: rgba(2,3,10,0.95);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    padding: 14px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; font-weight: 400; }
+  .s-nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
+  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; }
+  @media (max-width: 880px) {
+    .s-nav-links { display: none; }
+    .s-nav-btn { display: block; }
+    .s-nav-links.open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 60px; left: 0; right: 0; background: rgba(2,3,10,0.98); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1rem 48px; }
+    .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    #s-nav { padding: 18px 24px; }
+    #s-nav.scrolled { padding: 12px 24px; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: flex-end;
+    position: relative; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 50%, rgba(6,8,28,1) 0%, rgba(2,3,8,1) 60%, rgba(0,0,3,1) 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(40,60,140,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 40%, rgba(20,40,100,0.08) 0%, transparent 50%);
+  }
+  .pulse-grid {
+    position: absolute; inset: 0; overflow: hidden; opacity: 0.06;
+    background-image: linear-gradient(rgba(100,140,255,0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,140,255,0.3) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-body {
+    position: relative; z-index: 2;
+    padding: 0 80px 120px; max-width: 860px;
+  }
+  .scene-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; display: block; }
+  .scene-h1 { font-family: 'Inter', sans-serif; font-size: clamp(3.5rem, 9vw, 6.5rem); font-weight: 800; line-height: 0.97; color: #fff; margin-bottom: 1.5rem; letter-spacing: -0.025em; }
+  .scene-sub { font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; max-width: 520px; }
+  .scene-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-p { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .cta-p:hover { background: #fff; color: #000; }
+  .cta-s { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: rgba(255,255,255,0.55); font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
+  .cta-s:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+  .scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.2); animation: sb 2.2s ease-in-out infinite; }
+  @keyframes sb { 0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.2; } 50% { transform: translateX(-50%) translateY(7px); opacity: 0.38; } }
+
+  /* ── STATS ── */
+  .stats-band { display: flex; align-items: center; justify-content: center; background: #04050f; padding: 90px 48px; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .stat-item { text-align: center; padding: 0 72px; }
+  .stat-n { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 3.25rem; font-weight: 300; color: #fff; line-height: 1; letter-spacing: -0.03em; margin-bottom: 14px; }
+  .stat-l { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+  .stat-div { width: 1px; height: 72px; background: rgba(255,255,255,0.06); flex-shrink: 0; }
+
+  /* ── PIPELINE ── */
+  .section-dark { background: #02030a; padding: 100px 80px; }
+  .section-mid { background: #04050f; padding: 100px 80px; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .section-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 16px; display: block; }
+  .section-h2 { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.025em; color: #fff; margin-bottom: 12px; line-height: 1.05; }
+  .section-sub { font-size: 0.9rem; color: rgba(255,255,255,0.42); line-height: 1.8; max-width: 560px; margin-bottom: 56px; }
+
+  .pipeline-flow {
+    display: flex; gap: 1px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06); margin-bottom: 48px;
+  }
+  .pipeline-step {
+    flex: 1; background: #02030a; padding: 32px 28px;
+    position: relative;
+  }
+  .pipeline-step::after {
+    content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem;
+    color: rgba(255,255,255,0.2); z-index: 2;
+  }
+  .pipeline-step:last-child::after { display: none; }
+  .pipe-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 10px; display: block; }
+  .pipe-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.92rem; color: #fff; margin-bottom: 8px; }
+  .pipe-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
+
+  /* ── STATUS GRID ── */
+  .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
+  .status-card { background: #02030a; padding: 28px 24px; }
+  .status-card:hover { background: #050611; }
+  .sc-system { font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 10px; display: block; }
+  .sc-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+  .sc-axis { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.28); margin-bottom: 14px; }
+  .sc-status { display: inline-flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot.monitor { background: rgba(80,200,120,0.8); box-shadow: 0 0 6px rgba(80,200,120,0.4); }
+  .dot.alert { background: rgba(255,180,40,0.9); box-shadow: 0 0 6px rgba(255,180,40,0.4); }
+  .dot.precaution { background: rgba(220,100,40,0.9); box-shadow: 0 0 6px rgba(220,100,40,0.4); }
+  .sc-status.monitor { color: rgba(80,200,120,0.7); }
+  .sc-status.alert { color: rgba(255,180,40,0.8); }
+  .sc-status.precaution { color: rgba(220,100,40,0.85); }
+  .sc-prox { float: right; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.2); margin-top: 14px; }
+
+  /* ── ARCHITECTURE ── */
+  .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+  .arch-item { border-left: 1px solid rgba(255,255,255,0.08); padding-left: 28px; }
+  .arch-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 10px; display: block; }
+  .arch-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
+  .arch-desc { font-size: 0.82rem; color: rgba(255,255,255,0.38); line-height: 1.75; }
+
+  /* ── CTA ── */
+  .cta-scene { background: #020308; min-height: 50vh; display: flex; align-items: center; padding: 100px 80px; border-top: 1px solid rgba(255,255,255,0.04); }
+  .cta-inner { max-width: 600px; }
+  .cta-inner h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; color: #fff; margin-bottom: 1.25rem; line-height: 1.05; }
+  .cta-inner p { color: rgba(255,255,255,0.38); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
+
+  /* ── FOOTER ── */
+  footer { background: #000; border-top: 1px solid rgba(255,255,255,0.05); padding: 72px 80px 48px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .ft-brand-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); display: block; margin-bottom: 1rem; }
+  .ft-brand p { color: rgba(255,255,255,0.22); font-size: 0.78rem; line-height: 1.8; max-width: 260px; }
+  .ft-brand a { color: rgba(168,184,200,0.4); }
+  .ft-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 1rem; font-weight: 400; }
+  .ft-col ul { list-style: none; }
+  .ft-col li { margin-bottom: 0.55rem; }
+  .ft-col a { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.28); transition: color 0.15s; letter-spacing: 0.02em; }
+  .ft-col a:hover { color: rgba(255,255,255,0.7); }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; display: flex; justify-content: space-between; }
+  .ft-bottom p { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
+  .ft-bottom a { color: rgba(255,255,255,0.18); }
+
+  @media (max-width: 900px) {
+    .hero-body { padding: 0 28px 100px; }
+    .stats-band { flex-direction: column; gap: 52px; padding: 72px 28px; }
+    .stat-div { width: 60px; height: 1px; }
+    .stat-item { padding: 0; }
+    .section-dark, .section-mid { padding: 72px 28px; }
+    .pipeline-flow { flex-direction: column; }
+    .pipeline-step::after { display: none; }
+    .status-grid { grid-template-columns: 1fr; }
+    .arch-grid { grid-template-columns: 1fr; gap: 32px; }
+    .cta-scene { padding: 80px 28px; }
+    footer { padding: 56px 28px 36px; }
+    .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .ft-bottom { flex-direction: column; gap: 6px; }
+  }
+  @media (max-width: 580px) {
+    .ft-grid { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="tdr.html">TDR</a></li>
+    <li><a href="tfp.html">TFP</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="sil.html" class="active">SIL</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="pulse-grid"></div>
+  <div class="hero-body">
+    <span class="scene-kicker">SIL · Systemic Intelligence Layer · c-ECO Observatory</span>
+    <h1 class="scene-h1">Pipeline.<br>Real time.</h1>
+    <p class="scene-sub">Legal activation status for every system under c-ECO observation — continuous signal processing from field data to governance instrument.</p>
+    <div class="scene-ctas">
+      <a href="#status" class="cta-p">View Activation Status</a>
+      <a href="mailto:dir@c-eco.io" class="cta-s">dir@c-eco.io</a>
+    </div>
+  </div>
+  <span class="scroll-hint">Scroll</span>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-n">12</span>
+    <span class="stat-l">Systems Monitored</span>
+  </div>
+  <div class="stat-div"></div>
+  <div class="stat-item">
+    <span class="stat-n">3</span>
+    <span class="stat-l">Active Alerts</span>
+  </div>
+  <div class="stat-div"></div>
+  <div class="stat-item">
+    <span class="stat-n">24/7</span>
+    <span class="stat-l">Signal Processing</span>
+  </div>
+  <div class="stat-div"></div>
+  <div class="stat-item">
+    <span class="stat-n">0</span>
+    <span class="stat-l">Missed Thresholds</span>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<section class="section-dark">
+  <span class="section-label">// Intelligence Pipeline</span>
+  <h2 class="section-h2">From signal<br>to instrument.</h2>
+  <p class="section-sub">The SIL connects the field monitoring network to the legal activation layer — translating ecological proximity data into governance trigger decisions in real time.</p>
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <span class="pipe-num">01 · Ingest</span>
+      <div class="pipe-name">Field Signal</div>
+      <div class="pipe-desc">Raw indicator data from Amazon Lab stations — deforestation rate, fire incidence, hydrological anomaly, governance gap index</div>
+    </div>
+    <div class="pipeline-step">
+      <span class="pipe-num">02 · Model</span>
+      <div class="pipe-name">TDR Processing</div>
+      <div class="pipe-desc">Threshold proximity scores P(Θ) computed per indicator and aggregated into composite system proximity index</div>
+    </div>
+    <div class="pipeline-step">
+      <span class="pipe-num">03 · Classify</span>
+      <div class="pipe-name">Band Assignment</div>
+      <div class="pipe-desc">System assigned to activation band: MONITOR / ALERT / PRECAUTION / INTERVENTION based on proximity thresholds α₁–α₃</div>
+    </div>
+    <div class="pipeline-step">
+      <span class="pipe-num">04 · Activate</span>
+      <div class="pipe-name">TFP Trigger</div>
+      <div class="pipe-desc">Corresponding TFP instruments activated — legal instruments deployed, institutional authorities notified, audit trail opened</div>
+    </div>
+    <div class="pipeline-step">
+      <span class="pipe-num">05 · Monitor</span>
+      <div class="pipe-name">Status Dashboard</div>
+      <div class="pipe-desc">Continuous tracking of activation status, instrument validity, deactivation conditions and next-threshold time estimates</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS GRID -->
+<section class="section-mid" id="status">
+  <span class="section-label">// Activation Status · 2026-Q2</span>
+  <h2 class="section-h2">System status.</h2>
+  <p class="section-sub">Current legal activation state for each system under c-ECO observation. Status updated continuously from field data.</p>
+  <div class="status-grid">
+    <div class="status-card">
+      <span class="sc-system">Amazon · Ecological</span>
+      <div class="sc-name">Amazon Deforestation Arc</div>
+      <div class="sc-axis">Ecological · Legal · Institutional</div>
+      <span class="sc-status alert"><span class="dot alert"></span>Alert</span>
+      <div class="sc-prox">P 0.74</div>
+    </div>
+    <div class="status-card">
+      <span class="sc-system">Amazon · Hydrological</span>
+      <div class="sc-name">Upper River Corridor</div>
+      <div class="sc-axis">Ecological · Hydrological</div>
+      <span class="sc-status precaution"><span class="dot precaution"></span>Precaution</span>
+      <div class="sc-prox">P 0.83</div>
+    </div>
+    <div class="status-card">
+      <span class="sc-system">Amazon · Governance</span>
+      <div class="sc-name">Indigenous Territory Buffer</div>
+      <div class="sc-axis">Socio-institutional · Legal</div>
+      <span class="sc-status alert"><span class="dot alert"></span>Alert</span>
+      <div class="sc-prox">P 0.67</div>
+    </div>
+    <div class="status-card">
+      <span class="sc-system">Amazon · Fire</span>
+      <div class="sc-name">Savanna–Forest Boundary</div>
+      <div class="sc-axis">Ecological · Fire regime</div>
+      <span class="sc-status alert"><span class="dot alert"></span>Alert</span>
+      <div class="sc-prox">P 0.61</div>
+    </div>
+    <div class="status-card">
+      <span class="sc-system">Amazon · Institutional</span>
+      <div class="sc-name">Frontier Governance Gap</div>
+      <div class="sc-axis">Institutional · Legal</div>
+      <span class="sc-status precaution"><span class="dot precaution"></span>Precaution</span>
+      <div class="sc-prox">P 0.79</div>
+    </div>
+    <div class="status-card">
+      <span class="sc-system">Amazon · Biodiversity</span>
+      <div class="sc-name">Protected Area Buffer Zone</div>
+      <div class="sc-axis">Ecological · Species</div>
+      <span class="sc-status monitor"><span class="dot monitor"></span>Monitor</span>
+      <div class="sc-prox">P 0.38</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section-dark">
+  <span class="section-label">// Technical Architecture</span>
+  <h2 class="section-h2">How SIL works.</h2>
+  <p class="section-sub">Four integrated layers connect field observation to institutional response — each layer conditioned on the outputs of the previous.</p>
+  <div class="arch-grid">
+    <div class="arch-item">
+      <span class="arch-num">Layer 01 · Data</span>
+      <div class="arch-title">Field Signal Ingestion</div>
+      <p class="arch-desc">Continuous data feed from Amazon Living Lab stations — 8 monitoring points generating real-time ecological and governance indicators. Raw data timestamped and stored in the SIL archive.</p>
+    </div>
+    <div class="arch-item">
+      <span class="arch-num">Layer 02 · Model</span>
+      <div class="arch-title">TDR Proximity Engine</div>
+      <p class="arch-desc">Threshold proximity scores computed per indicator using the TDR mathematical model. Composite P(Θ) scores aggregated per system, updated on each data cycle.</p>
+    </div>
+    <div class="arch-item">
+      <span class="arch-num">Layer 03 · Legal</span>
+      <div class="arch-title">TFP Activation Logic</div>
+      <p class="arch-desc">Band classification triggers corresponding TFP instrument sets. Activation decisions logged with full audit trail — timestamp, triggering indicator, authority notified, instrument scope.</p>
+    </div>
+    <div class="arch-item">
+      <span class="arch-num">Layer 04 · Output</span>
+      <div class="arch-title">Institutional Interface</div>
+      <p class="arch-desc">Activation events communicated to designated institutional actors with authority, obligation, and time-to-threshold estimates. Status dashboard maintained for partner access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-scene">
+  <div class="cta-inner">
+    <span class="section-label">// Access & Integration</span>
+    <h2>Integrate with SIL.</h2>
+    <p>Institutional partners can access SIL activation status feeds and integrate c-ECO threshold proximity data into their own governance systems. Contact the Observatory for data access protocols.</p>
+    <div class="scene-ctas">
+      <a href="mailto:dir@c-eco.io" class="cta-p">dir@c-eco.io</a>
+      <a href="framework.html" class="cta-s">c-ECO Framework →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-brand-name">C—ECO</a>
+      <p>Threshold Governance Research Platform. A programme of the <a href="https://hasse.foundation">Hasse Foundation</a>.</p>
+    </div>
+    <div class="ft-col">
+      <h4>System</h4>
+      <ul>
+        <li><a href="framework.html">c-ECO Framework</a></li>
+        <li><a href="tdr.html">TDR</a></li>
+        <li><a href="tfp.html">TFP</a></li>
+        <li><a href="sil.html">SIL</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Lab & Research</h4>
+      <ul>
+        <li><a href="amazon-lab.html">Amazon Lab</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="tfp/fellowship/">Fellowship</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
+    <p><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('s-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+  document.getElementById('nav-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('open'); });
+</script>
+</body>
+</html>
