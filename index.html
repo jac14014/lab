@@ -170,9 +170,17 @@
   }
   .stat-div { width: 1px; height: 72px; background: rgba(255,255,255,0.07); flex-shrink: 0; }
 
-  /* ── DARK SCENE ── */
-  .scene-dark {
-    background: #040404; min-height: 75vh;
+  /* ── VIDEO HERO ── */
+  #bg-hero { overflow: hidden; }
+  #bg-hero video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 30%;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.08) 100%);
+    z-index: 1;
   }
 
   /* ── FOOTER ── */
@@ -249,7 +257,12 @@
 
 <!-- SCENE 01 — HERO -->
 <section class="scene" id="scene-hero">
-  <div class="scene-bg" id="bg-hero"></div>
+  <div class="scene-bg" id="bg-hero">
+    <video autoplay muted loop playsinline poster="assets/img/c1.jpg">
+      <source src="assets/img/river.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
   <div class="scene-body">
     <span class="scene-kicker">c-ECO — Threshold Governance Research Platform</span>
     <h1 class="scene-h1">Antes do<br>colapso.</h1>
@@ -303,7 +316,8 @@
 </section>
 
 <!-- SCENE 04 — TFP (dark) -->
-<section class="scene scene-dark align-center" id="scene-tfp">
+<section class="scene align-center" id="scene-tfp">
+  <div class="scene-bg" id="bg-tfp"></div>
   <div class="scene-body center">
     <span class="scene-kicker">// Threshold Function Protocol</span>
     <h2 class="scene-h2">Ativado<br>por sinal.</h2>
@@ -376,15 +390,13 @@ window.addEventListener('scroll', () => {
 navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
 
 /* ── BACKGROUND SCENES ── */
-const IMG = "assets/img/amazon-rainforest.avif";
-
-function setScene(id, overlay, pos) {
+function setScene(id, imgFile, overlay, pos) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (pos) {
-    el.style.backgroundImage = overlay + `, url('${IMG}')`;
+  if (imgFile) {
+    el.style.backgroundImage = overlay + `, url('assets/img/${imgFile}')`;
     el.style.backgroundSize = 'auto, cover';
-    el.style.backgroundPosition = `center, ${pos}`;
+    el.style.backgroundPosition = `center, ${pos || 'center'}`;
   } else {
     el.style.backgroundImage = overlay;
     el.style.backgroundSize = 'cover';
@@ -392,26 +404,26 @@ function setScene(id, overlay, pos) {
   }
 }
 
-/* Hero — canopy vista aérea, centro-baixo */
-setScene('bg-hero',
-  'linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.08) 100%)',
-  'center 55%'
+/* Framework — nuvens de tempestade, urgência */
+setScene('bg-framework', 'c7.jpg',
+  'linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.62) 50%, rgba(0,0,0,0.22) 100%)',
+  'center center'
 );
 
-/* Framework — parte superior da floresta (dossel) */
-setScene('bg-framework',
-  'linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.28) 100%)',
-  'center 20%'
-);
-
-/* Amazon Lab — nível do rio, parte inferior */
-setScene('bg-amazon',
+/* Amazon Lab — meandro aéreo, luz dourada */
+setScene('bg-amazon', 'r5.jpg',
   'linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.08) 100%)',
-  'center 78%'
+  'center center'
+);
+
+/* TFP — dossel com névoa densa */
+setScene('bg-tfp', 'r2.jpg',
+  'linear-gradient(180deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.50) 50%, rgba(0,0,0,0.80) 100%)',
+  'center center'
 );
 
 /* SIL — gradiente escuro sem foto */
-setScene('bg-sil',
+setScene('bg-sil', null,
   'radial-gradient(ellipse at 50% 50%, rgba(6,8,18,1) 0%, rgba(2,3,8,1) 60%, rgba(0,0,3,1) 100%)',
   null
 );
