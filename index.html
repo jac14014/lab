@@ -375,30 +375,46 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-/* ── BACKGROUND SCENES ──
-   Each scene uses a CSS gradient that simulates cinematic aerial imagery.
-   Replace with: background-image: url('your-photo.jpg') or <video> element inside .scene-bg
-   For best results, use 1920×1080+ photos with dark tones or apply the gradient overlay.
-*/
-const scenes = {
-  'bg-hero':
-    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 100%),
-     radial-gradient(ellipse 120% 80% at 55% 35%, rgba(6,20,12,1) 0%, rgba(2,10,5,1) 55%, rgba(0,4,2,1) 100%)`,
-  'bg-framework':
-    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%),
-     linear-gradient(145deg, rgba(4,16,8,1) 0%, rgba(8,22,12,1) 45%, rgba(2,8,4,1) 100%)`,
-  'bg-amazon':
-    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.42) 55%, rgba(0,0,0,0.15) 100%),
-     radial-gradient(ellipse 150% 90% at 70% 40%, rgba(4,18,10,1) 0%, rgba(2,12,6,1) 50%, rgba(0,6,3,1) 100%)`,
-  'bg-sil':
-    `linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%),
-     radial-gradient(ellipse at 50% 50%, rgba(6,8,18,1) 0%, rgba(2,4,10,1) 60%, rgba(0,0,4,1) 100%)`
-};
+/* ── BACKGROUND SCENES ── */
+const IMG = "assets/img/amazon-rainforest.avif";
 
-Object.entries(scenes).forEach(([id, bg]) => {
+function setScene(id, overlay, pos) {
   const el = document.getElementById(id);
-  if (el) el.style.background = bg;
-});
+  if (!el) return;
+  if (pos) {
+    el.style.backgroundImage = overlay + `, url('${IMG}')`;
+    el.style.backgroundSize = 'auto, cover';
+    el.style.backgroundPosition = `center, ${pos}`;
+  } else {
+    el.style.backgroundImage = overlay;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+  }
+}
+
+/* Hero — canopy vista aérea, centro-baixo */
+setScene('bg-hero',
+  'linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.08) 100%)',
+  'center 55%'
+);
+
+/* Framework — parte superior da floresta (dossel) */
+setScene('bg-framework',
+  'linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.28) 100%)',
+  'center 20%'
+);
+
+/* Amazon Lab — nível do rio, parte inferior */
+setScene('bg-amazon',
+  'linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.08) 100%)',
+  'center 78%'
+);
+
+/* SIL — gradiente escuro sem foto */
+setScene('bg-sil',
+  'radial-gradient(ellipse at 50% 50%, rgba(6,8,18,1) 0%, rgba(2,3,8,1) 60%, rgba(0,0,3,1) 100%)',
+  null
+);
 
 /* ── PARALLAX (subtle) ── */
 const bgs = document.querySelectorAll('.scene-bg');
