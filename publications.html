@@ -4,176 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publications — c-ECO</title>
-  <meta name="description" content="c-ECO publications — framework documents, working papers, and research outputs.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="c-ECO working papers, technical notes, and framework documents on threshold governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #000; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; }
+  .s-nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
+  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+  @media (max-width: 880px) { .s-nav-links { display: none; } .s-nav-btn { display: block; } .s-nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(0,0,0,0.98); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 48px; } .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); } #s-nav { padding: 18px 24px; } }
+
+  .page-header { padding: 160px 80px 80px; border-bottom: 1px solid rgba(255,255,255,0.05); background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,255,255,0.015) 0%, transparent 70%); }
+  .breadcrumb { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.22); margin-bottom: 24px; }
+  .breadcrumb a { color: rgba(255,255,255,0.35); }
+  .breadcrumb a:hover { color: rgba(255,255,255,0.6); }
+  .page-header h1 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.025em; color: #fff; margin-bottom: 16px; line-height: 1; }
+  .page-header p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 600px; line-height: 1.8; }
+
+  .sec { padding: 80px 80px; max-width: 1200px; margin: 0 auto; }
+  .sec-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 36px; display: block; }
+
+  .pub-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); }
+  .pub { background: #000; padding: 32px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; transition: background 0.18s; }
+  .pub:hover { background: #080808; }
+  .pub-type { font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 8px; display: block; }
+  .pub-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.95rem; color: rgba(255,255,255,0.82); margin-bottom: 6px; }
+  .pub-meta { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: rgba(255,255,255,0.22); letter-spacing: 0.04em; }
+  .pub-status { display: inline-block; padding: 5px 14px; border: 1px solid; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .pub-status.available { border-color: rgba(80,200,120,0.25); color: rgba(80,200,120,0.65); }
+  .pub-status.forthcoming { border-color: rgba(255,200,80,0.2); color: rgba(255,200,80,0.5); }
+  .pub-status.request { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); }
+
+  .note-block { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 28px; }
+  .note-block p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.8; max-width: 680px; }
+  .note-block a { color: rgba(255,255,255,0.5); border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .note-block a:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.4); }
+
+  .cta-p { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .cta-p:hover { background: #fff; color: #000; }
+
+  footer { background: #000; border-top: 1px solid rgba(255,255,255,0.06); padding: 72px 80px 48px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .ft-brand-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); display: block; margin-bottom: 1rem; }
+  .ft-brand p { color: rgba(255,255,255,0.22); font-size: 0.78rem; line-height: 1.8; max-width: 260px; }
+  .ft-brand a { color: rgba(168,184,200,0.4); }
+  .ft-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 1rem; font-weight: 400; }
+  .ft-col ul { list-style: none; } .ft-col li { margin-bottom: 0.55rem; }
+  .ft-col a { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.28); transition: color 0.15s; }
+  .ft-col a:hover { color: rgba(255,255,255,0.7); }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; display: flex; justify-content: space-between; }
+  .ft-bottom p { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.18); }
+  .ft-bottom a { color: rgba(255,255,255,0.18); }
+
+  @media (max-width: 900px) { .page-header { padding: 120px 28px 60px; } .sec { padding: 60px 28px; } .pub { grid-template-columns: 1fr; } footer { padding: 56px 28px 36px; } .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .ft-bottom { flex-direction: column; gap: 6px; } }
+  @media (max-width: 580px) { .ft-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
-    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="framework.html">Framework</a></li>
-      <li><a href="tdr.html">TDR</a></li>
-      <li><a href="tfp.html">TFP</a></li>
-      <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html" class="active">Publications</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="tdr.html">TDR</a></li>
+    <li><a href="tfp.html">TFP</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="sil.html">SIL</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
 <div class="page-header">
-  <div class="page-header-inner">
-    <div class="breadcrumb"><a href="index.html">c-ECO</a> / Publications</div>
-    <p class="section-label">// Knowledge Outputs</p>
-    <h1>Publications</h1>
-    <p>Framework documents, working papers, field reports, and research outputs from the c-ECO programme.</p>
+  <div class="breadcrumb"><a href="index.html">c-ECO</a> / Publications</div>
+  <h1>Publications</h1>
+  <p>Working papers, technical notes, and framework documents from the c-ECO research programme.</p>
+</div>
+
+<div class="sec">
+  <span class="sec-label">// Working Papers</span>
+  <div class="pub-list">
+    <div class="pub">
+      <div>
+        <span class="pub-type">Working Paper · c-ECO WP-001</span>
+        <div class="pub-title">Threshold Proximity Estimation: Formal Foundations for Multi-Domain Ecological Governance</div>
+        <div class="pub-meta">Ennis, J.A. · Alves, T. · 2026 · c-ECO Framework Programme</div>
+      </div>
+      <span class="pub-status request">Request</span>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Working Paper · c-ECO WP-002</span>
+        <div class="pub-title">Pre-Threshold Legal Architecture: Anticipatory Governance Instruments for Biome-Scale Systems</div>
+        <div class="pub-meta">Ennis, J.A. · 2026 · c-ECO Framework Programme</div>
+      </div>
+      <span class="pub-status request">Request</span>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Working Paper · c-ECO WP-003</span>
+        <div class="pub-title">TDR Indicator Architecture: Scoring Ecological, Institutional, and Financial Threshold Proximity</div>
+        <div class="pub-meta">c-ECO TDR Programme · 2026</div>
+      </div>
+      <span class="pub-status request">Request</span>
+    </div>
   </div>
 </div>
 
-<section>
-  <div class="section-inner">
-    <p class="section-label">// Framework Documents</p>
-    <h2>Core Framework Documentation</h2>
-    <p>Primary documentation for the c-ECO Framework, TDR programme, and Threshold Function Protocol.</p>
-
-    <div style="margin-top:2rem;">
-      <div class="card" style="margin-bottom:1.25rem;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Framework Document · 2026</p>
-            <h3 style="margin:0;">c-ECO Doctrine: Anticipatory Governance for Threshold Systems</h3>
-          </div>
-          <span class="tag">Foundational</span>
-        </div>
-        <p style="margin-bottom:1rem;">The primary framework document setting out the c-ECO doctrine — its theoretical foundations, institutional architecture, and operational principles. Defines the pre-threshold imperative and establishes the doctrine's three-layer structure.</p>
-        <a href="mailto:research@c-eco.io?subject=Request: c-ECO Doctrine Document" class="btn" style="font-size:0.75rem;padding:0.5rem 1.25rem;">Request Document</a>
+<div class="sec" style="padding-top:0;">
+  <span class="sec-label">// Technical Notes</span>
+  <div class="pub-list">
+    <div class="pub">
+      <div>
+        <span class="pub-type">Technical Note · c-ECO TN-001</span>
+        <div class="pub-title">Amazon Living Lab — Field Station Protocol and Monitoring Architecture</div>
+        <div class="pub-meta">c-ECO Amazon Living Lab · 2025–2026</div>
       </div>
-
-      <div class="card" style="margin-bottom:1.25rem;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Technical Document · 2026</p>
-            <h3 style="margin:0;">Threshold Dynamics Research: Mathematical Foundations</h3>
-          </div>
-          <span class="tag">Technical</span>
-        </div>
-        <p style="margin-bottom:1rem;">Formal specification of TDR mathematical frameworks — threshold functions, proximity metrics, early warning signal architectures, and state machine models. The computational and mathematical substrate of the c-ECO Framework.</p>
-        <a href="mailto:research@c-eco.io?subject=Request: TDR Mathematical Foundations" class="btn" style="font-size:0.75rem;padding:0.5rem 1.25rem;">Request Document</a>
+      <span class="pub-status request">Request</span>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Technical Note · c-ECO TN-002</span>
+        <div class="pub-title">SIL — Systemic Intelligence Layer: Pipeline Specification and Alert Classification</div>
+        <div class="pub-meta">c-ECO Technical Programme · 2026</div>
       </div>
-
-      <div class="card" style="margin-bottom:1.25rem;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Protocol Document · 2026</p>
-            <h3 style="margin:0;">Threshold Function Protocol: Operational Manual</h3>
-          </div>
-          <span class="tag">Operational</span>
-        </div>
-        <p style="margin-bottom:1rem;">Complete TFP operational manual — state definitions, trigger catalogue, legal instrument specifications, authority matrix, and calibration parameters for the tropical biome application context.</p>
-        <a href="mailto:tfp@c-eco.io?subject=Request: TFP Operational Manual" class="btn" style="font-size:0.75rem;padding:0.5rem 1.25rem;">Request Document</a>
+      <span class="pub-status forthcoming">Forthcoming</span>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Technical Note · c-ECO TN-003</span>
+        <div class="pub-title">TFP Instrument Classification and Activation Threshold Specification</div>
+        <div class="pub-meta">c-ECO TFP Programme · 2026</div>
       </div>
+      <span class="pub-status forthcoming">Forthcoming</span>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
-
-<section style="background:var(--ink-light);">
-  <div class="section-inner">
-    <p class="section-label">// Working Papers</p>
-    <h2>Working Papers &amp; Field Reports</h2>
-
-    <div style="margin-top:1.5rem;">
-      <div class="card" style="margin-bottom:1.25rem;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Working Paper · 2026</p>
-            <h3 style="margin:0;">Pre-Threshold Governance: Legal Architecture for the Window of Intervention</h3>
-          </div>
-          <span class="tag">Working Paper</span>
-        </div>
-        <p style="margin:0;">Analysis of existing legal frameworks for evidence of pre-threshold governance logic. Identifies structural gaps and proposes architectural principles for the c-ECO institutional design layer.</p>
+<div class="sec" style="padding-top:0;">
+  <span class="sec-label">// Programme Documents</span>
+  <div class="pub-list">
+    <div class="pub">
+      <div>
+        <span class="pub-type">Programme Document</span>
+        <div class="pub-title">c-ECO Framework — System Architecture v1.0</div>
+        <div class="pub-meta">c-ECO · 2026</div>
       </div>
-
-      <div class="card" style="margin-bottom:1.25rem;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Field Report · 2026</p>
-            <h3 style="margin:0;">Amazon Living Lab: Governance Diagnostics — Frontier Zone Assessment</h3>
-          </div>
-          <span class="tag">Field Report</span>
-        </div>
-        <p style="margin:0;">First-cycle governance diagnostic from the Amazon Living Lab. Maps institutional authority, identifies critical governance gaps, and assesses threshold proximity in the study zone.</p>
+      <a href="framework.html" class="pub-status available">View</a>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Programme Document</span>
+        <div class="pub-title">Threshold Defeasance Reserve (TDR) — Programme Overview</div>
+        <div class="pub-meta">c-ECO · 2026</div>
       </div>
-
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.75rem;">
-          <div>
-            <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Conceptual Paper · 2026</p>
-            <h3 style="margin:0;">The Pre-Threshold Principle: Towards a Doctrine of Anticipatory Governance</h3>
-          </div>
-          <span class="tag">Conceptual</span>
-        </div>
-        <p style="margin:0;">Foundational conceptual paper articulating the pre-threshold principle — the governance obligation to act within the window of intervention before threshold crossings become irreversible.</p>
+      <a href="tdr.html" class="pub-status available">View</a>
+    </div>
+    <div class="pub">
+      <div>
+        <span class="pub-type">Programme Document</span>
+        <div class="pub-title">Threshold Facilitated Protocol (TFP) — Fellowship Programme Overview</div>
+        <div class="pub-meta">c-ECO · 2026</div>
       </div>
+      <a href="tfp.html" class="pub-status available">View</a>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
-
-<section>
-  <div class="section-inner" style="max-width:680px;">
-    <p class="section-label">// Access</p>
-    <h2>Accessing Publications</h2>
-    <p>Most framework and working documents are available on request to researchers, institutional partners, and governance professionals. To request documents or be notified of new publications, contact the research team.</p>
-    <a href="mailto:research@c-eco.io?subject=Publications Request" class="btn" style="margin-top:1.5rem;">Request Publications</a>
+<div class="sec" style="padding-top:0; padding-bottom:100px;">
+  <div class="note-block" style="margin-bottom:36px;">
+    <p>Working papers and technical notes are circulated on request. To receive a copy, contact <a href="mailto:publications@c-eco.io">publications@c-eco.io</a> with the document code and institutional affiliation. Documents are shared for academic and policy purposes and are not for redistribution without permission.</p>
   </div>
-</section>
+  <a href="mailto:publications@c-eco.io" class="cta-p">Request a document</a>
+</div>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="font-size:0.82rem;">c-ECO</a>
-      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
-      <p style="margin-top:0.5rem;font-size:0.78rem;">A programme of the <a href="https://hasse.foundation" style="color:var(--cyan);text-decoration:none;">Hasse Foundation</a></p>
-    </div>
-    <div class="footer-col">
-      <h4>Research</h4>
-      <ul>
-        <li><a href="framework.html">c-ECO Framework</a></li>
-        <li><a href="tdr.html">Threshold Dynamics</a></li>
-        <li><a href="tfp.html">TFP</a></li>
-        <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Knowledge</h4>
-      <ul>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="training.html">Training</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:research@c-eco.io">research@c-eco.io</a></li>
-        <li><a href="contact.html">Contact Form</a></li>
-      </ul>
-    </div>
+  <div class="ft-grid">
+    <div class="ft-brand"><a href="index.html" class="ft-brand-name">C—ECO</a><p>Threshold Governance Research Platform. A programme of the <a href="https://hasse.foundation">Hasse Foundation</a>.</p></div>
+    <div class="ft-col"><h4>System</h4><ul><li><a href="framework.html">c-ECO Framework</a></li><li><a href="tdr.html">TDR</a></li><li><a href="tfp.html">TFP</a></li><li><a href="sil.html">SIL</a></li></ul></div>
+    <div class="ft-col"><h4>Lab & Research</h4><ul><li><a href="amazon-lab.html">Amazon Lab</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li><li><a href="training.html">Training</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li><li><a href="contact.html">Contact</a></li><li><a href="tfp/fellowship/">Fellowship</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
-    <p><a href="mailto:research@c-eco.io" style="color:var(--text-muted);text-decoration:none;">research@c-eco.io</a></p>
-  </div>
+  <div class="ft-bottom"><p>© 2026 c-ECO / Johann Christian Hasse Foundation</p><p><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></p></div>
 </footer>
-
+<script>
+  document.getElementById('nav-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('open'); });
+</script>
 </body>
 </html>

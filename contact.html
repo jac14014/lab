@@ -4,150 +4,181 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — c-ECO</title>
-  <meta name="description" content="Contact the c-ECO research team for collaboration, publications, and enquiries.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Contact c-ECO — research enquiries, collaboration, fellowship, and general correspondence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #000; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; }
+  .s-nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
+  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+  @media (max-width: 880px) { .s-nav-links { display: none; } .s-nav-btn { display: block; } .s-nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(0,0,0,0.98); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 48px; } .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); } #s-nav { padding: 18px 24px; } }
+
+  .page-header { padding: 160px 80px 80px; border-bottom: 1px solid rgba(255,255,255,0.05); background: radial-gradient(ellipse 50% 50% at 50% 60%, rgba(255,255,255,0.015) 0%, transparent 70%); }
+  .breadcrumb { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.22); margin-bottom: 24px; }
+  .breadcrumb a { color: rgba(255,255,255,0.35); }
+  .breadcrumb a:hover { color: rgba(255,255,255,0.6); }
+  .page-header h1 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.025em; color: #fff; margin-bottom: 16px; line-height: 1; }
+  .page-header p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 560px; line-height: 1.8; }
+
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px 80px; max-width: 1200px; margin: 0 auto; }
+  .sec-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 36px; display: block; }
+
+  .contact-card-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); }
+  .contact-card { background: #000; padding: 28px 32px; transition: background 0.18s; }
+  .contact-card:hover { background: #080808; }
+  .cc-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 10px; display: block; }
+  .cc-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: rgba(255,255,255,0.72); margin-bottom: 4px; }
+  .cc-email { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+  .cc-email a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+  .cc-email a:hover { color: rgba(255,255,255,0.9); }
+  .cc-desc { font-size: 0.78rem; color: rgba(255,255,255,0.28); line-height: 1.7; margin-top: 6px; }
+
+  .loc-block { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 28px 32px; margin-top: 1px; }
+  .loc-block p { font-size: 0.8rem; color: rgba(255,255,255,0.32); line-height: 1.8; }
+  .loc-block strong { color: rgba(255,255,255,0.5); font-weight: 500; }
+
+  .form-wrap { }
+  .form-wrap form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); font-family: 'Inter', sans-serif; font-size: 0.85rem; padding: 12px 16px; outline: none; transition: border-color 0.18s; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(255,255,255,0.3); }
+  .form-group select option { background: #111; }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.18); line-height: 1.7; margin-top: -4px; }
+  .btn-submit { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; align-self: flex-start; }
+  .btn-submit:hover { background: #fff; color: #000; }
+
+  footer { background: #000; border-top: 1px solid rgba(255,255,255,0.06); padding: 72px 80px 48px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .ft-brand-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); display: block; margin-bottom: 1rem; }
+  .ft-brand p { color: rgba(255,255,255,0.22); font-size: 0.78rem; line-height: 1.8; max-width: 260px; }
+  .ft-brand a { color: rgba(168,184,200,0.4); }
+  .ft-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 1rem; font-weight: 400; }
+  .ft-col ul { list-style: none; } .ft-col li { margin-bottom: 0.55rem; }
+  .ft-col a { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.28); transition: color 0.15s; }
+  .ft-col a:hover { color: rgba(255,255,255,0.7); }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; display: flex; justify-content: space-between; }
+  .ft-bottom p { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.18); }
+  .ft-bottom a { color: rgba(255,255,255,0.18); }
+
+  @media (max-width: 900px) { .page-header { padding: 120px 28px 60px; } .contact-layout { grid-template-columns: 1fr; gap: 48px; padding: 60px 28px; } footer { padding: 56px 28px 36px; } .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .ft-bottom { flex-direction: column; gap: 6px; } }
+  @media (max-width: 580px) { .ft-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
-    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="framework.html">Framework</a></li>
-      <li><a href="tdr.html">TDR</a></li>
-      <li><a href="tfp.html">TFP</a></li>
-      <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-  </div>
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="tdr.html">TDR</a></li>
+    <li><a href="tfp.html">TFP</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="sil.html">SIL</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
 </nav>
 
 <div class="page-header">
-  <div class="page-header-inner">
-    <div class="breadcrumb"><a href="index.html">c-ECO</a> / Contact</div>
-    <p class="section-label">// Get in Touch</p>
-    <h1>Contact</h1>
-    <p>Research enquiries, collaboration proposals, publication requests, and general correspondence.</p>
+  <div class="breadcrumb"><a href="index.html">c-ECO</a> / Contact</div>
+  <h1>Contact</h1>
+  <p>Direct correspondence is the preferred mode of contact. Use the address relevant to your enquiry.</p>
+</div>
+
+<div class="contact-layout">
+  <div>
+    <span class="sec-label">// Correspondence</span>
+    <div class="contact-card-list">
+      <div class="contact-card">
+        <span class="cc-label">General Direction</span>
+        <div class="cc-title">Directorate</div>
+        <div class="cc-email"><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></div>
+        <p class="cc-desc">Strategic enquiries, partnerships, institutional representation.</p>
+      </div>
+      <div class="contact-card">
+        <span class="cc-label">Research</span>
+        <div class="cc-title">Research Programme</div>
+        <div class="cc-email"><a href="mailto:research@c-eco.io">research@c-eco.io</a></div>
+        <p class="cc-desc">Research collaboration, academic enquiries, methodology questions.</p>
+      </div>
+      <div class="contact-card">
+        <span class="cc-label">Publications</span>
+        <div class="cc-title">Document Requests</div>
+        <div class="cc-email"><a href="mailto:publications@c-eco.io">publications@c-eco.io</a></div>
+        <p class="cc-desc">Working papers, technical notes, programme documents.</p>
+      </div>
+      <div class="contact-card">
+        <span class="cc-label">Amazon Lab</span>
+        <div class="cc-title">Amazon Living Lab</div>
+        <div class="cc-email"><a href="mailto:lab@c-eco.io">lab@c-eco.io</a></div>
+        <p class="cc-desc">Field station enquiries, data collaboration, site visits.</p>
+      </div>
+      <div class="contact-card">
+        <span class="cc-label">TFP Fellowship</span>
+        <div class="cc-title">Fellowship Programme</div>
+        <div class="cc-email"><a href="mailto:fellowship@c-eco.io">fellowship@c-eco.io</a></div>
+        <p class="cc-desc">Case submissions, fellowship applications, programme enquiries.</p>
+      </div>
+    </div>
+    <div class="loc-block">
+      <p><strong>c-ECO Observatory</strong><br>A programme of the Johann Christian Hasse Foundation<br><a href="https://hasse.foundation" style="color:rgba(168,184,200,0.4)">hasse.foundation</a></p>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <span class="sec-label">// Write to us</span>
+    <form action="mailto:dir@c-eco.io" method="get" enctype="text/plain">
+      <div class="form-group">
+        <label for="ct-name">Name</label>
+        <input type="text" id="ct-name" name="name" placeholder="Your name" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="ct-email">Email</label>
+        <input type="email" id="ct-email" name="email" placeholder="you@institution.org" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="ct-subject">Subject</label>
+        <select id="ct-subject" name="subject">
+          <option value="">Select enquiry type</option>
+          <option value="Research collaboration">Research collaboration</option>
+          <option value="TFP Fellowship">TFP Fellowship</option>
+          <option value="Amazon Lab">Amazon Living Lab</option>
+          <option value="Publications">Publications request</option>
+          <option value="Partnership">Institutional partnership</option>
+          <option value="General">General enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ct-msg">Message</label>
+        <textarea id="ct-msg" name="body" placeholder="Describe your enquiry, institutional context, and how you found c-ECO."></textarea>
+      </div>
+      <p class="form-note">This form opens your email client pre-filled. For direct correspondence, email <a href="mailto:dir@c-eco.io" style="color:rgba(255,255,255,0.35)">dir@c-eco.io</a>.</p>
+      <button type="submit" class="btn-submit">Send enquiry →</button>
+    </form>
   </div>
 </div>
 
-<section>
-  <div class="section-inner two-col">
-    <div>
-      <p class="section-label">// Message</p>
-      <h2>Write to Us</h2>
-      <form action="mailto:dir@c-eco.io" method="get" enctype="text/plain">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="org">Institution</label>
-          <input type="text" id="org" name="institution" placeholder="University, organisation, or independent">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <select id="subject" name="subject">
-            <option value="">Select topic</option>
-            <option value="research-collab">Research Collaboration</option>
-            <option value="publications">Publications Request</option>
-            <option value="amazon-lab">Amazon Living Lab</option>
-            <option value="tfp">TFP Enquiry</option>
-            <option value="framework">Framework Enquiry</option>
-            <option value="general">General Enquiry</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="body" placeholder="Describe your enquiry..."></textarea>
-        </div>
-        <button type="submit" class="btn" style="cursor:pointer;border:1px solid var(--cyan);background:transparent;">Send</button>
-      </form>
-    </div>
-
-    <div>
-      <p class="section-label">// Direct Contacts</p>
-      <h2>Contact Directory</h2>
-
-      <div style="margin-top:1.5rem;">
-        <div class="card" style="margin-bottom:1rem;">
-          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Director</p>
-          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Programme Direction &amp; Partnerships</h3>
-          <a href="mailto:dir@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">dir@c-eco.io</a>
-        </div>
-        <div class="card" style="margin-bottom:1rem;">
-          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Research Team</p>
-          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Research Collaboration &amp; Publications</h3>
-          <a href="mailto:research@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">research@c-eco.io</a>
-        </div>
-        <div class="card" style="margin-bottom:1rem;">
-          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">TFP Programme</p>
-          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Threshold Function Protocol</h3>
-          <a href="mailto:tfp@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">tfp@c-eco.io</a>
-        </div>
-        <div class="card">
-          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin:0 0 0.35rem;">Amazon Living Lab</p>
-          <h3 style="font-size:0.9rem;margin-bottom:0.25rem;">Field Research &amp; Lab Operations</h3>
-          <a href="mailto:lab@c-eco.io" style="color:var(--cyan);font-size:0.85rem;font-family:var(--mono);">lab@c-eco.io</a>
-        </div>
-      </div>
-
-      <div style="margin-top:2rem;padding:1.5rem;background:var(--ink-light);border:1px solid var(--border);border-radius:3px;">
-        <p class="section-label" style="margin-bottom:0.75rem;">// Hasse Foundation</p>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.75rem;">For institutional matters, fellowship applications, and governance enquiries, contact the Hasse Foundation directly.</p>
-        <a href="https://hasse.foundation/contact.html" style="color:var(--cyan);font-size:0.85rem;text-decoration:none;">hasse.foundation/contact →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="font-size:0.82rem;">c-ECO</a>
-      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
-      <p style="margin-top:0.5rem;font-size:0.78rem;">A programme of the <a href="https://hasse.foundation" style="color:var(--cyan);text-decoration:none;">Hasse Foundation</a></p>
-    </div>
-    <div class="footer-col">
-      <h4>Research</h4>
-      <ul>
-        <li><a href="framework.html">c-ECO Framework</a></li>
-        <li><a href="tdr.html">Threshold Dynamics</a></li>
-        <li><a href="tfp.html">TFP</a></li>
-        <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Knowledge</h4>
-      <ul>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="training.html">Training</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li>
-        <li><a href="mailto:research@c-eco.io">research@c-eco.io</a></li>
-        <li><a href="contact.html">Contact Form</a></li>
-      </ul>
-    </div>
+  <div class="ft-grid">
+    <div class="ft-brand"><a href="index.html" class="ft-brand-name">C—ECO</a><p>Threshold Governance Research Platform. A programme of the <a href="https://hasse.foundation">Hasse Foundation</a>.</p></div>
+    <div class="ft-col"><h4>System</h4><ul><li><a href="framework.html">c-ECO Framework</a></li><li><a href="tdr.html">TDR</a></li><li><a href="tfp.html">TFP</a></li><li><a href="sil.html">SIL</a></li></ul></div>
+    <div class="ft-col"><h4>Lab & Research</h4><ul><li><a href="amazon-lab.html">Amazon Lab</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li><li><a href="training.html">Training</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li><li><a href="contact.html">Contact</a></li><li><a href="tfp/fellowship/">Fellowship</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
-    <p><a href="mailto:dir@c-eco.io" style="color:var(--text-muted);text-decoration:none;">dir@c-eco.io</a></p>
-  </div>
+  <div class="ft-bottom"><p>© 2026 c-ECO / Johann Christian Hasse Foundation</p><p><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></p></div>
 </footer>
-
+<script>
+  document.getElementById('nav-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('open'); });
+</script>
 </body>
 </html>

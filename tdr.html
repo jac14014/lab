@@ -3,164 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Threshold Dynamics Research — c-ECO</title>
-  <meta name="description" content="Threshold Dynamics Research — the scientific foundation of the c-ECO governance framework.">
-  <link rel="stylesheet" href="style.css">
+  <title>TDR — Threshold Dynamics Research · c-ECO</title>
+  <meta name="description" content="TDR — Threshold Dynamics Research. Mathematical model for ecological threshold proximity: P(Θ) scores, time-to-threshold estimation, and band classification.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #000; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { text-decoration: none; }
+  #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; transition: background 0.4s, padding 0.3s; }
+  #s-nav.scrolled { background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 14px 48px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; }
+  .s-nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
+  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+  @media (max-width: 880px) { .s-nav-links { display: none; } .s-nav-btn { display: block; } .s-nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 48px; } .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); } #s-nav { padding: 18px 24px; } #s-nav.scrolled { padding: 12px 24px; } }
+
+  .scene { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; }
+  .scene-bg { position: absolute; inset: 0; background-size: cover; background-position: center; will-change: transform; }
+  .scene-body { position: relative; z-index: 2; padding: 0 80px 120px; max-width: 860px; }
+  .scene-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 1.5rem; display: block; }
+  .scene-h1 { font-family: 'Inter', sans-serif; font-size: clamp(3.5rem, 9vw, 6.5rem); font-weight: 800; line-height: 0.97; color: #fff; margin-bottom: 1.5rem; letter-spacing: -0.025em; }
+  .scene-sub { font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.52); margin-bottom: 2.5rem; max-width: 520px; }
+  .scene-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-p { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .cta-p:hover { background: #fff; color: #000; }
+  .cta-s { display: inline-block; padding: 14px 32px; border: 1px solid rgba(255,255,255,0.22); background: transparent; color: rgba(255,255,255,0.55); font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; }
+  .cta-s:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+  .scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.22); animation: sb 2.2s ease-in-out infinite; }
+  @keyframes sb { 0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.22; } 50% { transform: translateX(-50%) translateY(7px); opacity: 0.42; } }
+
+  .stats-band { display: flex; align-items: center; justify-content: center; background: #050505; padding: 90px 48px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .stat-item { text-align: center; padding: 0 72px; }
+  .stat-n { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 3.25rem; font-weight: 300; color: #fff; line-height: 1; letter-spacing: -0.03em; margin-bottom: 14px; }
+  .stat-l { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  .stat-div { width: 1px; height: 72px; background: rgba(255,255,255,0.07); flex-shrink: 0; }
+
+  .sec { padding: 100px 80px; }
+  .sec.mid { background: #050505; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .sec-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 16px; display: block; }
+  .sec-h2 { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.025em; color: #fff; margin-bottom: 12px; line-height: 1.05; }
+  .sec-sub { font-size: 0.9rem; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 560px; margin-bottom: 48px; }
+
+  .model-block { background: #050505; border: 1px solid rgba(255,255,255,0.07); padding: 40px; font-family: 'IBM Plex Mono', monospace; margin-bottom: 48px; }
+  .model-block pre { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 2; white-space: pre-wrap; }
+  .model-block .c { color: rgba(255,255,255,0.22); }
+  .model-block .k { color: rgba(255,255,255,0.75); }
+
+  .indicator-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
+  .ind-card { background: #000; padding: 28px 24px; }
+  .ind-card:hover { background: #0a0a0a; }
+  .ind-domain { font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 10px; display: block; }
+  .ind-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
+  .ind-desc { font-size: 0.8rem; color: rgba(255,255,255,0.38); line-height: 1.7; }
+
+  .band-table { width: 100%; border-collapse: collapse; margin-top: 0; }
+  .band-table th { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 400; }
+  .band-table td { padding: 16px; font-size: 0.82rem; color: rgba(255,255,255,0.45); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.6; }
+  .band-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; font-weight: 500; }
+  .band-name.monitor { color: rgba(80,200,120,0.8); }
+  .band-name.alert { color: rgba(255,180,40,0.85); }
+  .band-name.precaution { color: rgba(220,100,40,0.85); }
+  .band-name.intervention { color: rgba(200,60,60,0.85); }
+  .band-name.emergency { color: rgba(220,40,40,1); }
+
+  .cta-scene { min-height: 50vh; display: flex; align-items: center; padding: 100px 80px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .cta-inner { max-width: 620px; }
+  .cta-inner h2 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; color: #fff; margin-bottom: 1.25rem; line-height: 1.05; }
+  .cta-inner p { color: rgba(255,255,255,0.38); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
+
+  footer { background: #000; border-top: 1px solid rgba(255,255,255,0.06); padding: 72px 80px 48px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .ft-brand-name { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); display: block; margin-bottom: 1rem; }
+  .ft-brand p { color: rgba(255,255,255,0.22); font-size: 0.78rem; line-height: 1.8; max-width: 260px; }
+  .ft-brand a { color: rgba(168,184,200,0.4); }
+  .ft-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 1rem; font-weight: 400; }
+  .ft-col ul { list-style: none; } .ft-col li { margin-bottom: 0.55rem; }
+  .ft-col a { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.28); transition: color 0.15s; }
+  .ft-col a:hover { color: rgba(255,255,255,0.7); }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; display: flex; justify-content: space-between; }
+  .ft-bottom p { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.18); }
+  .ft-bottom a { color: rgba(255,255,255,0.18); }
+
+  @media (max-width: 900px) { .scene-body { padding: 0 28px 100px; } .stats-band { flex-direction: column; gap: 52px; padding: 72px 28px; } .stat-div { width: 60px; height: 1px; } .stat-item { padding: 0; } .sec { padding: 72px 28px; } .indicator-grid { grid-template-columns: 1fr; } .cta-scene { padding: 80px 28px; } footer { padding: 56px 28px 36px; } .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .ft-bottom { flex-direction: column; gap: 6px; } }
+  @media (max-width: 580px) { .ft-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">c-ECO <span>Threshold Governance Research</span></a>
-    <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="framework.html">Framework</a></li>
-      <li><a href="tdr.html" class="active">TDR</a></li>
-      <li><a href="tfp.html">TFP</a></li>
-      <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="tdr.html" class="active">TDR</a></li>
+    <li><a href="tfp.html">TFP</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="sil.html">SIL</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="breadcrumb"><a href="index.html">c-ECO</a> / <a href="framework.html">Framework</a> / TDR</div>
-    <p class="section-label">// Layer 01 — Scientific Foundation</p>
-    <h1>Threshold Dynamics Research</h1>
-    <p>Formalising the detection, classification, and proximity modelling of threshold conditions in complex ecological and social systems.</p>
+<section class="scene">
+  <div class="scene-bg" id="bg-hero"></div>
+  <div class="scene-body">
+    <span class="scene-kicker">TDR · Threshold Dynamics Research · Layer 01 of the c-ECO Framework</span>
+    <h1 class="scene-h1">Signal.<br>Model.<br>Score.</h1>
+    <p class="scene-sub">The mathematical core of c-ECO — transforming ecological field data into threshold proximity scores that drive governance activation.</p>
+    <div class="scene-ctas">
+      <a href="#model" class="cta-p">Explore the Model</a>
+      <a href="framework.html" class="cta-s">c-ECO Framework →</a>
+    </div>
   </div>
+  <span class="scroll-hint">Scroll</span>
+</section>
+
+<div class="stats-band">
+  <div class="stat-item"><span class="stat-n">P(Θ)</span><span class="stat-l">Proximity Score</span></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><span class="stat-n">τ(P)</span><span class="stat-l">Time-to-Threshold</span></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><span class="stat-n">5</span><span class="stat-l">Proximity Bands</span></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><span class="stat-n">3</span><span class="stat-l">Indicator Domains</span></div>
 </div>
 
-<section>
-  <div class="section-inner two-col">
-    <div>
-      <p class="section-label">// What is TDR?</p>
-      <h2>The Science of<br>Threshold Proximity</h2>
-      <p class="lead">Threshold Dynamics Research (TDR) is the scientific sub-programme of c-ECO concerned with developing rigorous, governance-relevant models of threshold behaviour in complex systems.</p>
-      <p>TDR does not merely identify that thresholds exist. It develops quantitative and qualitative frameworks for estimating proximity to threshold conditions — providing the empirical signal that governance instruments require to activate appropriately.</p>
-      <p>The central TDR challenge is producing actionable threshold proximity signals in advance of regime shift — not as post-hoc confirmations of transitions already completed.</p>
+<section class="sec" id="model">
+  <span class="sec-label">// Mathematical Model</span>
+  <h2 class="sec-h2">Threshold<br>proximity calculus.</h2>
+  <p class="sec-sub">TDR produces two core outputs for each system under observation: P(Θ) — the probability that a threshold will be crossed within a defined window — and τ(P) — the estimated time remaining before that crossing.</p>
+  <div class="model-block">
+    <pre><span class="c">// TDR Core Variables</span>
+
+<span class="k">P(Θ)</span>  = threshold proximity score    <span class="c">// 0.0 → 1.0</span>
+<span class="k">τ(P)</span>  = time-to-threshold estimate   <span class="c">// days | months</span>
+<span class="k">α₁</span>    = alert threshold              <span class="c">// P(Θ) > 0.5</span>
+<span class="k">α₂</span>    = precaution threshold         <span class="c">// P(Θ) > 0.7</span>
+<span class="k">α₃</span>    = intervention threshold       <span class="c">// P(Θ) > 0.85</span>
+<span class="k">τ_c</span>   = critical time minimum        <span class="c">// emergency trigger</span>
+
+<span class="c">// Band assignment</span>
+IF P(Θ) &lt; α₁           → MONITOR
+IF P(Θ) ≥ α₁           → ALERT      → TFP instruments activated
+IF P(Θ) ≥ α₂           → PRECAUTION → elevated instruments
+IF P(Θ) ≥ α₃           → INTERVENTION
+IF τ(P) &lt; τ_c           → EMERGENCY</pre>
+  </div>
+</section>
+
+<section class="sec mid">
+  <span class="sec-label">// Indicator Architecture</span>
+  <h2 class="sec-h2">What TDR<br>measures.</h2>
+  <p class="sec-sub">TDR draws indicators from three domains — ecological, institutional, and financial — recognising that threshold proximity in one domain rarely occurs in isolation.</p>
+  <div class="indicator-grid">
+    <div class="ind-card">
+      <span class="ind-domain">Domain 01 · Ecological</span>
+      <div class="ind-name">Ecological Indicators</div>
+      <p class="ind-desc">Deforestation rate · Fire incidence · Rainfall anomaly · Biomass loss rate · Species abundance index · Hydrological regime deviation</p>
     </div>
-    <div>
-      <div class="code-block">
-        <pre><span class="comment">// TDR Core Variables</span>
-
-Θ(t)     = threshold function at time t
-P(Θ)     = proximity to threshold
-σ(P)     = signal variance (early warning)
-τ(P)     = time-to-threshold estimate
-R(Θ)     = recovery potential function
-
-<span class="comment">// Governance activation condition</span>
-if P(Θ) > α AND τ(P) < τ_min:
-    → TFP activation required</pre>
-      </div>
+    <div class="ind-card">
+      <span class="ind-domain">Domain 02 · Institutional</span>
+      <div class="ind-name">Governance Indicators</div>
+      <p class="ind-desc">Enforcement capacity index · Authority gap score · Cross-scale coordination failure · Legal instrument coverage · Institutional resilience estimate</p>
+    </div>
+    <div class="ind-card">
+      <span class="ind-domain">Domain 03 · Financial</span>
+      <div class="ind-name">Financial Indicators</div>
+      <p class="ind-desc">Resource flow concentration · Extraction rate deviation · Credit exposure to threshold-sensitive assets · Sovereign risk co-movement index</p>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<section style="background:var(--ink-light);">
-  <div class="section-inner">
-    <p class="section-label">// Research Components</p>
-    <h2>TDR Sub-Programmes</h2>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">∂</div>
-        <h3>Threshold Mathematics</h3>
-        <p>Formal specification of threshold functions, bifurcation dynamics, and proximity metrics. Mathematical foundations for cross-domain threshold classification.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">◈</div>
-        <h3>Early Warning Signal Processing</h3>
-        <p>Development of statistical indicators — variance, autocorrelation, skewness — as empirical early warning signals of threshold proximity across system types.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⌬</div>
-        <h3>State Machine Architecture</h3>
-        <p>Formal state transition models encoding system states, threshold boundaries, and governance-relevant state changes. The computational backbone of TFP activation logic.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">◎</div>
-        <h3>Calibration &amp; Validation</h3>
-        <p>Field-testing TDR models against empirical data from the Amazon Living Lab. Calibrating theoretical threshold proximity estimates against observed ecological transitions.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">λ</div>
-        <h3>Indicator Architecture</h3>
-        <p>Design of composite indicator systems that translate ecological and social data streams into governance-ready threshold proximity signals at institutional timescales.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">∞</div>
-        <h3>Cross-Domain Application</h3>
-        <p>Extending TDR models from ecological to financial, social, and institutional systems — establishing the domain-generic foundations of the c-ECO Framework.</p>
-      </div>
-    </div>
-  </div>
+<section class="sec">
+  <span class="sec-label">// Proximity Bands</span>
+  <h2 class="sec-h2">Five states.<br>Five responses.</h2>
+  <p class="sec-sub">Each proximity band maps to a specific set of TFP governance instruments. The band defines what activates — TDR defines when.</p>
+  <table class="band-table">
+    <thead><tr><th>Band</th><th>Condition</th><th>TFP Response</th><th>Time-to-Threshold</th></tr></thead>
+    <tbody>
+      <tr><td><span class="band-name monitor">MONITOR</span></td><td>P(Θ) below alert level</td><td>Continuous observation, institutional readiness</td><td>Extended — no proximate risk</td></tr>
+      <tr><td><span class="band-name alert">ALERT</span></td><td>P(Θ) ≥ α₁</td><td>Enhanced monitoring, stakeholder notification, preparatory instruments</td><td>Months — elevated risk</td></tr>
+      <tr><td><span class="band-name precaution">PRECAUTION</span></td><td>P(Θ) ≥ α₂</td><td>Precautionary legal instruments activated, resource mobilisation</td><td>Weeks — significant risk</td></tr>
+      <tr><td><span class="band-name intervention">INTERVENTION</span></td><td>P(Θ) ≥ α₃</td><td>Full instrument deployment, mandatory coordination, elevated authority</td><td>Days — critical risk</td></tr>
+      <tr><td><span class="band-name emergency">EMERGENCY</span></td><td>τ(P) &lt; τ_critical</td><td>Emergency protocols, maximum instrument deployment</td><td>Hours — imminent crossing</td></tr>
+    </tbody>
+  </table>
 </section>
 
-<div class="divider"></div>
-
-<section>
-  <div class="section-inner">
-    <p class="section-label">// Data</p>
-    <h2>Empirical Foundations</h2>
-    <p>TDR models are developed and calibrated using data from three primary sources:</p>
-    <table>
-      <thead><tr><th>Source</th><th>Data Type</th><th>Application</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Amazon Living Lab</strong></td><td>Field ecological and governance data</td><td>Primary empirical calibration for tropical biome models</td></tr>
-        <tr><td><strong>Remote Sensing</strong></td><td>Satellite land-cover, biomass, hydrology data</td><td>Spatial threshold proximity mapping at biome scale</td></tr>
-        <tr><td><strong>Institutional Data</strong></td><td>Legal, governance, social indicator datasets</td><td>Socio-institutional threshold proximity modelling</td></tr>
-        <tr><td><strong>Historical Records</strong></td><td>Past threshold crossing events and timelines</td><td>Model validation against confirmed historical transitions</td></tr>
-      </tbody>
-    </table>
-    <a href="amazon-lab.html" class="btn" style="margin-top:2rem;">Amazon Lab Data →</a>
+<section class="cta-scene">
+  <div class="cta-inner">
+    <span class="sec-label">// Research Access</span>
+    <h2>TDR Publications.</h2>
+    <p>The mathematical foundations of TDR are available through c-ECO Publications. Working documents and collaboration proposals welcome through the research team.</p>
+    <div class="scene-ctas">
+      <a href="publications.html" class="cta-p">Publications</a>
+      <a href="contact.html" class="cta-s">Research Enquiry →</a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="footer-logo">c-ECO</a>
-      <p>Technical research platform for the Comprehensive Ecological Governance doctrine.</p>
-      <p style="margin-top:0.5rem;font-size:0.78rem;">A programme of the <a href="https://hasse.foundation" style="color:rgba(200,146,42,0.45);text-decoration:none;">Hasse Foundation</a></p>
-    </div>
-    <div class="footer-col">
-      <h4>Research</h4>
-      <ul>
-        <li><a href="framework.html">c-ECO Framework</a></li>
-        <li><a href="tdr.html">Threshold Dynamics</a></li>
-        <li><a href="tfp.html">TFP</a></li>
-        <li><a href="amazon-lab.html">Amazon Lab</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Knowledge</h4>
-      <ul>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="training.html">Training</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:research@c-eco.io">research@c-eco.io</a></li>
-        <li><a href="contact.html">Contact Form</a></li>
-      </ul>
-    </div>
+  <div class="ft-grid">
+    <div class="ft-brand"><a href="index.html" class="ft-brand-name">C—ECO</a><p>Threshold Governance Research Platform. A programme of the <a href="https://hasse.foundation">Hasse Foundation</a>.</p></div>
+    <div class="ft-col"><h4>System</h4><ul><li><a href="framework.html">c-ECO Framework</a></li><li><a href="tdr.html">TDR</a></li><li><a href="tfp.html">TFP</a></li><li><a href="sil.html">SIL</a></li></ul></div>
+    <div class="ft-col"><h4>Lab & Research</h4><ul><li><a href="amazon-lab.html">Amazon Lab</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li><li><a href="training.html">Training</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></li><li><a href="contact.html">Contact</a></li><li><a href="tfp/fellowship/">Fellowship</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 c-ECO / Johann Christian Hasse Foundation</p>
-    <p><a href="mailto:research@c-eco.io" style="color:var(--text-dim);text-decoration:none;">research@c-eco.io</a></p>
-  </div>
+  <div class="ft-bottom"><p>© 2026 c-ECO / Johann Christian Hasse Foundation</p><p><a href="mailto:dir@c-eco.io">dir@c-eco.io</a></p></div>
 </footer>
-
+<script>
+  const nav = document.getElementById('s-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+  document.getElementById('nav-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('open'); });
+  window.addEventListener('scroll', () => { const el = document.getElementById('bg-hero'); if (!el) return; const r = el.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return; el.style.transform = `translateY(${(window.scrollY - (r.top + window.scrollY)) * 0.15}px)`; }, { passive: true });
+  const h = document.getElementById('bg-hero');
+  h.style.backgroundImage = "linear-gradient(to top, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.25) 100%), url('assets/img/r7.jpg')";
+  h.style.backgroundSize = 'auto, cover'; h.style.backgroundPosition = 'center, center';
+</script>
 </body>
 </html>
