@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles of Incorporation — C-ECO Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #f5f4f2;
+  --bg-secondary: #eae8e4;
+  --bg-tertiary: #e0ddd8;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a48;
+  --text-muted: #8a8884;
+  --text-faint: #b5b3af;
+  --border-light: #d5d3cf;
+  --border-medium: #c5c3be;
+  --accent-warm: #6b6560;
+  --accent-cool: #5a5a5a;
+  --accent-subtle: #7a7874;
+  --ink: #2c2c2c;
+  --paper: #faf9f7;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-medium: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  font-size: 15px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(245,244,242,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  filter: grayscale(30%);
+  opacity: 0.85;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-brand .brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.header-brand .brand-tag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.header-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.header-nav a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.header-nav a:hover {
+  color: var(--text-primary);
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-warm);
+  transition: width 0.3s;
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero */
+.hero {
+  padding: 140px 40px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-warm);
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-light);
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-item .meta-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+}
+
+.meta-item .meta-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Divider */
+.section-divider {
+  max-width: 720px;
+  margin: 0 auto;
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* Main Content */
+.document-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+/* Article blocks */
+.article-block {
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.article-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.article-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 80px;
+}
+
+.article-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+.article-content {
+  padding-left: 96px;
+}
+
+@media (max-width: 640px) {
+  .article-content { padding-left: 0; }
+  .article-header { flex-direction: column; gap: 4px; }
+}
+
+.article-content p {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.article-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Lists */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.article-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.article-list li::before {
+  content: attr(data-marker);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* Sub-sections within articles */
+.sub-section {
+  margin-top: 20px;
+  padding: 20px 24px;
+  background: var(--paper);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+}
+
+.sub-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.sub-section p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.sub-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Execution block */
+.execution-block {
+  margin-top: 80px;
+  padding: 48px 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  text-align: center;
+}
+
+.execution-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 24px;
+}
+
+.execution-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+}
+
+.signature-line {
+  max-width: 400px;
+  margin: 0 auto 12px;
+  border-bottom: 1px solid var(--border-medium);
+  height: 48px;
+}
+
+.signature-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.signature-role {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border-light);
+  padding: 40px;
+  text-align: center;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+  filter: grayscale(40%);
+  opacity: 0.7;
+}
+
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Print button */
+.print-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-medium);
+  z-index: 90;
+}
+
+.print-btn:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+}
+
+.print-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-secondary);
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 2cm 2.5cm;
+    size: auto;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .site-header,
+  .print-btn,
+  .site-footer {
+    display: none !important;
+  }
+
+  .hero {
+    padding: 0 0 30px 0 !important;
+    page-break-after: avoid;
+  }
+
+  .hero-title {
+    font-size: 24pt !important;
+    color: black !important;
+  }
+
+  .hero-title em {
+    color: black !important;
+  }
+
+  .hero-subtitle {
+    font-size: 10pt !important;
+    color: #333 !important;
+  }
+
+  .hero-meta {
+    border-top: 1pt solid #999 !important;
+    padding-top: 15px !important;
+  }
+
+  .meta-item .meta-label {
+    font-size: 8pt !important;
+    color: #666 !important;
+  }
+
+  .meta-item .meta-value {
+    font-size: 11pt !important;
+    color: black !important;
+  }
+
+  .section-divider {
+    background: #999 !important;
+    height: 0.5pt !important;
+  }
+
+  .document-body {
+    padding: 20px 0 0 0 !important;
+    max-width: 100% !important;
+  }
+
+  .article-block {
+    margin-bottom: 24pt !important;
+    page-break-inside: avoid;
+  }
+
+  .article-header {
+    border-bottom: 0.5pt solid #999 !important;
+    margin-bottom: 12pt !important;
+    padding-bottom: 6pt !important;
+  }
+
+  .article-number {
+    font-size: 10pt !important;
+    color: #666 !important;
+    min-width: 60px !important;
+  }
+
+  .article-title {
+    font-size: 14pt !important;
+    color: black !important;
+  }
+
+  .article-content {
+    padding-left: 60px !important;
+  }
+
+  .article-content p {
+    font-size: 10.5pt !important;
+    color: #222 !important;
+    margin-bottom: 8pt !important;
+  }
+
+  .article-list li {
+    font-size: 10pt !important;
+    color: #222 !important;
+    margin-bottom: 4pt !important;
+    padding-left: 20px !important;
+  }
+
+  .article-list li::before {
+    font-size: 10pt !important;
+    color: #666 !important;
+  }
+
+  .sub-section {
+    background: white !important;
+    border: 0.5pt solid #ccc !important;
+    padding: 10pt 12pt !important;
+    margin-top: 10pt !important;
+  }
+
+  .sub-section-title {
+    font-size: 8pt !important;
+    color: #666 !important;
+  }
+
+  .sub-section p {
+    font-size: 10pt !important;
+  }
+
+  .execution-block {
+    background: white !important;
+    border: 1pt solid #999 !important;
+    margin-top: 30pt !important;
+    padding: 20pt !important;
+    page-break-inside: avoid;
+  }
+
+  .execution-label {
+    font-size: 8pt !important;
+    color: #666 !important;
+  }
+
+  .execution-title {
+    font-size: 16pt !important;
+    color: black !important;
+  }
+
+  .signature-line {
+    border-bottom: 0.5pt solid #333 !important;
+    max-width: 300px !important;
+  }
+
+  .signature-name {
+    font-size: 12pt !important;
+    color: black !important;
+  }
+
+  .signature-role {
+    font-size: 9pt !important;
+    color: #666 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+
+  /* Page breaks for major sections */
+  .article-block:nth-child(5),
+  .article-block:nth-child(9) {
+    page-break-before: auto;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0 20px;
+  }
+  .header-nav { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .hero-title { font-size: 36px; }
+  .document-body { padding: 40px 24px 80px; }
+  .execution-block { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-left">
+    <img src="assets/img/institute.png" alt="C-ECO Institute" class="header-logo" onerror="this.style.display='none'">
+    <div class="header-brand">
+      <span class="brand-name">C-ECO Institute</span>
+      <span class="brand-tag">A Missouri Nonprofit Public Benefit Corporation</span>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="governance.html">Governance</a>
+    <a href="bylaws.html">Bylaws</a>
+    <a href="org-chart.html">Org Chart</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">Legal Document</div>
+  <h1 class="hero-title">Articles of <em>Incorporation</em></h1>
+  <p class="hero-subtitle">Constitutive instrument of the C-ECO Institute, organized under Chapter 355 of the Missouri Revised Statutes and operated exclusively for charitable, scientific, and educational purposes within the meaning of Section 501(c)(3) of the Internal Revenue Code.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Jurisdiction</div>
+      <div class="meta-value">Missouri</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Status</div>
+      <div class="meta-value">Public Benefit</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Classification</div>
+      <div class="meta-value">501(c)(3)</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Document Body -->
+<main class="document-body">
+
+  <!-- ARTICLE I -->
+  <article class="article-block" id="article-i">
+    <div class="article-header">
+      <span class="article-number">Article I</span>
+      <h2 class="article-title">Name</h2>
+    </div>
+    <div class="article-content">
+      <p>The name of the corporation is <strong>C-ECO Institute</strong> (the "Corporation").</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE II -->
+  <article class="article-block" id="article-ii">
+    <div class="article-header">
+      <span class="article-number">Article II</span>
+      <h2 class="article-title">Duration</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation shall have perpetual existence unless dissolved in accordance with these Articles of Incorporation and the Missouri Nonprofit Corporation Act.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE III -->
+  <article class="article-block" id="article-iii">
+    <div class="article-header">
+      <span class="article-number">Article III</span>
+      <h2 class="article-title">Purposes</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation is organized and shall be operated exclusively for charitable, scientific, and educational purposes within the meaning of Section 501(c)(3) of the Internal Revenue Code of 1986, as amended (the "Code").</p>
+      <p>The Corporation is organized to advance the public benefit through independent, evidence-based scientific research, education, technical assistance, capacity building, and international cooperation, including, but not limited to, the following fields:</p>
+      <ul class="article-list">
+        <li data-marker="(a)">infrastructure resilience and critical systems;</li>
+        <li data-marker="(b)">disaster risk reduction;</li>
+        <li data-marker="(c)">climate adaptation;</li>
+        <li data-marker="(d)">ecological governance;</li>
+        <li data-marker="(e)">sustainable development;</li>
+        <li data-marker="(f)">systemic risk analysis;</li>
+        <li data-marker="(g)">public policy innovation;</li>
+        <li data-marker="(h)">artificial intelligence and digital governance;</li>
+        <li data-marker="(i)">scientific research and technology transfer;</li>
+        <li data-marker="(j)">professional education, fellowships, and training.</li>
+      </ul>
+      <p>In furtherance of these purposes, the Corporation may engage in any lawful activity consistent with Section 501(c)(3) of the Internal Revenue Code, including, but not limited to:</p>
+      <ul class="article-list">
+        <li data-marker="(a)">conducting basic and applied scientific research;</li>
+        <li data-marker="(b)">publishing scientific, educational, and technical materials;</li>
+        <li data-marker="(c)">organizing conferences, workshops, seminars, fellowships, and educational programs;</li>
+        <li data-marker="(d)">providing technical assistance and capacity-building services;</li>
+        <li data-marker="(e)">collaborating with governmental, academic, nonprofit, international, multilateral, and private organizations;</li>
+        <li data-marker="(f)">receiving grants, gifts, bequests, contracts, cooperative agreements, and other lawful support;</li>
+        <li data-marker="(g)">developing, licensing, and disseminating scientific knowledge and educational resources consistent with its exempt purposes; and</li>
+        <li data-marker="(h)">engaging in any other lawful activity that furthers the Corporation's charitable, scientific, and educational mission.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- ARTICLE IV -->
+  <article class="article-block" id="article-iv">
+    <div class="article-header">
+      <span class="article-number">Article IV</span>
+      <h2 class="article-title">Tax-Exempt Status</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation is organized and shall be operated exclusively for purposes described in Section 501(c)(3) of the Internal Revenue Code.</p>
+      <p>The Corporation shall seek recognition and operate as a public charity described under one or more applicable provisions of Section 509(a) of the Internal Revenue Code and shall conduct its activities in a manner consistent with maintaining its federal tax-exempt status.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE V -->
+  <article class="article-block" id="article-v">
+    <div class="article-header">
+      <span class="article-number">Article V</span>
+      <h2 class="article-title">Limitations on Activities</h2>
+    </div>
+    <div class="article-content">
+      <p>No substantial part of the activities of the Corporation shall consist of carrying on propaganda or otherwise attempting to influence legislation, except to the extent permitted under Section 501(c)(3) of the Internal Revenue Code.</p>
+      <p>The Corporation shall not participate or intervene, directly or indirectly, in any political campaign on behalf of or in opposition to any candidate for public office.</p>
+      <p>Notwithstanding any other provision of these Articles, the Corporation shall not conduct or carry on any activity not permitted to be carried on by:</p>
+      <ul class="article-list">
+        <li data-marker="(a)">a corporation exempt from federal income taxation under Section 501(c)(3) of the Internal Revenue Code; or</li>
+        <li data-marker="(b)">a corporation to which contributions are deductible under Section 170(c)(2) of the Internal Revenue Code.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- ARTICLE VI -->
+  <article class="article-block" id="article-vi">
+    <div class="article-header">
+      <span class="article-number">Article VI</span>
+      <h2 class="article-title">Corporate Powers</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation shall possess and may exercise all powers granted to nonprofit corporations organized under Chapter 355 of the Missouri Revised Statutes that are necessary, convenient, or incidental to accomplishing its charitable, scientific, and educational purposes.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE VII -->
+  <article class="article-block" id="article-vii">
+    <div class="article-header">
+      <span class="article-number">Article VII</span>
+      <h2 class="article-title">Members</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation shall have no voting members.</p>
+      <p>All corporate powers shall be exercised by or under the authority of its Board of Directors.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE VIII -->
+  <article class="article-block" id="article-viii">
+    <div class="article-header">
+      <span class="article-number">Article VIII</span>
+      <h2 class="article-title">Board of Directors</h2>
+    </div>
+    <div class="article-content">
+      <p>The affairs of the Corporation shall be managed under the direction of its Board of Directors, subject to the Missouri Nonprofit Corporation Act and the Corporation's Bylaws.</p>
+      <p>The number, qualifications, terms of office, election, removal, powers, duties, and procedures governing the Board of Directors shall be established in the Bylaws.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE IX -->
+  <article class="article-block" id="article-ix">
+    <div class="article-header">
+      <span class="article-number">Article IX</span>
+      <h2 class="article-title">Private Inurement</h2>
+    </div>
+    <div class="article-content">
+      <p>No part of the net earnings of the Corporation shall inure to the benefit of, or be distributable to, any director, officer, incorporator, employee, member of a committee, or other private person.</p>
+      <p>Nothing contained herein shall prohibit the Corporation from paying reasonable compensation for services actually rendered or from making payments in furtherance of its exempt purposes.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE X -->
+  <article class="article-block" id="article-x">
+    <div class="article-header">
+      <span class="article-number">Article X</span>
+      <h2 class="article-title">Dissolution</h2>
+    </div>
+    <div class="article-content">
+      <p>Upon dissolution of the Corporation, all assets remaining after payment of, or adequate provision for, its liabilities shall be distributed exclusively for one or more charitable, scientific, or educational purposes within the meaning of Section 501(c)(3) of the Internal Revenue Code.</p>
+      <p>Such assets shall be distributed to one or more organizations then recognized as exempt from federal income taxation under Section 501(c)(3) of the Internal Revenue Code, as determined by the Board of Directors.</p>
+      <p>Any assets not so distributed shall be disposed of by a court of competent jurisdiction located in the State of Missouri exclusively for such purposes.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE XI -->
+  <article class="article-block" id="article-xi">
+    <div class="article-header">
+      <span class="article-number">Article XI</span>
+      <h2 class="article-title">Non-Discrimination</h2>
+    </div>
+    <div class="article-content">
+      <p>The Corporation shall not discriminate on the basis of race, color, religion, creed, sex, national origin, ancestry, age, disability, veteran status, or any other characteristic protected by applicable federal or state law in carrying out its charitable activities or employment practices.</p>
+    </div>
+  </article>
+
+  <!-- ARTICLE XII -->
+  <article class="article-block" id="article-xii">
+    <div class="article-header">
+      <span class="article-number">Article XII</span>
+      <h2 class="article-title">Registered Office and Registered Agent</h2>
+    </div>
+    <div class="article-content">
+      <div class="sub-section">
+        <div class="sub-section-title">Section 12.1 — Registered Office</div>
+        <p>2504 Grandview Circle<br>Columbia, Missouri 65203</p>
+      </div>
+      <div class="sub-section">
+        <div class="sub-section-title">Section 12.2 — Registered Agent</div>
+        <p>Jacqueline Giselle Gonçalves Alves<br>2504 Grandview Circle<br>Columbia, Missouri 65203</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ARTICLE XIII -->
+  <article class="article-block" id="article-xiii">
+    <div class="article-header">
+      <span class="article-number">Article XIII</span>
+      <h2 class="article-title">Incorporator</h2>
+    </div>
+    <div class="article-content">
+      <div class="sub-section">
+        <div class="sub-section-title">Section 13.1 — Incorporator</div>
+        <p>Jacqueline Giselle Gonçalves Alves<br>2504 Grandview Circle<br>Columbia, Missouri 65203</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ARTICLE XIV -->
+  <article class="article-block" id="article-xiv">
+    <div class="article-header">
+      <span class="article-number">Article XIV</span>
+      <h2 class="article-title">Effective Date</h2>
+    </div>
+    <div class="article-content">
+      <p>These Articles of Incorporation shall become effective upon filing with the Missouri Secretary of State.</p>
+    </div>
+  </article>
+
+  <!-- Execution -->
+  <div class="execution-block">
+    <div class="execution-label">Execution</div>
+    <div class="execution-title">In Witness Whereof</div>
+    <p style="font-size: 14px; color: var(--text-secondary); max-width: 480px; margin: 0 auto 32px; line-height: 1.7;">The undersigned Incorporator executes these Articles of Incorporation on this _____ day of ____________________, 2026.</p>
+    <div class="signature-line"></div>
+    <div class="signature-name">Jacqueline Giselle Gonçalves Alves</div>
+    <div class="signature-role">Incorporator</div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="assets/img/institute.png" alt="C-ECO Institute" class="footer-logo" onerror="this.style.display='none'">
+    <span class="footer-name">C-ECO Institute</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">c-eco.io</a>
+    <a href="governance.html">Governance</a>
+    <a href="bylaws.html">Bylaws</a>
+    <a href="org-chart.html">Org Chart</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">A Missouri Nonprofit Public Benefit Corporation &middot; Organized under Chapter 355 RSMo</div>
+</footer>
+
+<!-- Print Button -->
+<button class="print-btn" onclick="window.print()" title="Print Document">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+    <rect x="6" y="14" width="12" height="8"></rect>
+  </svg>
+</button>
+
+</body>
+</html>

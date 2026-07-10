@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Governance - c-ECO Institute</title>
+  <meta name="description" content="Governance, leadership, legal documents, and institutional architecture for the c-ECO Institute.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: #000; color: #fff; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; }
+  .s-nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
+  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+  .page-header { padding: 160px 80px 84px; border-bottom: 1px solid rgba(255,255,255,0.06); background: radial-gradient(ellipse at 70% 20%, rgba(88,106,122,0.22), transparent 55%), #000; }
+  .breadcrumb { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); margin-bottom: 24px; }
+  .breadcrumb a { color: rgba(255,255,255,0.45); }
+  h1 { font-size: clamp(2.8rem, 7vw, 5.8rem); line-height: 0.95; letter-spacing: -0.025em; max-width: 940px; }
+  .page-header p { color: rgba(255,255,255,0.52); line-height: 1.8; max-width: 700px; margin-top: 24px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 84px 80px; }
+  .section-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 28px; }
+  .doc-grid, .people-grid, .principles-grid { display: grid; gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); }
+  .doc-grid { grid-template-columns: repeat(3, 1fr); }
+  .doc-card, .person-card, .principle-card { background: #050505; padding: 28px; transition: background 0.18s, border-color 0.18s; }
+  .doc-card:hover, .person-card:hover { background: #0b0b0b; }
+  .doc-card span, .person-role { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 10px; }
+  .doc-card h2 { font-size: 1rem; color: rgba(255,255,255,0.82); margin-bottom: 10px; }
+  .doc-card p, .principle-card p { color: rgba(255,255,255,0.42); line-height: 1.75; font-size: 0.86rem; }
+  .people-block { margin-top: 84px; }
+  .people-grid { grid-template-columns: repeat(4, 1fr); }
+  .person-card { min-height: 270px; }
+  .person-photo { width: 82px; height: 82px; border-radius: 50%; object-fit: cover; display: block; margin-bottom: 24px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+  .person-card h3 { color: rgba(255,255,255,0.86); font-size: 1rem; margin-bottom: 8px; }
+  .person-card p { color: rgba(255,255,255,0.42); font-size: 0.82rem; line-height: 1.65; }
+  .person-fallback { width: 82px; height: 82px; border-radius: 50%; display: none; place-items: center; margin-bottom: 24px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.38); font-family: 'IBM Plex Mono', monospace; border: 1px solid rgba(255,255,255,0.1); }
+  .principles-grid { grid-template-columns: repeat(3, 1fr); margin-top: 84px; }
+  .principle-card h2 { font-size: 1rem; margin-bottom: 12px; color: rgba(255,255,255,0.78); }
+  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 80px; display: flex; justify-content: space-between; gap: 24px; color: rgba(255,255,255,0.22); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; }
+  footer a { color: rgba(255,255,255,0.38); margin-left: 18px; }
+  @media (max-width: 980px) { .doc-grid, .people-grid, .principles-grid { grid-template-columns: repeat(2, 1fr); } .page-header, .wrap { padding-left: 32px; padding-right: 32px; } .s-nav-links { display: none; } .s-nav-btn { display: block; } .s-nav-links.open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 72px; left: 0; right: 0; background: rgba(0,0,0,0.98); padding: 1rem 32px; } .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); } }
+  @media (max-width: 640px) { .doc-grid, .people-grid, .principles-grid { grid-template-columns: 1fr; } footer { flex-direction: column; padding: 36px 28px; } footer a { display: inline-block; margin: 10px 16px 0 0; } }
+  </style>
+</head>
+<body>
+<nav id="s-nav">
+  <a href="index.html" class="s-logo">C-ECO <span>Institute</span></a>
+  <button class="s-nav-btn" id="nav-btn">Menu</button>
+  <ul class="s-nav-links" id="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="amazon-lab.html">Amazon Lab</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="governance.html" class="active">Governance</a></li>
+    <li><a href="donate.html">Donate</a></li>
+    <li><a href="sitemap.html">Site Map</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="breadcrumb"><a href="index.html">c-ECO</a> / Governance</div>
+  <h1>c-ECO Institute governance</h1>
+  <p>The c-ECO Institute carries forward the governance architecture developed for the Hasse Foundation: executive administration, fiduciary oversight, technical integrity, compliance, and social resilience are separated into clear institutional portfolios.</p>
+</header>
+
+<main class="wrap">
+  <span class="section-label">// Legal documents</span>
+  <section class="doc-grid" aria-label="Legal documents">
+    <a class="doc-card" href="articles-of-incorporation.html"><span>Filed instrument</span><h2>Articles of Incorporation</h2><p>Constitutive instrument for the C-ECO Institute as a Missouri nonprofit public benefit corporation.</p></a>
+    <a class="doc-card" href="bylaws.html"><span>Pending publication</span><h2>Bylaws</h2><p>Board procedures, officer roles, meeting rules, and internal governance controls.</p></a>
+    <a class="doc-card" href="org-chart.html"><span>Pending publication</span><h2>Org Chart</h2><p>Functional map of the institute, board, officers, advisors, research programmes, and operational portfolios.</p></a>
+  </section>
+
+  <section class="people-block">
+    <span class="section-label">// Executive leadership</span>
+    <div class="people-grid">
+      <article class="person-card"><img src="https://c-eco.org/assets/img/jacqueline-ennis.png" alt="Jacqueline Ennis" class="person-photo"><span class="person-role">President</span><h3>Jacqueline Ennis</h3><p>Founder, institutional direction, public benefit strategy, and legal incorporation lead.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/andrew.png" alt="Andrew McElwaine" class="person-photo"><span class="person-role">Vice President</span><h3>Andrew McElwaine</h3><p>Executive governance, resilience strategy, and institutional stewardship.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/sandy.jpeg" alt="Sandy Paik" class="person-photo"><span class="person-role">Treasurer</span><h3>Sandy Paik</h3><p>Financial oversight, fiduciary discipline, and nonprofit accountability.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/bahman.png" alt="Bahman Naraghi" class="person-photo"><span class="person-role">Executive Director / COO</span><h3>Bahman Naraghi</h3><p>Operational governance, programme execution, and cross-institutional coordination.</p></article>
+    </div>
+  </section>
+
+  <section class="people-block">
+    <span class="section-label">// Board and institutional team</span>
+    <div class="people-grid">
+      <article class="person-card"><img src="https://raw.githubusercontent.com/jac14014/c-eco/main/assets/img/rivera.png" alt="Rodolfo Ruby Rivera" class="person-photo"><span class="person-role">Board Director</span><h3>Rodolfo Ruby Rivera</h3><p>International legal governance and institutional oversight.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/acie.png" alt="Acie Douglas" class="person-photo"><span class="person-role">Board Director</span><h3>Acie Douglas</h3><p>Board oversight and public benefit governance.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/kunal.png" alt="Kunal Thakur" class="person-photo"><span class="person-role">Board Director</span><h3>Kunal Thakur</h3><p>Board oversight and programme governance.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/ravi.png" alt="Ravi Maharjan" class="person-photo"><span class="person-role">Board Director</span><h3>Ravi Maharjan</h3><p>Board oversight and systems implementation perspective.</p></article>
+      <article class="person-card"><img src="assets/img/lazaro.jpg" alt="Lazaro Marcos" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"><span class="person-fallback">LM</span><span class="person-role">Institutional Team</span><h3>Lazaro Marcos</h3><p>Leadership integration, Brazil liaison, and institutional development support.</p></article>
+      <article class="person-card"><img src="assets/img/brent.png" alt="Brent Ibata" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"><span class="person-fallback">BI</span><span class="person-role">Institutional Team</span><h3>Brent Ibata</h3><p>Strategic communications, research integration, and programme development.</p></article>
+      <article class="person-card"><img src="assets/img/vijaykumar.png" alt="Dr. Vijayakumar Varadarajan" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"><span class="person-fallback">VV</span><span class="person-role">Institutional Team</span><h3>Dr. Vijayakumar Varadarajan</h3><p>Artificial intelligence, digital governance, scientific research, and technology transfer.</p></article>
+    </div>
+  </section>
+
+  <section class="people-block">
+    <span class="section-label">// Advisors</span>
+    <div class="people-grid">
+      <article class="person-card"><img src="https://c-eco.org/assets/img/vika.png" alt="Viktoriya Zhelyazkova" class="person-photo"><span class="person-role">Advisor</span><h3>Viktoriya Zhelyazkova</h3><p>Advisory support for institutional design and resilience.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/agathe.png" alt="Agathe Rumanyika" class="person-photo"><span class="person-role">Advisor</span><h3>Agathe Rumanyika</h3><p>Advisory support for social resilience and international cooperation.</p></article>
+      <article class="person-card"><img src="https://raw.githubusercontent.com/jac14014/c-eco/main/assets/img/rick.jpg" alt="Richard Ennis" class="person-photo"><span class="person-role">Advisor</span><h3>Richard "Rick" Ennis</h3><p>Advisory support for public benefit strategy.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/daniel.png" alt="Daniel Ennis" class="person-photo"><span class="person-role">Advisor</span><h3>Daniel Ennis</h3><p>Advisory support for operational continuity.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/erelyn-alves.png" alt="Erelyn Alves" class="person-photo"><span class="person-role">Advisor</span><h3>Erelyn Alves</h3><p>Advisory support for Brazil and community-facing programmes.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/joao.png" alt="Joao Martins" class="person-photo"><span class="person-role">Advisor</span><h3>Joao Martins</h3><p>Advisory support for institutional relationships.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/barbara.JPG" alt="Barbara Oliva" class="person-photo"><span class="person-role">Amazon & International Liaison</span><h3>Barbara Oliva</h3><p>Amazon programme liaison and international coordination.</p></article>
+      <article class="person-card"><img src="https://c-eco.org/assets/img/guilherme.png" alt="Guilherme Campbell" class="person-photo"><span class="person-role">Brazil & International Liaison</span><h3>Guilherme Campbell</h3><p>Brazil liaison and international programme coordination.</p></article>
+    </div>
+  </section>
+
+  <section class="principles-grid" aria-label="Governance principles">
+    <article class="principle-card"><h2>Primacy of biophysical limits</h2><p>Ecological constraints are treated as governing parameters, not externalities.</p></article>
+    <article class="principle-card"><h2>Temporal integrity of law</h2><p>Governance must account for time, delay, irreversibility, and intervention windows.</p></article>
+    <article class="principle-card"><h2>Reversibility before harm</h2><p>Preventive action is prioritized where thresholds may become irreversible.</p></article>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 c-ECO Institute</span>
+  <span><a href="articles-of-incorporation.html">AOI</a><a href="bylaws.html">Bylaws</a><a href="org-chart.html">Org Chart</a><a href="contact.html">Contact</a></span>
+</footer>
+<script>document.getElementById('nav-btn').addEventListener('click', () => document.getElementById('nav-links').classList.toggle('open'));</script>
+</body>
+</html>
