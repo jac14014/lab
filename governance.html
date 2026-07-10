@@ -13,8 +13,9 @@
   body { background: #000; color: #fff; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .s-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+  .s-logo { display: flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
   .s-logo span { font-size: 0.55rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); margin-left: 10px; }
+  .s-logo img { width: 34px; height: 34px; object-fit: contain; border-radius: 4px; }
   .s-nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
   .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
@@ -50,7 +51,7 @@
 </head>
 <body>
 <nav id="s-nav">
-  <a href="index.html" class="s-logo">C-ECO <span>Institute</span></a>
+  <a href="index.html" class="s-logo"><img src="assets/img/institute.png" alt="c-ECO Institute"><span>C-ECO Institute</span></a>
   <button class="s-nav-btn" id="nav-btn">Menu</button>
   <ul class="s-nav-links" id="nav-links">
     <li><a href="about.html">About</a></li>
