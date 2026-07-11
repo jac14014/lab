@@ -19,6 +19,8 @@ export default defineConfig({
         articlesOfIncorporation: path.resolve(__dirname, "articles-of-incorporation.html"),
         bylaws: path.resolve(__dirname, "bylaws.html"),
         orgChart: path.resolve(__dirname, "org-chart.html"),
+        memorandumRoot: path.resolve(__dirname, "memorandum.html"),
+        memorandumUsRoot: path.resolve(__dirname, "memorandum-us.html"),
         reports: path.resolve(__dirname, "reports/index.html"),
         memo: path.resolve(__dirname, "memo/index.html"),
         memorandum: path.resolve(__dirname, "memo/memorandum.html"),
