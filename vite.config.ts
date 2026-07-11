@@ -21,6 +21,7 @@ export default defineConfig({
         orgChart: path.resolve(__dirname, "org-chart.html"),
         memorandumRoot: path.resolve(__dirname, "memorandum.html"),
         memorandumUsRoot: path.resolve(__dirname, "memorandum-us.html"),
+        amazonLabProgram: path.resolve(__dirname, "amazon-lab-program.html"),
         reports: path.resolve(__dirname, "reports/index.html"),
         memo: path.resolve(__dirname, "memo/index.html"),
         memorandum: path.resolve(__dirname, "memo/memorandum.html"),
