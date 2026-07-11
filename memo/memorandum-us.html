@@ -633,6 +633,8 @@ h3{font-size:18px!important;text-transform:none!important;margin:24px 0 10px!imp
 @media screen{.content{max-width:820px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}.doc-title,.body-text{max-width:780px!important;margin-left:auto!important;margin-right:auto!important}.body-text p,.section-header,.subsection-header,.lead-text,.callout,.highlight-box,.note-box,.method-box,.analysis-box,.methodology-box,.reference-block,.toc-list{max-width:780px!important;margin-left:auto!important;margin-right:auto!important}.body-text h2,.body-text h3,.inline-figure,.table-wrapper,.rc-grid,.sector-grid{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}.page.wide .content{max-width:920px!important}}
 /* Print mode control: Print Current shows only the active tab; Print All opts into all tabs. */
 @media print{body:not(.print-all) .tab-content{display:none!important}body:not(.print-all) .tab-content.active{display:block!important}body.print-all .tab-content{display:block!important}}
+/* Avoid trailing blank pages when printing only the current memorandum tab. */
+@media print{body:not(.print-all) .tab-content:not(.active){display:none!important;height:0!important;overflow:hidden!important}body:not(.print-all) .tab-content.active .page:last-child{page-break-after:auto!important;break-after:auto!important}body.print-all .tab-content:last-child .page:last-child{page-break-after:auto!important;break-after:auto!important}}
 </style>
 </head>
 <body>
