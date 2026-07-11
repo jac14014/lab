@@ -959,6 +959,8 @@ h3{font-size:18px!important;text-transform:none!important;margin:24px 0 10px!imp
 @media screen{#executive-brief .doc-title h1,#executive-brief .section-header:first-of-type{display:none!important}.section-header,.subsection-header{font-family:"Cormorant Garamond",Georgia,serif!important;color:#1a1a1a!important;text-transform:none!important;letter-spacing:0!important;border:0!important;padding:0!important;background:transparent!important}.section-header{font-size:30px!important;font-weight:300!important;line-height:1.12!important;margin:48px 0 18px!important}.subsection-header{font-size:22px!important;font-weight:300!important;line-height:1.2!important;margin:34px 0 14px!important}}
 /* Center the memorandum reading column within the page canvas. */
 @media screen{.content{max-width:820px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}.doc-title,.body-text{max-width:780px!important;margin-left:auto!important;margin-right:auto!important}.body-text p,.section-header,.subsection-header,.lead-text,.callout,.highlight-box,.note-box,.method-box,.analysis-box,.methodology-box,.reference-block,.toc-list{max-width:780px!important;margin-left:auto!important;margin-right:auto!important}.body-text h2,.body-text h3,.inline-figure,.table-wrapper,.rc-grid,.sector-grid{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}.page.wide .content{max-width:920px!important}}
+/* Print mode control: Print Current shows only the active tab; Print All opts into all tabs. */
+@media print{body:not(.print-all) .tab-content{display:none!important}body:not(.print-all) .tab-content.active{display:block!important}body.print-all .tab-content{display:block!important}}
 </style>
 </head>
 
@@ -974,7 +976,7 @@ h3{font-size:18px!important;text-transform:none!important;margin:24px 0 10px!imp
 </div>
 
 <div class="print-bar">
-  <button class="btn" onclick="window.print()">Print All</button>
+  <button class="btn" onclick="printAll()">Print All</button>
   <button class="btn btn-primary" onclick="printCurrent()">Print Current</button>
 </div>
 
@@ -2929,9 +2931,24 @@ function showTab(event, tabId){
   window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-function printCurrent(){
+function clearPrintMode(){
+  document.body.classList.remove('print-current');
+  document.body.classList.remove('print-all');
+}
+
+function printAll(){
+  clearPrintMode();
+  document.body.classList.add('print-all');
   window.print();
 }
+
+function printCurrent(){
+  clearPrintMode();
+  document.body.classList.add('print-current');
+  window.print();
+}
+
+window.addEventListener('afterprint', clearPrintMode);
 
 function openImageModal(img){
   const modal = document.getElementById('img-modal');
