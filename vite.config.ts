@@ -15,6 +15,7 @@ export default defineConfig({
         donate: path.resolve(__dirname, "donate.html"),
         sitemap: path.resolve(__dirname, "sitemap.html"),
         contact: path.resolve(__dirname, "contact.html"),
+        documents: path.resolve(__dirname, "documents.html"),
         articlesOfIncorporation: path.resolve(__dirname, "articles-of-incorporation.html"),
         bylaws: path.resolve(__dirname, "bylaws.html"),
         orgChart: path.resolve(__dirname, "org-chart.html"),
