@@ -149,6 +149,13 @@
     .s-nav-links.open { top: 60px; padding-left: 24px; padding-right: 24px; }
   }
 
+  /* Keep first-screen titles below the fixed brand bar. */
+  body > .scene:first-of-type { align-items: center; }
+  body > .scene:first-of-type .scene-body { padding: 120px 80px 80px; }
+  @media (max-width: 900px) {
+    body > .scene:first-of-type .scene-body { padding: 112px 28px 80px; }
+  }
+
   </style>
 </head>
 <body>
