@@ -22,6 +22,7 @@ export default defineConfig({
         memorandumRoot: path.resolve(__dirname, "memorandum.html"),
         memorandumUsRoot: path.resolve(__dirname, "memorandum-us.html"),
         amazonLabProgram: path.resolve(__dirname, "amazon-lab-program.html"),
+        cdriFunding: path.resolve(__dirname, "research/funding/cdri.html"),
         reports: path.resolve(__dirname, "reports/index.html"),
         memo: path.resolve(__dirname, "memo/index.html"),
         memorandum: path.resolve(__dirname, "memo/memorandum.html"),
