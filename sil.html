@@ -104,19 +104,21 @@
   @media (max-width: 900px) { .hero-content { padding: 0 28px 60px; } .sec { padding: 72px 28px; } .sector-scene { padding: 72px 28px; } .cta-band { padding: 72px 28px; } .what-grid { grid-template-columns: 1fr; } .sector-cards { grid-template-columns: 1fr; } .parts-list .part-row { grid-template-columns: 1fr; gap: 4px; } .part-id { font-size: 0.52rem; } footer { padding: 56px 28px 36px; } .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .ft-bottom { flex-direction: column; gap: 6px; } }
   @media (max-width: 580px) { .ft-grid { grid-template-columns: 1fr; } }
   
-    /* Standard c-ECO Institute navigation */
+      /* Standard c-ECO Institute navigation */
   #s-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 48px;
-    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s, border-color 0.3s;
   }
   #s-nav.scrolled {
     background: rgba(0,0,0,0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 14px 48px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom-color: rgba(255,255,255,0.05);
   }
   .s-logo {
     font-family: 'IBM Plex Mono', monospace;
@@ -155,7 +157,7 @@
 <body>
 
 <nav id="s-nav">
-  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <a href="index.html" class="s-logo" style="display:flex;align-items:center;gap:12px;"><img src="assets/img/c-eco.png" alt="c-ECO Institute" style="width:42px;height:42px;object-fit:contain;"><span>c-ECO Institute</span></a>
   <button class="s-nav-btn" id="nav-btn">Menu</button>
   <ul class="s-nav-links" id="nav-links">
     <li><a href="about.html">About</a></li>
@@ -456,20 +458,16 @@
 
 <script>
   const nav = document.getElementById('s-nav');
-  document.getElementById('nav-btn').addEventListener('click', () => { document.getElementById('nav-links').classList.toggle('open'); });
-
-  const h = document.getElementById('bg-hero');
-  h.style.backgroundImage = "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.25) 100%), url('assets/img/c8.jpg')";
-  h.style.backgroundSize = 'auto, cover';
-  h.style.backgroundPosition = 'center, center';
-
-  window.addEventListener('scroll', () => {
-    const el = document.getElementById('bg-hero');
-    if (!el) return;
-    const r = el.parentElement.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > window.innerHeight) return;
-    el.style.transform = `translateY(${(window.scrollY - (r.top + window.scrollY)) * 0.15}px)`;
-  }, { passive: true });
+  const navBtn = document.getElementById('nav-btn');
+  const navLinks = document.getElementById('nav-links');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+  if (navBtn && navLinks) {
+    navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  }
 </script>
 </body>
 </html>

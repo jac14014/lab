@@ -66,19 +66,21 @@
   @media (max-width: 900px) { .page-header { padding: 120px 28px 60px; } .sec { padding: 60px 28px; } .project { grid-template-columns: 1fr; } .method-grid { grid-template-columns: 1fr; } footer { padding: 56px 28px 36px; } .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } .ft-bottom { flex-direction: column; gap: 6px; } }
   @media (max-width: 580px) { .ft-grid { grid-template-columns: 1fr; } }
   
-    /* Standard c-ECO Institute navigation */
+      /* Standard c-ECO Institute navigation */
   #s-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 48px;
-    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s, border-color 0.3s;
   }
   #s-nav.scrolled {
     background: rgba(0,0,0,0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 14px 48px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom-color: rgba(255,255,255,0.05);
   }
   .s-logo {
     font-family: 'IBM Plex Mono', monospace;

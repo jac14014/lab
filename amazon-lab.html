@@ -337,19 +337,21 @@
     .scene-h2 { font-size: clamp(2.2rem, 9vw, 3rem); }
   }
   
-    /* Standard c-ECO Institute navigation */
+      /* Standard c-ECO Institute navigation */
   #s-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 48px;
-    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s, border-color 0.3s;
   }
   #s-nav.scrolled {
     background: rgba(0,0,0,0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 14px 48px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom-color: rgba(255,255,255,0.05);
   }
   .s-logo {
     font-family: 'IBM Plex Mono', monospace;
@@ -389,7 +391,7 @@
 
 <!-- NAV -->
 <nav id="s-nav">
-  <a href="index.html" class="s-logo">C—ECO <span>Observatory</span></a>
+  <a href="index.html" class="s-logo" style="display:flex;align-items:center;gap:12px;"><img src="assets/img/c-eco.png" alt="c-ECO Institute" style="width:42px;height:42px;object-fit:contain;"><span>c-ECO Institute</span></a>
   <button class="s-nav-btn" id="nav-btn">Menu</button>
   <ul class="s-nav-links" id="nav-links">
     <li><a href="about.html">About</a></li>
@@ -506,7 +508,6 @@
   <div class="scene-bg" id="bg-monitor"></div>
   <div class="monitor-panel">
     <div class="monitor-left">
-      <span class="scene-kicker">// Real-Time Monitoring · TDR Calibration Data</span>
       <h2 class="scene-h2">Signal before<br>event.</h2>
       <p class="scene-sub">Every station feeds continuous threshold proximity data into the TDR model — translating ecological signals into governance activation criteria before the threshold is reached.</p>
       <div class="scene-ctas">
