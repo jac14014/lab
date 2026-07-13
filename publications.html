@@ -122,6 +122,25 @@
     .s-logo img { width: 34px; height: 34px; }
     .s-nav-links.open { top: 60px; padding-left: 24px; padding-right: 24px; }
   }
+    /* Standard c-ECO first-screen title scale */
+  body > header h1,
+  .page-header h1,
+  .scene-h1,
+  .hero-title {
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    line-height: 0.97;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+  }
+  @media (max-width: 760px) {
+    body > header h1,
+    .page-header h1,
+    .scene-h1,
+    .hero-title {
+      font-size: clamp(3rem, 12vw, 4.25rem);
+    }
+  }
+
   </style>
 </head>
 <body>
