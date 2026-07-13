@@ -8,600 +8,138 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f5f4f2;--paper:#fff;--paper-soft:#faf9f7;--ink:#1a1a1a;
-  --muted:#6d6964;--faint:#8a8884;--line:#d5d3cf;--accent:#315d50;
-  --warn:#8c6a2f;--risk:#8c3d36;--blue:#31506f;
-  --shadow:0 18px 50px rgba(40,36,30,.12);
-  --serif:"Cormorant Garamond",Garamond,Georgia,serif;
-  --sans:"Inter",system-ui,sans-serif
-}
+:root{--bg:#f5f4f2;--paper:#fff;--paper-soft:#faf9f7;--ink:#1a1a1a;--muted:#6d6964;--faint:#8a8884;--line:#d5d3cf;--accent:#315d50;--warn:#8c6a2f;--risk:#8c3d36;--shadow:0 18px 50px rgba(40,36,30,.12);--serif:"Cormorant Garamond",Garamond,Georgia,serif;--sans:"Inter",system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:linear-gradient(135deg,#f5f4f2 0%,#eae8e4 100%);
-  color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;
-  padding-bottom:82px;-webkit-font-smoothing:antialiased
-}
+body{background:linear-gradient(135deg,#f5f4f2 0%,#eae8e4 100%);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;padding-bottom:82px;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.site-header{
-  position:sticky;top:0;z-index:80;min-height:72px;padding:8px 38px;
-  background:rgba(245,244,242,.94);border-bottom:1px solid var(--line);
-  backdrop-filter:blur(14px);display:flex;align-items:center;
-  justify-content:space-between;gap:24px
-}
-.header-left{display:flex;align-items:center;gap:14px}
-.header-logo{width:54px;height:54px;object-fit:contain;border-radius:6px}
-.brand-name{font-family:var(--serif);font-size:18px;font-weight:500;line-height:1.1}
-.brand-tag{font-size:9px;font-weight:700;color:var(--faint);letter-spacing:.14em;text-transform:uppercase}
-.header-nav{display:flex;align-items:center;gap:26px}
-.header-nav a{font-size:11px;font-weight:700;color:#5b5752;letter-spacing:.12em;text-transform:uppercase}
-.header-nav a:hover{color:#111}
-.nav-tabs{
-  position:sticky;top:72px;z-index:60;background:rgba(250,249,247,.95);
-  border-bottom:1px solid var(--line);display:flex;justify-content:center;
-  flex-wrap:wrap;backdrop-filter:blur(14px)
-}
-.nav-tab{
-  padding:13px 18px;border:0;border-bottom:2px solid transparent;
-  background:transparent;color:#777;cursor:pointer;font-family:var(--serif);
-  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase
-}
+.site-header{position:sticky;top:0;z-index:80;min-height:72px;padding:8px 38px;background:rgba(245,244,242,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.header-left{display:flex;align-items:center;gap:14px}.header-logo{width:54px;height:54px;object-fit:contain;border-radius:6px}.brand-name{font-family:var(--serif);font-size:18px;font-weight:500;line-height:1.1}.brand-tag{font-size:9px;font-weight:700;color:var(--faint);letter-spacing:.14em;text-transform:uppercase}
+.header-nav{display:flex;align-items:center;gap:26px}.header-nav a{font-size:11px;font-weight:700;color:#5b5752;letter-spacing:.12em;text-transform:uppercase}
+.nav-tabs{position:sticky;top:72px;z-index:60;background:rgba(250,249,247,.95);border-bottom:1px solid var(--line);display:flex;justify-content:center;flex-wrap:wrap;backdrop-filter:blur(14px)}
+.nav-tab{padding:13px 15px;border:0;border-bottom:2px solid transparent;background:transparent;color:#777;cursor:pointer;font-family:var(--serif);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
 .nav-tab:hover,.nav-tab.active{background:#f0efec;color:#111;border-bottom-color:#6b6560}
-.print-bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:100;background:#faf9f7;
-  border-top:1px solid var(--line);box-shadow:0 -4px 15px rgba(0,0,0,.08);
-  padding:12px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap
-}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;
-  border:1px solid var(--line);background:transparent;color:#333;cursor:pointer;
-  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase
-}
+.print-bar{position:fixed;left:0;right:0;bottom:0;z-index:100;background:#faf9f7;border-top:1px solid var(--line);box-shadow:0 -4px 15px rgba(0,0,0,.08);padding:12px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border:1px solid var(--line);background:transparent;color:#333;cursor:pointer;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .btn:hover,.btn-primary{background:#1a1a1a;color:white;border-color:#1a1a1a}
 .tab-content{display:none}.tab-content.active{display:block}
-.page{
-  width:min(100%,8.5in);min-height:10.6in;margin:34px auto;background:var(--paper);
-  box-shadow:var(--shadow);padding:0 .72in .72in;position:relative
-}
+.page{width:min(100%,8.5in);min-height:10.6in;margin:34px auto;background:var(--paper);box-shadow:var(--shadow);padding:0 .72in .72in;position:relative}
 .page:before{content:"";position:absolute;inset:.3in;border:1px solid #8f8981;pointer-events:none}
-.letterhead{
-  position:relative;z-index:1;text-align:center;padding:.42in .4in .2in;
-  border-bottom:1px solid var(--line);background:white
-}
-.org-name{font-family:var(--serif);font-size:16pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.org-address{margin-top:4px;color:var(--muted);font-size:9pt}
-.org-motto{margin-top:7px;color:#6b6560;font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.content{position:relative;z-index:1;padding-top:.3in}
-.doc-title{text-align:center;margin-bottom:.28in}
-.kicker{color:#6b6560;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-.doc-title h1{font-family:var(--serif);font-size:24pt;font-weight:500;line-height:1.1;text-transform:uppercase;letter-spacing:.06em}
-.subtitle{margin-top:8px;color:var(--muted);font-family:var(--serif);font-size:13pt;font-style:italic}
-.section-header{
-  margin:26px 0 12px;padding-left:11px;border-left:3px solid #6b6560;
-  color:#1a1a1a;font-family:var(--serif);font-size:14px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase
-}
-.box{
-  border:1px solid var(--line);border-left:5px solid #6b6560;
-  background:linear-gradient(135deg,#fff 0%,#f5f4f2 100%);
-  padding:16px;margin:14px 0;break-inside:avoid
-}
-.box.accent{border-left-color:var(--accent)}
-.box.warning{border-left-color:var(--warn)}
-.box.risk{border-left-color:var(--risk)}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.metric-card{
-  border:1px solid var(--line);border-top:4px solid #6b6560;background:white;
-  padding:15px;text-align:center;break-inside:avoid
-}
-.metric-number{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--accent);line-height:1}
-.metric-label{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.35}
-.table-wrap{overflow-x:auto;margin:15px 0}
-table{width:100%;border-collapse:collapse;background:white;font-size:12px}
-th{background:#f0efec;border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
-td{border-bottom:1px solid #eee;padding:8px;vertical-align:top}
-tr:nth-child(even){background:#faf9f7}
-ul{padding-left:20px;margin:8px 0}
-li{margin:4px 0}
-.small{font-size:12px;color:var(--muted)}
-.status-badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.status-pending{background:#fff3e0;color:#8a4c00}
-.status-progress{background:#e3f2fd;color:#1565c0}
-.status-done{background:#eceff1;color:#455a64}
-.quote{
-  font-family:var(--serif);font-size:16pt;line-height:1.45;font-style:italic;
-  padding:18px 22px;border-left:4px solid var(--accent);background:#f7f7f5
-}
-.signature-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
-.signature-line{border-top:1px solid #333;padding-top:8px}
-.site-footer{max-width:900px;margin:0 auto 18px;padding:8px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
-@media(max-width:900px){
-  body{padding-bottom:0}.site-header{position:relative;padding:12px 22px}
-  .header-nav{display:none}.nav-tabs{top:0}.page{min-height:auto;margin:0;padding:0 24px 50px}
-  .page:before{display:none}.print-bar{position:static}.doc-title h1{font-size:20pt}
-  .grid-2,.grid-3{grid-template-columns:1fr}
-}
-@media(max-width:620px){.nav-tab{font-size:11px;padding:10px 12px}.page{padding-left:18px;padding-right:18px}}
-@media print{
-  body{background:white;padding-bottom:0}.site-header,.nav-tabs,.print-bar{display:none!important}
-  .tab-content{display:block!important}.page{width:8.5in;min-height:11in;margin:0;box-shadow:none;page-break-after:always}
-  .page:before{display:block}.box,tr{break-inside:avoid}
-}
+.letterhead{position:relative;z-index:1;text-align:center;padding:.42in .4in .2in;border-bottom:1px solid var(--line);background:white}
+.org-name{font-family:var(--serif);font-size:16pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase}.org-address{margin-top:4px;color:var(--muted);font-size:9pt}.org-motto{margin-top:7px;color:#6b6560;font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.content{position:relative;z-index:1;padding-top:.3in}.doc-title{text-align:center;margin-bottom:.28in}.kicker{color:#6b6560;font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.doc-title h1{font-family:var(--serif);font-size:24pt;font-weight:500;line-height:1.1;text-transform:uppercase;letter-spacing:.06em}.subtitle{margin-top:8px;color:var(--muted);font-family:var(--serif);font-size:13pt;font-style:italic}
+.section-header{margin:26px 0 12px;padding-left:11px;border-left:3px solid #6b6560;color:#1a1a1a;font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.box{border:1px solid var(--line);border-left:5px solid #6b6560;background:linear-gradient(135deg,#fff 0%,#f5f4f2 100%);padding:16px;margin:14px 0;break-inside:avoid}.box.accent{border-left-color:var(--accent)}.box.warning{border-left-color:var(--warn)}.box.risk{border-left-color:var(--risk)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric-card{border:1px solid var(--line);border-top:4px solid #6b6560;background:white;padding:15px;text-align:center;break-inside:avoid}.metric-number{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--accent);line-height:1}.metric-label{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.35}
+.table-wrap{overflow-x:auto;margin:15px 0}table{width:100%;border-collapse:collapse;background:white;font-size:12px}th{background:#f0efec;border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}td{border-bottom:1px solid #eee;padding:8px;vertical-align:top}tr:nth-child(even){background:#faf9f7}
+ul,ol{padding-left:20px;margin:8px 0}li{margin:4px 0}.small{font-size:12px;color:var(--muted)}.quote{font-family:var(--serif);font-size:16pt;line-height:1.45;font-style:italic;padding:18px 22px;border-left:4px solid var(--accent);background:#f7f7f5}
+.signature-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}.signature-line{border-top:1px solid #333;padding-top:8px}.site-footer{max-width:900px;margin:0 auto 18px;padding:8px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:900px){body{padding-bottom:0}.site-header{position:relative;padding:12px 22px}.header-nav{display:none}.nav-tabs{top:0}.page{min-height:auto;margin:0;padding:0 24px 50px}.page:before{display:none}.print-bar{position:static}.doc-title h1{font-size:20pt}.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:620px){.nav-tab{font-size:10px;padding:10px 9px}.page{padding-left:18px;padding-right:18px}}
+@media print{body{background:white;padding-bottom:0}.site-header,.nav-tabs,.print-bar{display:none!important}.tab-content{display:block!important}.page{width:8.5in;min-height:11in;margin:0;box-shadow:none;page-break-after:always}.page:before{display:block}.box,tr{break-inside:avoid}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <a class="header-left" href="../../index.html">
-    <img src="../../assets/img/c-eco.png" alt="c-ECO Institute" class="header-logo">
-    <div>
-      <div class="brand-name">c-ECO Institute</div>
-      <div class="brand-tag">UFAM Partnership Development</div>
-    </div>
-  </a>
-  <nav class="header-nav" aria-label="Primary navigation">
-    <a href="../../index.html">Home</a>
-    <a href="../../research.html">Research</a>
-    <a href="../../documents.html">Documents</a>
-    <a href="../../governance.html">Governance</a>
-    <a href="../../contact.html">Contact</a>
-  </nav>
-</header>
+<header class="site-header"><a class="header-left" href="../../index.html"><img src="../../assets/img/c-eco.png" alt="c-ECO Institute" class="header-logo"><div><div class="brand-name">c-ECO Institute</div><div class="brand-tag">UFAM Partnership Development</div></div></a><nav class="header-nav"><a href="../../index.html">Home</a><a href="../../research.html">Research</a><a href="../../documents.html">Documents</a><a href="../../governance.html">Governance</a><a href="../../contact.html">Contact</a></nav></header>
 
 <div class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab(event,'kickoff')">Kickoff Meeting</button>
-  <button class="nav-tab" onclick="showTab(event,'briefing')">Main Briefing</button>
-  <button class="nav-tab" onclick="showTab(event,'budget')">Budget</button>
-  <button class="nav-tab" onclick="showTab(event,'mou')">Draft MoU</button>
-  <button class="nav-tab" onclick="showTab(event,'annexes')">Annexes</button>
+<button class="nav-tab active" onclick="showTab(event,'kickoff')">Kickoff Meeting</button>
+<button class="nav-tab" onclick="showTab(event,'institutional')">Institutional Overview</button>
+<button class="nav-tab" onclick="showTab(event,'briefing')">Main Briefing</button>
+<button class="nav-tab" onclick="showTab(event,'budget')">Budget</button>
+<button class="nav-tab" onclick="showTab(event,'mou')">Draft MoU</button>
+<button class="nav-tab" onclick="showTab(event,'diligence')">Due Diligence</button>
+<button class="nav-tab" onclick="showTab(event,'ip')">IP Framework</button>
+<button class="nav-tab" onclick="showTab(event,'timeline')">Timeline &amp; Checklist</button>
+<button class="nav-tab" onclick="showTab(event,'references')">References</button>
 </div>
 
-<div class="print-bar">
-  <button class="btn" onclick="window.print()">Print All</button>
-  <button class="btn btn-primary" onclick="printCurrent()">Print Current</button>
-  <a class="btn" href="mailto:dir@c-eco.io">Contact</a>
-</div>
+<div class="print-bar"><button class="btn" onclick="window.print()">Print All</button><button class="btn btn-primary" onclick="printCurrent()">Print Current</button><a class="btn" href="mailto:dir@c-eco.io">Contact</a></div>
 
-<section id="kickoff" class="tab-content active">
-  <div class="page">
-    <div class="letterhead">
-      <div class="org-name">c-ECO Institute</div>
-      <div class="org-address">CDRI–UFAM Partnership Development</div>
-      <div class="org-motto">Research, Resilience, and Public-Interest Cooperation</div>
-    </div>
-    <div class="content">
-      <div class="doc-title">
-        <div class="kicker">Kickoff Meeting</div>
-        <h1>UFAM–c-ECO Initial Alignment</h1>
-        <div class="subtitle">CDRI Urban Infrastructure Resilience Programme — Brazil 2026</div>
-      </div>
+<section id="kickoff" class="tab-content active"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">CDRI–UFAM Partnership Development</div><div class="org-motto">Research, Resilience, and Public-Interest Cooperation</div></div><div class="content"><div class="doc-title"><div class="kicker">Kickoff Meeting</div><h1>UFAM–c-ECO Initial Alignment</h1><div class="subtitle">CDRI Urban Infrastructure Resilience Programme — Brazil 2026</div></div>
+<div class="grid-3"><div class="metric-card"><div class="metric-number">13 Jul</div><div class="metric-label"><strong>Meeting Date</strong><br>2026</div></div><div class="metric-card"><div class="metric-number">$400K</div><div class="metric-label"><strong>Maximum Funding</strong></div></div><div class="metric-card"><div class="metric-number">4 Aug</div><div class="metric-label"><strong>Submission Deadline</strong><br>23:59 IST</div></div></div>
+<div class="section-header">Meeting Purpose</div><div class="box accent"><p>To assess the technical, institutional, and operational feasibility of jointly developing a proposal for the CDRI Urban Infrastructure Resilience Programme — Brazil 2026, with Manaus as the initial priority territory.</p></div>
+<div class="section-header">Institutional Context</div><div class="box"><p>The UFAM Rector’s Office referred the initial technical discussions to the Center for Environmental Sciences (CCA). The meeting is intended to clarify UFAM’s potential role, identify the appropriate institutional pathway, and determine whether a joint proposal can be developed within the remaining submission period.</p></div>
+<div class="section-header">Participants</div><div class="table-wrap"><table><thead><tr><th>Participant</th><th>Institution</th><th>Preliminary Role</th></tr></thead><tbody><tr><td>Jacqueline Goncalves Alves</td><td>c-ECO Institute</td><td>Institutional representative and proposal coordination</td></tr><tr><td>Guilherme Campbell</td><td>Brazil coordination</td><td>Government and institutional engagement</td></tr><tr><td>Prof. Paulo Rodrigues</td><td>CCA / UFAM</td><td>UFAM technical focal point for initial discussions</td></tr></tbody></table></div>
+<div class="section-header">Proposed Agenda — 30 Minutes</div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Topic</th><th>Expected Outcome</th></tr></thead><tbody><tr><td>0–5 min</td><td>Introductions and institutional context</td><td>Common understanding</td></tr><tr><td>5–10 min</td><td>CDRI call and preliminary concept</td><td>Initial technical reaction</td></tr><tr><td>10–17 min</td><td>UFAM role and applicant eligibility</td><td>Preferred institutional pathway</td></tr><tr><td>17–22 min</td><td>Government endorsement and public partners</td><td>Priority contacts</td></tr><tr><td>22–27 min</td><td>Methodology, data, and technical team</td><td>Relevant UFAM expertise identified</td></tr><tr><td>27–30 min</td><td>Decisions and next steps</td><td>Action owners and deadlines</td></tr></tbody></table></div>
+<div class="section-header">Key Questions for the Kickoff</div><div class="box warning"><ol><li>Does UFAM wish to co-develop the proposal?</li><li>Which institutional role is feasible: prime applicant, co-applicant, or technical partner?</li><li>Which researchers, laboratories, and academic units should participate?</li><li>Which public authority should host or institutionalize the project results?</li><li>Which data, prior studies, and methodologies can UFAM contribute?</li><li>Which internal approvals are required?</li><li>Is the submission timetable feasible?</li><li>Who will lead each proposal section?</li><li>What are UFAM’s applicable indirect-cost, procurement, and financial-management rules?</li><li>What HACT and PSEAH documentation is currently available?</li></ol></div>
+<div class="section-header">Expected Meeting Output</div><div class="box accent"><ul><li>Confirmation of UFAM’s interest.</li><li>Preferred institutional role.</li><li>Technical team and relevant units identified.</li><li>Government outreach responsibilities assigned.</li><li>Immediate due-diligence tasks defined.</li><li>Proposal drafting responsibilities allocated.</li></ul></div>
+</div></div></section>
 
-      <div class="grid-3">
-        <div class="metric-card"><div class="metric-number">13 Jul</div><div class="metric-label"><strong>Meeting Date</strong><br>2026</div></div>
-        <div class="metric-card"><div class="metric-number">$400K</div><div class="metric-label"><strong>Maximum Funding</strong></div></div>
-        <div class="metric-card"><div class="metric-number">4 Aug</div><div class="metric-label"><strong>Submission Deadline</strong><br>23:59 IST</div></div>
-      </div>
+<section id="institutional" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Institutional Overview</div></div><div class="content"><div class="doc-title"><div class="kicker">Institutional Profile</div><h1>c-ECO Institute and the UFAM Partnership</h1></div>
+<div class="section-header">Mission</div><div class="box"><p>To advance research, education, scientific cooperation, and the development of decision-support instruments for infrastructure resilience, climate adaptation, disaster risk reduction, and evidence-based public governance.</p></div>
+<div class="section-header">Vision</div><div class="box"><p>Public institutions and infrastructure systems capable of anticipating risk, integrating scientific evidence, and adopting transparent, adaptive, and public-interest decisions.</p></div>
+<div class="section-header">Areas of Work</div><div class="grid-2"><div class="box"><ul><li>Urban and critical infrastructure resilience</li><li>Climate adaptation and disaster risk reduction</li><li>Environmental, climate, and infrastructure data integration</li><li>Decision-support systems</li></ul></div><div class="box"><ul><li>Digital governance and public-interest artificial intelligence</li><li>Applied research, capacity building, and international cooperation</li><li>Development and coordination of proposals for national and international programmes</li></ul></div></div>
+<div class="section-header">Initiatives in Development</div><div class="box"><ul><li>Decision-support and assessment instruments for critical infrastructure</li><li>Research on impact-based early warning and preventive governance</li><li>Research and technical-assistance projects for the Amazon region</li><li>Coordination of researchers and institutions in Brazil and abroad</li><li>Training and scientific-dissemination programmes</li></ul></div>
+<div class="section-header">Proposal for Brazil</div><div class="box accent"><p>This meeting seeks to assess the feasibility of jointly developing with UFAM a competitive proposal for the CDRI Urban Infrastructure Resilience Programme — Brazil 2026, with Manaus as the initial priority territory.</p></div>
+<div class="section-header">Why This Partnership?</div><div class="grid-2"><div class="box accent"><strong>UFAM may contribute</strong><ul><li>Academic excellence and scientific production</li><li>Territorial and institutional knowledge of the Amazon</li><li>Scientific leadership through the CCA and other relevant units</li><li>Researchers, students, laboratories, and research groups</li><li>Access to academic and public-sector networks in Amazonas</li><li>Scientific and methodological validation</li><li>Training and applied knowledge production</li></ul></div><div class="box accent"><strong>c-ECO Institute may contribute</strong><ul><li>International proposal structuring and coordination</li><li>Decision-support instrument development</li><li>Applied research on infrastructure resilience</li><li>Coordination of international collaborators and experts</li><li>Theory of Change, work packages, indicators, and risk matrices</li><li>Institutional sustainability strategies</li><li>Proposal writing, integration, and organization</li></ul></div></div>
+<div class="section-header">What the Institutions May Achieve Together</div><div class="box"><ul><li>Develop competitive international proposals</li><li>Produce applied research with public relevance</li><li>Support governments in integrating risk into planning</li><li>Train students, researchers, and public managers</li><li>Expand international scientific cooperation for the Amazon</li><li>Strengthen Amazon institutions in global resilience agendas</li></ul></div>
+<div class="section-header">Potential Role of UFAM</div><div class="box warning"><p>Following the referral by the UFAM Rector’s Office to the Center for Environmental Sciences, the meeting will discuss how UFAM may participate in the proposal.</p><ul><li>Scientific leadership or coordination</li><li>Methodological development and validation</li><li>Participation as prime applicant, co-applicant, or technical partner</li><li>Researcher and academic-unit mobilization</li><li>Public-institution engagement</li><li>Data, studies, and publications</li><li>Student participation and training</li><li>Support for institutionalization of project results</li></ul><p>The definitive role of UFAM remains subject to internal deliberations, eligibility and capacity review, and approval by the competent authorities.</p></div>
+</div></div></section>
 
-      <div class="section-header">Meeting Purpose</div>
-      <div class="box accent">
-        <p>To assess the technical, institutional, and operational feasibility of jointly developing a proposal for the CDRI Urban Infrastructure Resilience Programme — Brazil 2026, with Manaus as the initial priority territory.</p>
-      </div>
+<section id="briefing" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Main Working Brief</div></div><div class="content"><div class="doc-title"><div class="kicker">Main Briefing</div><h1>Manaus Urban Infrastructure Resilience</h1><div class="subtitle">Working concept for joint development</div></div>
+<div class="section-header">Executive Summary</div><div class="box"><p>This meeting aims to assess the technical, institutional, and operational feasibility of jointly developing a proposal for the CDRI Urban Infrastructure Resilience Programme — Brazil 2026.</p><p>Manaus is presented as the initial priority territory because of its population, economic and logistical importance, exposure to hydrological and climate risks, and ongoing institutional planning processes that may be strengthened.</p><p>The initial hypothesis is to develop an urban infrastructure decision-support protocol that integrates existing hydrological, climate, operational, exposure, and service data and converts them into predefined procedures for planning, preparedness, and continuity of critical services.</p></div>
+<div class="section-header">Potential Scope</div><div class="grid-2"><div class="box"><ul><li>Urban drainage</li><li>Water supply and sanitation</li><li>Mobility and logistics</li><li>Continuity of essential services</li></ul></div><div class="box"><ul><li>Social infrastructure</li><li>Risk communication</li><li>Protection of vulnerable populations</li><li>Institutional decision-making</li></ul></div></div>
+<div class="section-header">Working Principle</div><div class="quote">Hazard Threshold + Exposure + Vulnerability + Service Consequence + Predefined Institutional Action</div>
+<div class="section-header">Priority Territory</div><div class="box"><p><strong>Manaus</strong> is the proposed principal city. Manacapuru, Tabatinga, or Tefé may be considered only as limited validation or replication areas, subject to local partners, urban justification, logistics, and endorsements.</p></div>
+<div class="section-header">Problem Formulation</div><div class="box risk"><p><strong>Weak formulation:</strong> Manaus needs a protocol to monitor river levels.</p><p><strong>Stronger formulation:</strong> The agencies responsible for urban planning, drainage, mobility, water supply, sanitation, and continuity of essential services in Manaus lack a common institutional process that converts hydrological forecasts and risk data into predefined infrastructure decisions.</p></div>
+<div class="section-header">Potential Data Sources</div><div class="table-wrap"><table><thead><tr><th>Source</th><th>Potential Data</th><th>Access</th></tr></thead><tbody><tr><td>ANA / SGB</td><td>River levels and hydrological series</td><td>Public</td></tr><tr><td>Cemaden / INPE</td><td>Climate forecasts and disaster alerts</td><td>Public</td></tr><tr><td>IDSM Mamirauá</td><td>Middle Solimões water bulletins</td><td>Partnership required</td></tr><tr><td>Municipal Civil Defense</td><td>Emergency operations and affected populations</td><td>Institutional partnership</td></tr><tr><td>Implurb</td><td>Urban planning, zoning, and infrastructure plans</td><td>Institutional partnership</td></tr></tbody></table></div>
+<div class="section-header">Defensible Results</div><div class="grid-2"><div class="box accent"><strong>Within project control</strong><ul><li>Integrated diagnostic</li><li>Impact-based alert protocol</li><li>Technical planning guide</li><li>Formal recommendations</li><li>Capacity building and GEDSI analysis</li><li>Open project deliverables, subject to IP rules</li></ul></div><div class="box warning"><strong>Outside project control</strong><ul><li>Mandatory adoption by all agencies</li><li>Legislative approval of master-plan amendments</li><li>Expansion to several cities</li><li>Permanent operation without host institution and budget</li></ul></div></div>
+<div class="section-header">Governance Options</div><div class="grid-2"><div class="box"><strong>Implurb</strong><p>Potential host for long-term planning integration.</p></div><div class="box"><strong>Municipal Civil Defense</strong><p>Potential host for operational warnings and contingency procedures.</p></div></div>
+<div class="section-header">Working Assumption</div><div class="box accent"><p>The initiative should focus on technical assistance, applied research, data integration, capacity building, and institutionalization. It does not propose physical works or a complex new technology platform at this stage.</p><p>City, priority problem, sectors, methodology, partners, governance, IP, budget, and responsibilities remain subject to joint development with UFAM and validation by relevant public authorities.</p></div>
+</div></div></section>
 
-      <div class="section-header">Institutional Context</div>
-      <div class="box">
-        <p>The UFAM Rector’s Office referred the initial technical discussions to the Center for Environmental Sciences (CCA). The meeting is intended to clarify UFAM’s potential role, identify the appropriate institutional pathway, and determine whether a joint proposal can be developed within the remaining submission period.</p>
-      </div>
+<section id="budget" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Indicative Budget for Discussion</div></div><div class="content"><div class="doc-title"><div class="kicker">Budget</div><h1>Indicative Allocation</h1><div class="subtitle">Maximum grant request: US$400,000</div></div>
+<div class="box warning"><p>This budget is preliminary and must be revised after confirmation of the consortium, UFAM’s role, indirect-cost rules, procurement procedures, field logistics, and final scope.</p></div>
+<div class="table-wrap"><table><thead><tr><th>Category</th><th>Amount</th><th>%</th><th>Purpose</th></tr></thead><tbody><tr><td>Technical personnel</td><td>US$120,000</td><td>30%</td><td>Coordination, data analysis, infrastructure and institutional assessment</td></tr><tr><td>Protocol and decision-support development</td><td>US$80,000</td><td>20%</td><td>Methodology, interface, testing, documentation</td></tr><tr><td>Travel and field logistics</td><td>US$60,000</td><td>15%</td><td>Manaus and limited validation activities</td></tr><tr><td>Capacity building and GEDSI</td><td>US$40,000</td><td>10%</td><td>Training, accessible materials, community engagement</td></tr><tr><td>Management, compliance, monitoring and evaluation</td><td>US$40,000</td><td>10%</td><td>Project management, reporting, safeguards, MEL</td></tr><tr><td>Institutionalization and publication</td><td>US$30,000</td><td>7.5%</td><td>Technical guide, open project results, dissemination</td></tr><tr><td>Contingency</td><td>US$30,000</td><td>7.5%</td><td>Logistical and implementation uncertainty</td></tr><tr><th>Total</th><th>US$400,000</th><th>100%</th><th></th></tr></tbody></table></div>
+<div class="section-header">Questions for UFAM</div><div class="box"><ul><li>Which indirect-cost or administrative-rate rules apply?</li><li>Which foundation or administrative unit would manage international funds?</li><li>Which procurement and approval timelines must be incorporated?</li><li>Can UFAM contribute in-kind staff time, facilities, or data access?</li><li>Which budget categories require prior approval?</li></ul></div>
+</div></div></section>
 
-      <div class="section-header">Participants</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Participant</th><th>Institution</th><th>Preliminary Role</th></tr></thead>
-          <tbody>
-            <tr><td>Jacqueline Goncalves Alves</td><td>c-ECO Institute</td><td>Institutional representative and proposal coordination</td></tr>
-            <tr><td>Guilherme Campbell</td><td>c-ECO Institute / Brazil coordination</td><td>Government and institutional engagement</td></tr>
-            <tr><td>Prof. Paulo Rodrigues</td><td>CCA / UFAM</td><td>UFAM technical focal point for initial discussions</td></tr>
-          </tbody>
-        </table>
-      </div>
+<section id="mou" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Discussion Draft — Non-Binding</div></div><div class="content"><div class="doc-title"><div class="kicker">Draft Memorandum of Understanding</div><h1>UFAM–c-ECO Cooperation Framework</h1></div>
+<div class="box risk"><p><strong>Discussion draft only.</strong> Subject to UFAM’s internal review, legal analysis, competent-authority approval, and adaptation to the University’s official cooperation template.</p></div>
+<div class="section-header">Purpose</div><p>To establish a preliminary framework for scientific, technical, educational, and institutional cooperation in infrastructure resilience, climate adaptation, disaster risk reduction, environmental governance, decision-support systems, artificial intelligence, and public-sector capacity building.</p>
+<div class="section-header">Initial CDRI Cooperation</div><p>The parties may jointly assess and develop a proposal under the CDRI Urban Infrastructure Resilience Programme — Brazil 2026, including concept development, methodology, Theory of Change, work planning, stakeholder engagement, budgeting, governance, sustainability, and proposal documentation.</p>
+<div class="section-header">Role of the CCA</div><p>Following referral by the UFAM Rector’s Office, the Center for Environmental Sciences may serve as the academic focal point for initial technical discussions, subject to internal approvals and formal designation.</p>
+<div class="section-header">Financial Understanding</div><p>This Memorandum does not provide for transfer of funds, procurement, employment, or binding financial commitments. Any funded activity must be governed by a separate agreement and approved work plan.</p>
+<div class="section-header">Intellectual Property</div><p>Each party retains ownership of pre-existing intellectual property. Ownership, licensing, publication, and access rules for jointly developed results must be defined in a separate project-specific instrument.</p>
+<div class="section-header">Autonomy</div><p>This Memorandum does not create a partnership, joint venture, employment relationship, agency, exclusivity arrangement, or authority for one party to bind the other.</p>
+<div class="section-header">Institutional Focal Points</div><div class="table-wrap"><table><tr><th>UFAM / CCA</th><td>Prof. Paulo Rodrigues, subject to institutional designation</td></tr><tr><th>c-ECO Institute</th><td>Jacqueline Goncalves Alves, President</td></tr></table></div>
+<div class="signature-grid"><div class="signature-line"><strong>Federal University of Amazonas</strong><br>Name / Title / Date</div><div class="signature-line"><strong>c-ECO Institute</strong><br>Jacqueline Goncalves Alves, President / Date</div></div>
+</div></div></section>
 
-      <div class="section-header">Proposed Agenda — 30 Minutes</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Time</th><th>Topic</th><th>Expected Outcome</th></tr></thead>
-          <tbody>
-            <tr><td>0–5 min</td><td>Introductions and institutional context</td><td>Common understanding of the opportunity</td></tr>
-            <tr><td>5–10 min</td><td>CDRI call and preliminary project concept</td><td>Initial technical reaction</td></tr>
-            <tr><td>10–17 min</td><td>UFAM role and prime applicant eligibility</td><td>Preferred institutional pathway</td></tr>
-            <tr><td>17–22 min</td><td>Government endorsement and public partners</td><td>Priority contacts and responsibilities</td></tr>
-            <tr><td>22–27 min</td><td>Methodology, data, and technical team</td><td>Relevant UFAM expertise identified</td></tr>
-            <tr><td>27–30 min</td><td>Decisions and next steps</td><td>Action owners and immediate deadlines</td></tr>
-          </tbody>
-        </table>
-      </div>
+<section id="diligence" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Due Diligence and Submission Support</div></div><div class="content"><div class="doc-title"><div class="kicker">Annex A</div><h1>Prime Applicant Due Diligence</h1></div>
+<div class="box warning"><p>The prime applicant must be selected through documentary verification rather than reputation alone.</p></div>
+<div class="table-wrap"><table><thead><tr><th>Requirement</th><th>UFAM</th><th>IDSM</th><th>UEA</th><th>INPA</th></tr></thead><tbody><tr><td>Legal registration and operation in Brazil</td><td>Confirm</td><td>Confirm</td><td>Confirm</td><td>Confirm</td></tr><tr><td>Relevant resilient-infrastructure experience</td><td>Document</td><td>Document</td><td>Document</td><td>Document</td></tr><tr><td>Comparable project scale</td><td>Document</td><td>Document</td><td>Document</td><td>Document</td></tr><tr><td>HACT assessment status</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr><tr><td>PSEAH assessment status</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr><tr><td>Financial and procurement capacity</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr><tr><td>Willingness to assume fiduciary responsibility</td><td>Ask</td><td>Ask</td><td>Ask</td><td>Ask</td></tr></tbody></table></div>
+<div class="section-header">Documents to Request</div><div class="box"><ul><li>Legal registration and institutional documents</li><li>Evidence of relevant prior projects</li><li>Financial-management documentation</li><li>Procurement policies and procedures</li><li>HACT documentation</li><li>PSEAH documentation</li><li>Latest audited financial statements, where applicable</li><li>Internal approval and signature authority information</li></ul></div>
+<div class="section-header">Decision Question</div><div class="box accent"><p>Which institution has the strongest combination of eligibility, technical experience, fiduciary capacity, and willingness to assume the prime-applicant role?</p></div>
+</div></div></section>
 
-      <div class="section-header">Critical Decisions</div>
-      <div class="grid-2">
-        <div class="box"><strong>Institutional Role</strong><ul><li>Prime applicant</li><li>Co-applicant</li><li>Technical and scientific partner</li></ul></div>
-        <div class="box"><strong>Priority Problem</strong><ul><li>Urban water and sanitation</li><li>Mobility and river logistics</li><li>Continuity of essential services</li></ul></div>
-        <div class="box"><strong>Government Host</strong><ul><li>Implurb</li><li>Municipal Civil Defense</li><li>Other municipal or state authority</li></ul></div>
-        <div class="box"><strong>Immediate Feasibility</strong><ul><li>HACT / PSEAH status</li><li>Available UFAM team</li><li>Internal approval route</li></ul></div>
-      </div>
+<section id="ip" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Intellectual Property Framework</div></div><div class="content"><div class="doc-title"><div class="kicker">Annex B</div><h1>IP and Access Structure</h1></div>
+<div class="grid-3"><div class="box accent"><strong>Background IP</strong><p>Methods, materials, and components created before the grant remain with their original owners.</p></div><div class="box accent"><strong>Project Results</strong><p>New reports, tools, code, training material, and Manaus-specific adaptations follow CDRI access requirements.</p></div><div class="box accent"><strong>Third-Party Data</strong><p>Hydrological, climate, and institutional data remain subject to source licences and access conditions.</p></div></div>
+<div class="section-header">Items Requiring Agreement</div><div class="box"><ul><li>Definition of pre-existing methods and materials</li><li>Ownership of jointly developed outputs</li><li>Open-access obligations</li><li>Software and code licensing</li><li>Publication and authorship rules</li><li>Use of institutional names and logos</li><li>Protection of confidential information</li><li>Data-protection and ethics requirements</li></ul></div>
+<div class="section-header">Question for UFAM</div><div class="box warning"><p>What UFAM policy governs intellectual property, publication, technology transfer, and open-access obligations in internationally funded projects?</p></div>
+</div></div></section>
 
-      <div class="section-header">Expected Meeting Output</div>
-      <div class="box warning">
-        <ul>
-          <li>Confirmation of UFAM’s interest in co-developing the proposal.</li>
-          <li>Definition of UFAM’s preferred institutional role.</li>
-          <li>Identification of relevant researchers, laboratories, and academic units.</li>
-          <li>Agreement on government outreach responsibilities.</li>
-          <li>Decision on whether the current three-week timetable is feasible.</li>
-          <li>Assignment of immediate proposal-development tasks.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="timeline" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">Submission Timeline and Immediate Checklist</div></div><div class="content"><div class="doc-title"><div class="kicker">Annexes C and D</div><h1>Timeline and Submission Readiness</h1></div>
+<div class="section-header">Submission Timeline</div><div class="table-wrap"><table><thead><tr><th>Period</th><th>Priority Actions</th></tr></thead><tbody><tr><td>13–19 July</td><td>Kickoff meeting, institutional role, due diligence, technical team, government outreach</td></tr><tr><td>20–26 July</td><td>Endorsements, partner confirmation, technical design, budget, and documentation</td></tr><tr><td>27 July–2 August</td><td>Full drafting, legal and technical review, final annexes, and approvals</td></tr><tr><td>3 August</td><td>Final portal review and submission buffer</td></tr><tr><td>4 August</td><td>Absolute deadline — 23:59 IST</td></tr></tbody></table></div>
+<div class="section-header">Immediate Document Checklist</div><div class="box"><ul><li>Institutional registration and governing documents</li><li>Evidence of relevant project experience</li><li>Financial-management and procurement documentation</li><li>HACT and PSEAH documentation, where applicable</li><li>Government endorsement pathway</li><li>CVs of key technical personnel</li><li>Draft consortium or cooperation instrument</li><li>Budget and budget narrative</li><li>Risk, GEDSI, safeguards, and sustainability sections</li></ul></div>
+<div class="section-header">Immediate Action Owners</div><div class="table-wrap"><table><thead><tr><th>Action</th><th>Proposed Owner</th><th>Deadline</th></tr></thead><tbody><tr><td>Confirm UFAM institutional role</td><td>UFAM / CCA</td><td>Week 1</td></tr><tr><td>Verify applicant eligibility</td><td>UFAM + c-ECO</td><td>Week 1</td></tr><tr><td>Identify government focal point</td><td>Guilherme Campbell</td><td>Week 1</td></tr><tr><td>Confirm technical team</td><td>UFAM / CCA</td><td>Week 1</td></tr><tr><td>Draft concept and methodology</td><td>Joint technical team</td><td>Week 2</td></tr><tr><td>Prepare budget and compliance package</td><td>Joint administrative team</td><td>Week 2</td></tr></tbody></table></div>
+</div></div></section>
 
-<section id="briefing" class="tab-content">
-  <div class="page">
-    <div class="letterhead">
-      <div class="org-name">c-ECO Institute</div>
-      <div class="org-address">UFAM–c-ECO Proposal Co-Development</div>
-    </div>
-    <div class="content">
-      <div class="doc-title">
-        <div class="kicker">Main Briefing</div>
-        <h1>Manaus Urban Infrastructure Resilience</h1>
-        <div class="subtitle">Working concept for joint development</div>
-      </div>
+<section id="references" class="tab-content"><div class="page"><div class="letterhead"><div class="org-name">c-ECO Institute</div><div class="org-address">References and Evidence Base</div></div><div class="content"><div class="doc-title"><div class="kicker">Sources</div><h1>References</h1></div>
+<div class="section-header">Primary Source</div><div class="box accent"><ul><li>Coalition for Disaster Resilient Infrastructure — Urban Infrastructure Resilience Programme (UIRP), Brazil Call for Proposals 2026.</li></ul></div>
+<div class="section-header">Population, Hydrology, and Climate</div><div class="box"><ul><li>Brazilian Institute of Geography and Statistics — 2025 municipal population estimates.</li><li>Brazilian Geological Service (SGB/CPRM) — historical Negro and Solimões river-level series.</li><li>Cemaden — drought and disaster-risk monitoring for Amazonas, 2023–2024.</li><li>National Institute for Space Research (INPE) — climate and environmental monitoring.</li></ul></div>
+<div class="section-header">Regional and Institutional Sources</div><div class="box"><ul><li>IDSM Mamirauá — Middle Solimões Water Bulletin.</li><li>Municipality of Manaus — Municipal Basic Sanitation Plan and related programmes.</li><li>Amazonas Civil Defense — State Civil Defense System and river-basin monitoring.</li><li>FAPEAM — Technical and scientific committees and research programmes.</li><li>SUFRAMA — CAPDA/ME Resolution No. 30/2022 and priority-programme provisions.</li></ul></div>
+<div class="section-header">Infrastructure and Finance References</div><div class="box"><ul><li>DNIT and Ministry of Ports and Airports — North Region port infrastructure programmes.</li><li>Inter-American Development Bank — Amazonia Forever, HydroBID, and GeoHUB initiatives.</li><li>World Bank — resilient infrastructure and Amazonas-related programmes.</li><li>Global Facility for Disaster Reduction and Recovery — City Resilience Program.</li></ul></div>
+<div class="section-header">Methodological and Policy Frameworks</div><div class="box"><ul><li>Sendai Framework for Disaster Risk Reduction 2015–2030.</li><li>UNDRR — Early warning, anticipatory action, and resilience guidance.</li><li>ISO 31000 — Risk management guidelines.</li><li>ISO 22301 — Business continuity management systems.</li><li>OECD — Anticipatory governance literature.</li></ul></div>
+<div class="box warning"><p><strong>Note:</strong> All factual claims included in the final proposal should be verified against the original source documents and cited with precise publication details or URLs before submission.</p></div>
+</div></div></section>
 
-      <div class="section-header">c-ECO Institute</div>
-      <div class="box">
-        <p><strong>Mission.</strong> To advance research, education, scientific cooperation, and decision-support instruments for infrastructure resilience, climate adaptation, disaster risk reduction, and evidence-based public governance.</p>
-        <p><strong>Vision.</strong> Public institutions and infrastructure systems capable of anticipating risk, integrating scientific evidence, and adopting transparent, adaptive, and public-interest decisions.</p>
-      </div>
-
-      <div class="section-header">Why This Partnership?</div>
-      <div class="grid-2">
-        <div class="box accent">
-          <strong>UFAM may contribute</strong>
-          <ul>
-            <li>Scientific excellence and Amazon expertise</li>
-            <li>Researchers, students, and laboratories</li>
-            <li>Institutional relationships with public authorities</li>
-            <li>Scientific validation and applied research</li>
-          </ul>
-        </div>
-        <div class="box accent">
-          <strong>c-ECO Institute may contribute</strong>
-          <ul>
-            <li>International proposal structuring</li>
-            <li>Decision-support and resilience methodologies</li>
-            <li>Theory of Change, work packages, indicators, and risk matrices</li>
-            <li>International expert coordination</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section-header">Executive Summary</div>
-      <div class="quote">
-        The preliminary concept is an urban infrastructure decision-support protocol that integrates existing hydrological, climate, exposure, and service data and converts them into predefined institutional actions for Manaus.
-      </div>
-      <div class="box">
-        <p>This is not a generic environmental monitoring project. It is an infrastructure-management initiative supported by data. The project would focus on technical assistance, applied research, capacity building, institutional integration, and open project results rather than physical works or a complex new technology platform.</p>
-      </div>
-
-      <div class="section-header">Priority Territory</div>
-      <div class="box">
-        <p><strong>Manaus</strong> is proposed as the initial priority territory because of its population, national economic relevance, river-dependent logistics, exposure to droughts and floods, and current planning processes.</p>
-        <ul>
-          <li>Potential institutional entry points: master plan review, climate adaptation, drainage, emergency management, and infrastructure investment planning.</li>
-          <li>Potential additional validation areas: Manacapuru, Tabatinga, or Tefé, subject to partners, logistics, and endorsements.</li>
-          <li>The proposal should remain viable as a single-city project.</li>
-        </ul>
-      </div>
-
-      <div class="section-header">Problem Formulation</div>
-      <div class="box risk">
-        <p><strong>Weak framing:</strong> “Manaus needs a protocol to monitor river levels.”</p>
-        <p><strong>Stronger framing:</strong> “The agencies responsible for urban planning, drainage, mobility, water supply, sanitation, and continuity of essential services in Manaus lack a common institutional process that converts hydrological forecasts and risk data into predefined infrastructure decisions.”</p>
-      </div>
-
-      <div class="section-header">Technical Architecture</div>
-      <div class="box accent">
-        <p><strong>Hazard Threshold + Exposure + Vulnerability + Service Consequence + Predefined Institutional Action</strong></p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Component</th><th>Illustrative Content</th></tr></thead>
-          <tbody>
-            <tr><td>Hazard threshold</td><td>River level, rate of rise or decline, climate forecast, historical percentiles</td></tr>
-            <tr><td>Exposure</td><td>Ports, drainage systems, hospitals, schools, river communities, logistics routes</td></tr>
-            <tr><td>Vulnerability</td><td>Response capacity, service redundancy, access to alternatives, institutional readiness</td></tr>
-            <tr><td>Service consequence</td><td>Loss of navigability, access restrictions, supply interruption, isolation, increased costs</td></tr>
-            <tr><td>Institutional action</td><td>Monitoring, contingency activation, operational restrictions, emergency mobilization</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-header">Potential Data Sources</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Source</th><th>Data</th><th>Access</th></tr></thead>
-          <tbody>
-            <tr><td>ANA / SGB</td><td>River-level series and hydrological monitoring</td><td>Public</td></tr>
-            <tr><td>Cemaden / INPE</td><td>Climate forecasts and disaster alerts</td><td>Public</td></tr>
-            <tr><td>IDSM Mamirauá</td><td>Middle Solimões water bulletins</td><td>Partnership required</td></tr>
-            <tr><td>Municipal Civil Defense</td><td>Emergency operations and affected households</td><td>Institutional partnership</td></tr>
-            <tr><td>Implurb</td><td>Urban planning, zoning, and infrastructure plans</td><td>Institutional partnership</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-header">Defensible Results</div>
-      <div class="grid-2">
-        <div class="box accent">
-          <strong>Within project control</strong>
-          <ul>
-            <li>Integrated diagnostic</li>
-            <li>Impact-based alert protocol</li>
-            <li>Technical guide for urban planning integration</li>
-            <li>Formal recommendations to public authorities</li>
-            <li>Capacity building and GEDSI analysis</li>
-            <li>Open project deliverables, subject to IP rules</li>
-          </ul>
-        </div>
-        <div class="box warning">
-          <strong>Outside project control</strong>
-          <ul>
-            <li>Mandatory adoption by all agencies</li>
-            <li>Legislative approval of master-plan amendments</li>
-            <li>Expansion to several cities within the same grant</li>
-            <li>Permanent maintenance without a host institution and budget</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="section-header">Governance Options</div>
-      <div class="grid-2">
-        <div class="box"><strong>Implurb</strong><p>Stronger link to long-term urban planning and master-plan integration.</p></div>
-        <div class="box"><strong>Municipal Civil Defense</strong><p>Stronger operational link to warnings, contingency planning, and emergency response.</p></div>
-      </div>
-
-      <div class="section-header">Prime Applicant Assessment</div>
-      <div class="box risk">
-        <p>The prime applicant must be selected through documentary due diligence. Key items include relevant experience, capacity for a project of comparable scale, fiduciary and procurement systems, and applicable HACT and PSEAH requirements.</p>
-      </div>
-
-      <div class="section-header">Role Potentially Available to UFAM</div>
-      <ul>
-        <li>Scientific leadership or coordination</li>
-        <li>Prime applicant, co-applicant, or technical partner</li>
-        <li>Methodological development and validation</li>
-        <li>Research-team mobilization</li>
-        <li>Public-sector engagement</li>
-        <li>Training, publication, and student participation</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="budget" class="tab-content">
-  <div class="page">
-    <div class="letterhead">
-      <div class="org-name">c-ECO Institute</div>
-      <div class="org-address">Indicative Budget for Discussion</div>
-    </div>
-    <div class="content">
-      <div class="doc-title">
-        <div class="kicker">Budget</div>
-        <h1>Indicative Allocation</h1>
-        <div class="subtitle">Maximum grant request: US$400,000</div>
-      </div>
-
-      <div class="box warning">
-        <p>This budget is preliminary and must be revised after confirmation of the consortium, UFAM’s institutional role, indirect-cost rules, procurement procedures, field logistics, and the final scope.</p>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Category</th><th>Amount (US$)</th><th>%</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td>Technical personnel</td><td>120,000</td><td>30%</td><td>Coordination, data analysis, infrastructure and institutional assessment</td></tr>
-            <tr><td>Protocol and decision-support development</td><td>80,000</td><td>20%</td><td>Methodology, interface, testing, documentation</td></tr>
-            <tr><td>Travel and field logistics</td><td>60,000</td><td>15%</td><td>Manaus and limited validation activities</td></tr>
-            <tr><td>Capacity building and GEDSI</td><td>40,000</td><td>10%</td><td>Training, accessible materials, community engagement</td></tr>
-            <tr><td>Management, compliance, monitoring and evaluation</td><td>40,000</td><td>10%</td><td>Project management, reporting, safeguards, MEL</td></tr>
-            <tr><td>Institutionalization and publication</td><td>30,000</td><td>7.5%</td><td>Technical guide, open project results, dissemination</td></tr>
-            <tr><td>Contingency</td><td>30,000</td><td>7.5%</td><td>Logistical and implementation uncertainty</td></tr>
-            <tr><th>Total</th><th>400,000</th><th>100%</th><th></th></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-header">Indicative Geographic Allocation</div>
-      <div class="grid-3">
-        <div class="metric-card"><div class="metric-number">80–85%</div><div class="metric-label"><strong>Manaus</strong><br>Main implementation</div></div>
-        <div class="metric-card"><div class="metric-number">5–10%</div><div class="metric-label"><strong>Validation</strong><br>If confirmed</div></div>
-        <div class="metric-card"><div class="metric-number">10–15%</div><div class="metric-label"><strong>Consortium</strong><br>Coordination and compliance</div></div>
-      </div>
-
-      <div class="section-header">Questions for UFAM</div>
-      <div class="box">
-        <ul>
-          <li>What indirect-cost or administrative-rate rules would apply?</li>
-          <li>Which foundation or administrative unit would manage international funds?</li>
-          <li>What procurement rules and approval timelines must be incorporated?</li>
-          <li>Can UFAM contribute in-kind staff time, facilities, or data access?</li>
-          <li>What budget categories require prior university approval?</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="mou" class="tab-content">
-  <div class="page">
-    <div class="letterhead">
-      <div class="org-name">c-ECO Institute</div>
-      <div class="org-address">Discussion Draft — Non-Binding</div>
-    </div>
-    <div class="content">
-      <div class="doc-title">
-        <div class="kicker">Draft Memorandum of Understanding</div>
-        <h1>UFAM–c-ECO Cooperation Framework</h1>
-        <div class="subtitle">Scientific, technical, educational, and institutional cooperation</div>
-      </div>
-
-      <div class="box risk">
-        <p><strong>Discussion draft only.</strong> This text is subject to UFAM’s internal review, legal analysis, competent-authority approval, and adaptation to the University’s official cooperation template.</p>
-      </div>
-
-      <div class="section-header">Parties</div>
-      <div class="box">
-        <p><strong>Federal University of Amazonas — UFAM</strong>, represented by its competent authority.</p>
-        <p><strong>c-ECO Institute</strong>, a nonprofit scientific and educational institution organized in Missouri, United States, represented by its President, Jacqueline Goncalves Alves.</p>
-      </div>
-
-      <div class="section-header">Purpose</div>
-      <p>The purpose of this Memorandum is to establish a preliminary framework for scientific, technical, educational, and institutional cooperation in areas of mutual interest, including infrastructure resilience, climate adaptation, disaster risk reduction, environmental governance, decision-support systems, artificial intelligence, and public-sector capacity building.</p>
-
-      <div class="section-header">Initial CDRI Cooperation</div>
-      <p>The parties may jointly assess and develop a proposal under the CDRI Urban Infrastructure Resilience Programme — Brazil 2026, including concept development, methodology, Theory of Change, work planning, stakeholder engagement, budgeting, governance, sustainability, and proposal documentation.</p>
-
-      <div class="section-header">Role of the CCA</div>
-      <p>Following referral by the UFAM Rector’s Office, the Center for Environmental Sciences may serve as the academic focal point for initial technical discussions, subject to the University’s internal approvals and formal institutional designation.</p>
-
-      <div class="section-header">Financial Understanding</div>
-      <p>This Memorandum does not provide for the transfer of funds, procurement, employment, or binding financial commitments. Any funded activity must be governed by a separate agreement and approved work plan.</p>
-
-      <div class="section-header">Intellectual Property</div>
-      <p>Each party retains ownership of pre-existing intellectual property. Ownership, licensing, publication, and access rules for jointly developed results must be defined in a separate project-specific instrument and aligned with funder requirements and UFAM policy.</p>
-
-      <div class="section-header">Autonomy</div>
-      <p>This Memorandum does not create a partnership, joint venture, employment relationship, agency, exclusivity arrangement, or authority for one party to bind the other.</p>
-
-      <div class="section-header">Term and Termination</div>
-      <p>The proposed term is 24 months. Either party may terminate the Memorandum by written notice, without affecting separate project agreements already in force.</p>
-
-      <div class="section-header">Institutional Focal Points</div>
-      <div class="table-wrap">
-        <table>
-          <tr><th>UFAM / CCA</th><td>Prof. Paulo Rodrigues, subject to institutional designation</td></tr>
-          <tr><th>c-ECO Institute</th><td>Jacqueline Goncalves Alves, President</td></tr>
-        </table>
-      </div>
-
-      <div class="signature-grid">
-        <div class="signature-line"><strong>Federal University of Amazonas</strong><br>Name / Title / Date</div>
-        <div class="signature-line"><strong>c-ECO Institute</strong><br>Jacqueline Goncalves Alves, President / Date</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="annexes" class="tab-content">
-  <div class="page">
-    <div class="letterhead">
-      <div class="org-name">c-ECO Institute</div>
-      <div class="org-address">Supporting Annexes</div>
-    </div>
-    <div class="content">
-      <div class="doc-title">
-        <div class="kicker">Annexes</div>
-        <h1>Due Diligence and Submission Support</h1>
-      </div>
-
-      <div class="section-header">Annex A — Prime Applicant Due Diligence</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Requirement</th><th>UFAM</th><th>IDSM</th><th>UEA</th><th>INPA</th></tr></thead>
-          <tbody>
-            <tr><td>Legal registration and operation in Brazil</td><td>Confirm</td><td>Confirm</td><td>Confirm</td><td>Confirm</td></tr>
-            <tr><td>Relevant resilient-infrastructure experience</td><td>Document</td><td>Document</td><td>Document</td><td>Document</td></tr>
-            <tr><td>Comparable project scale</td><td>Document</td><td>Document</td><td>Document</td><td>Document</td></tr>
-            <tr><td>HACT assessment status</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr>
-            <tr><td>PSEAH assessment status</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr>
-            <tr><td>Financial and procurement capacity</td><td>Verify</td><td>Verify</td><td>Verify</td><td>Verify</td></tr>
-            <tr><td>Willingness to assume fiduciary responsibility</td><td>Ask</td><td>Ask</td><td>Ask</td><td>Ask</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-header">Annex B — Intellectual Property Structure</div>
-      <div class="grid-3">
-        <div class="box"><strong>Background IP</strong><p>Methods, materials, and components created before the grant remain with their original owners.</p></div>
-        <div class="box"><strong>Project Results</strong><p>New reports, tools, code, training material, and Manaus-specific adaptations follow CDRI access requirements.</p></div>
-        <div class="box"><strong>Third-Party Data</strong><p>Hydrological, climate, and institutional data remain subject to source licenses and access conditions.</p></div>
-      </div>
-
-      <div class="section-header">Annex C — Submission Timeline</div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Period</th><th>Priority Actions</th></tr></thead>
-          <tbody>
-            <tr><td>13–19 July</td><td>Kickoff meeting, applicant role, due diligence, technical team, government outreach</td></tr>
-            <tr><td>20–26 July</td><td>Endorsements, partner confirmation, technical design, budget and documentation</td></tr>
-            <tr><td>27 July–2 August</td><td>Full drafting, legal and technical review, final annexes and institutional approvals</td></tr>
-            <tr><td>3 August</td><td>Final portal review and submission buffer</td></tr>
-            <tr><td>4 August</td><td>Absolute deadline — 23:59 IST</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-header">Annex D — Immediate Document Checklist</div>
-      <div class="box">
-        <ul>
-          <li>Institutional registration and governing documents</li>
-          <li>Evidence of relevant project experience</li>
-          <li>Financial-management and procurement documentation</li>
-          <li>HACT and PSEAH documentation, where applicable</li>
-          <li>Government endorsement pathway</li>
-          <li>CVs of key technical personnel</li>
-          <li>Draft consortium or cooperation instrument</li>
-          <li>Budget and budget narrative</li>
-          <li>Risk, GEDSI, safeguards, and sustainability sections</li>
-        </ul>
-      </div>
-
-      <div class="section-header">Annex E — Key Questions for the Kickoff</div>
-      <ol style="padding-left:20px">
-        <li>Does UFAM wish to co-develop the proposal?</li>
-        <li>Which institutional role is feasible?</li>
-        <li>Which researchers and units should participate?</li>
-        <li>Which public authority should host the project results?</li>
-        <li>What data and prior research can UFAM contribute?</li>
-        <li>Which internal approvals are required?</li>
-        <li>Is the submission timetable feasible?</li>
-        <li>Who will lead each proposal section?</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">c-ECO Institute — CDRI–UFAM Partnership Brief v1.0</footer>
-
+<footer class="site-footer">c-ECO Institute — CDRI–UFAM Partnership Brief v2.0</footer>
 <script>
-function showTab(event, tabId){
-  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
-  document.querySelectorAll(".nav-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById(tabId).classList.add("active");
-  if(event&&event.currentTarget)event.currentTarget.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function printCurrent(){
-  const active=document.querySelector(".tab-content.active");
-  document.querySelectorAll(".tab-content").forEach(t=>{
-    if(t!==active){t.dataset.wasHidden="true";t.style.display="none"}
-  });
-  window.print();
-  document.querySelectorAll(".tab-content").forEach(t=>{
-    if(t.dataset.wasHidden){t.style.display="";delete t.dataset.wasHidden}
-  });
-}
+function showTab(event,tabId){document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".nav-tab").forEach(b=>b.classList.remove("active"));document.getElementById(tabId).classList.add("active");if(event&&event.currentTarget)event.currentTarget.classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function printCurrent(){const active=document.querySelector(".tab-content.active");document.querySelectorAll(".tab-content").forEach(t=>{if(t!==active){t.dataset.wasHidden="true";t.style.display="none"}});window.print();document.querySelectorAll(".tab-content").forEach(t=>{if(t.dataset.wasHidden){t.style.display="";delete t.dataset.wasHidden}})}
 </script>
 </body>
 </html>
