@@ -3,216 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Governance - c-ECO Institute</title>
-  <meta name="description" content="Governance, leadership, legal documents, and institutional architecture for the c-ECO Institute.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="c-ECO Institute governance page temporarily offline for updates.">
+  <title>Governance Under Review - c-ECO Institute</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800&display=swap">
   <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; scroll-behavior: smooth; }
-  body { background: #000; color: #fff; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; text-decoration: none; }
-  #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .s-logo { display: flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 0.88rem; letter-spacing: 0.24em; font-weight: 500; color: rgba(255,255,255,0.9); }
-  .s-logo span { font: inherit; letter-spacing: inherit; color: inherit; margin-left: 0; font-weight: inherit; }
-  .s-logo img { width: 56px; height: 56px; object-fit: contain; border-radius: 4px; }
-  .s-nav-links { display: flex; gap: 1.5rem; list-style: none; }
-  .s-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.18s; }
-  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
-  .s-nav-btn { display: none; background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); cursor: pointer; padding: 5px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
-  .page-header { padding: 160px 80px 84px; border-bottom: 1px solid rgba(255,255,255,0.06); background: radial-gradient(ellipse at 70% 20%, rgba(88,106,122,0.22), transparent 55%), #000; }
-  .breadcrumb { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); margin-bottom: 24px; }
-  .breadcrumb a { color: rgba(255,255,255,0.45); }
-  h1 { font-size: clamp(2.8rem, 7vw, 5.8rem); line-height: 0.95; letter-spacing: -0.025em; max-width: 940px; }
-  .header-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-  .header-cta { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.75); font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.18s, color 0.18s, border-color 0.18s; }
-  .header-cta:hover { background: #fff; color: #000; border-color: #fff; }
-  .page-header p { color: rgba(255,255,255,0.52); line-height: 1.8; max-width: 700px; margin-top: 24px; }
-  .wrap { max-width: 1240px; margin: 0 auto; padding: 84px 80px; }
-  .section-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 28px; }
-  .doc-grid, .people-grid { display: grid; gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); }
-  .doc-grid { grid-template-columns: 1fr; }
-  .doc-card, .person-card { background: #050505; padding: 28px; transition: background 0.18s, border-color 0.18s; }
-  .doc-card:hover, .person-card:hover { background: #0b0b0b; }
-  .doc-card span, .person-role { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 10px; }
-  .doc-card h2 { font-size: 1rem; color: rgba(255,255,255,0.82); margin-bottom: 10px; }
-  .doc-card p { color: rgba(255,255,255,0.42); line-height: 1.75; font-size: 0.86rem; }
-  .people-block { margin-top: 84px; }
-  .wrap > .people-block:first-child { margin-top: 0; }
-  .people-grid { grid-template-columns: repeat(4, 1fr); }
-  .person-card { min-height: 270px; }
-  .person-photo { width: 82px; height: 82px; border-radius: 50%; object-fit: cover; display: block; margin-bottom: 24px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
-  .person-card h3 { color: rgba(255,255,255,0.86); font-size: 1rem; margin-bottom: 8px; }
-  .person-card p { color: rgba(255,255,255,0.42); font-size: 0.82rem; line-height: 1.65; }
-  .person-fallback { width: 82px; height: 82px; border-radius: 50%; display: none; place-items: center; margin-bottom: 24px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.38); font-family: 'IBM Plex Mono', monospace; border: 1px solid rgba(255,255,255,0.1); }
-  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 80px; display: flex; justify-content: space-between; gap: 24px; color: rgba(255,255,255,0.22); font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; }
-  footer a { color: rgba(255,255,255,0.38); margin-left: 18px; }
-  @media (max-width: 980px) { .doc-grid, .people-grid { grid-template-columns: repeat(2, 1fr); } .page-header, .wrap { padding-left: 32px; padding-right: 32px; } .s-nav-links { display: none; } .s-nav-btn { display: block; } .s-nav-links.open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 72px; left: 0; right: 0; background: rgba(0,0,0,0.98); padding: 1rem 32px; } .s-nav-links.open li { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); } }
-  @media (max-width: 640px) { .doc-grid, .people-grid { grid-template-columns: 1fr; } footer { flex-direction: column; padding: 36px 28px; } footer a { display: inline-block; margin: 10px 16px 0 0; } }
-  
-        /* Standard c-ECO Institute navigation */
-  #s-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 48px;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s, border-color 0.3s;
-  }
-  #s-nav.scrolled {
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 14px 48px;
-    border-bottom-color: rgba(255,255,255,0.05);
-  }
-  .s-logo {
-    display: flex; align-items: center; gap: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500;
-    color: rgba(255,255,255,0.9); text-transform: none;
-    flex-shrink: 0;
-  }
-  .s-logo img { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
-  .s-logo span { font: inherit; letter-spacing: inherit; color: inherit; margin-left: 0; font-weight: inherit; }
-  .s-nav-links { display: flex; gap: clamp(0.9rem, 1.7vw, 2.25rem); list-style: none; align-items: center; }
-  .s-nav-links a {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55); transition: color 0.18s;
-    white-space: nowrap;
-  }
-  .s-nav-links a:hover, .s-nav-links a.active { color: rgba(255,255,255,0.9); }
-  .s-nav-btn {
-    display: none; background: rgba(0,0,0,0.34); border: 1px solid rgba(255,255,255,0.36);
-    color: rgba(255,255,255,0.92); cursor: pointer; padding: 8px 14px;
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em;
-    text-transform: uppercase; min-width: 66px; text-align: center;
-  }
-  @media (max-width: 1380px) {
-    .s-nav-links { display: none; }
-    .s-nav-btn { display: block; }
-    .s-nav-links.open {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 0;
-      position: absolute; top: 72px; left: 0; right: 0;
-      background: rgba(0,0,0,0.97); border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 0.75rem 48px 1rem;
-    }
-    .s-nav-links.open li { width: 100%; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    #s-nav { padding: 18px 24px; }
-    #s-nav.scrolled { padding: 12px 24px; }
-  }
-  @media (max-width: 560px) {
-    .s-logo { font-size: 0.72rem; letter-spacing: 0.18em; gap: 10px; }
-    .s-logo img { width: 34px; height: 34px; }
-    .s-nav-links.open { top: 60px; padding-left: 24px; padding-right: 24px; }
-  }
-
-    /* Standard c-ECO first-screen title scale */
-  body > header h1,
-  .page-header h1,
-  .scene-h1,
-  .hero-title {
-    font-size: clamp(3.5rem, 9vw, 6.5rem);
-    line-height: 0.97;
-    letter-spacing: -0.025em;
-    font-weight: 800;
-  }
-  @media (max-width: 760px) {
-    body > header h1,
-    .page-header h1,
-    .scene-h1,
-    .hero-title {
-      font-size: clamp(3rem, 12vw, 4.25rem);
-    }
-  }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #000; color: #fff; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    #s-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: transparent; border-bottom: 1px solid transparent; }
+    .s-logo { display: flex; align-items: center; gap: 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 500; color: rgba(255,255,255,0.9); }
+    .s-logo img { width: 42px; height: 42px; object-fit: contain; }
+    .s-nav-links { display: flex; gap: clamp(0.9rem, 1.7vw, 2.25rem); list-style: none; align-items: center; }
+    .s-nav-links a { font-family: "IBM Plex Mono", monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .s-nav-links a:hover { color: rgba(255,255,255,0.9); }
+    main { min-height: 100vh; display: grid; place-items: center; padding: 140px 48px 80px; background: radial-gradient(ellipse at 70% 20%, rgba(88,106,122,0.22), transparent 55%), #000; }
+    .panel { width: min(760px, 100%); border-left: 1px solid rgba(255,255,255,0.28); padding-left: 32px; }
+    .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+    h1 { margin: 20px 0 24px; font-size: clamp(3.2rem, 8vw, 6.4rem); line-height: 0.95; letter-spacing: -0.025em; }
+    p { max-width: 580px; color: rgba(255,255,255,0.58); line-height: 1.8; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; margin-top: 32px; padding: 14px 28px; border: 1px solid rgba(255,255,255,0.75); font-family: "IBM Plex Mono", monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.18s, color 0.18s; }
+    .btn:hover { background: #fff; color: #000; }
+    @media (max-width: 760px) { #s-nav { padding: 18px 24px; } .s-nav-links { display: none; } main { padding-left: 28px; padding-right: 28px; } .panel { padding-left: 24px; } }
   </style>
 </head>
 <body>
-<nav id="s-nav">
-  <a href="index.html" class="s-logo"><img src="assets/img/c-eco.png" alt="c-ECO Institute"><span>c-ECO Institute</span></a>
-  <button class="s-nav-btn" id="nav-btn">Menu</button>
-  <ul class="s-nav-links" id="nav-links">
-    <li><a href="about.html">About</a></li>
-    <li><a href="framework.html">Framework</a></li>
-    <li><a href="tdr.html">TDR</a></li>
-    <li><a href="tfp.html">TFP</a></li>
-    <li><a href="amazon-lab.html">Amazon Lab</a></li>
-    <li><a href="sil.html">SIL</a></li>
-    <li><a href="governance.html">Governance</a></li>
-    <li><a href="donate.html">Donate</a></li>
-    <li><a href="research.html">Research</a></li>
-    <li><a href="sitemap.html">Site Map</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<header class="page-header">
-  <h1>c-ECO Institute governance</h1>
-  <p>The c-ECO Institute maintains a governance architecture in which executive administration, fiduciary oversight, technical integrity, compliance, and social resilience are separated into clear institutional portfolios.</p>
-  <div class="header-actions"><a class="header-cta" href="documents.html">Access Documents -></a></div>
-</header>
-
-<main class="wrap">
-  <section class="people-block">
-    <span class="section-label">// Executive leadership</span>
-    <div class="people-grid">
-      <article class="person-card"><img src="https://c-eco.org/assets/img/jacqueline-ennis.png" alt="Jacqueline Ennis" class="person-photo"><span class="person-role">President</span><h3>Jacqueline Ennis</h3><p>Founder, institutional direction, public benefit strategy, and legal incorporation lead.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/andrew.png" alt="Andrew McElwaine" class="person-photo"><span class="person-role">Vice President</span><h3>Andrew McElwaine</h3><p>Executive governance, resilience strategy, and institutional stewardship.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/sandy.jpeg" alt="Sandy Paik" class="person-photo"><span class="person-role">Treasurer</span><h3>Sandy Paik</h3><p>Financial oversight, fiduciary discipline, and nonprofit accountability.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/bahman.png" alt="Bahman Naraghi" class="person-photo"><span class="person-role">Executive Director / COO</span><h3>Bahman Naraghi</h3><p>Operational governance, programme execution, and cross-institutional coordination.</p></article>
-    </div>
-  </section>
-
-  <section class="people-block">
-    <span class="section-label">// Board and institutional team</span>
-    <div class="people-grid">
-      <article class="person-card"><img src="https://raw.githubusercontent.com/jac14014/c-eco/main/assets/img/rivera.png" alt="Rodolfo Ruby Rivera" class="person-photo"><span class="person-role">Board Director</span><h3>Rodolfo Ruby Rivera</h3><p>International legal governance and institutional oversight.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/acie.png" alt="Acie Douglas" class="person-photo"><span class="person-role">Board Director</span><h3>Acie Douglas</h3><p>Board oversight and public benefit governance.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/ravi.png" alt="Ravi Maharjan" class="person-photo"><span class="person-role">Board Director</span><h3>Ravi Maharjan</h3><p>Board oversight and systems implementation perspective.</p></article>
-      <article class="person-card"><img src="/assets/img/vijayakumar.png" alt="Dr. Vijayakumar Varadarajan" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"><span class="person-fallback">VV</span><span class="person-role">Institutional Team</span><h3>Dr. Vijayakumar Varadarajan</h3><p>Artificial intelligence, digital governance, scientific research, and technology transfer.</p></article>
-    </div>
-  </section>
-
-  <section class="people-block">
-    <span class="section-label">// Advisors</span>
-    <div class="people-grid">
-      <article class="person-card"><img src="https://c-eco.org/assets/img/agathe.png" alt="Agathe Rumanyika" class="person-photo"><span class="person-role">Advisor</span><h3>Agathe Rumanyika</h3><p>Advisory support for social resilience and international cooperation.</p></article>
-      <article class="person-card"><img src="https://raw.githubusercontent.com/jac14014/c-eco/main/assets/img/rick.jpg" alt="Richard Ennis" class="person-photo"><span class="person-role">Advisor</span><h3>Richard &quot;Rick&quot; Ennis</h3><p>Advisory support for public benefit strategy.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/erelyn-alves.png" alt="Erelyn Alves" class="person-photo"><span class="person-role">Advisor</span><h3>Erelyn Alves</h3><p>Advisory support for Brazil and community-facing programmes.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/joao.png" alt="Joao Martins" class="person-photo"><span class="person-role">Advisor</span><h3>Joao Martins</h3><p>Advisory support for institutional relationships.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/barbara.JPG" alt="Barbara Oliva" class="person-photo"><span class="person-role">Amazon &amp; International Liaison</span><h3>Barbara Oliva</h3><p>Amazon programme liaison and international coordination.</p></article>
-      <article class="person-card"><img src="https://c-eco.org/assets/img/guilherme.png" alt="Guilherme Campbell" class="person-photo"><span class="person-role">Brazil &amp; International Liaison</span><h3>Guilherme Campbell</h3><p>Brazil liaison and international programme coordination.</p></article>
-    </div>
-  </section>
-
-  <section class="people-block">
-    <span class="section-label">// Legal documents</span>
-    <section class="doc-grid" aria-label="Legal documents">
-      <a class="doc-card" href="documents.html"><span>Institutional records</span><h2>Documents</h2><p>Central access point for institutional records, memoranda, governance materials, and technical documents issued by the c-ECO Institute.</p></a>
+  <nav id="s-nav">
+    <a href="index.html" class="s-logo"><img src="assets/img/c-eco.png" alt="c-ECO Institute"><span>c-ECO Institute</span></a>
+    <ul class="s-nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="documents.html">Documents</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="panel">
+      <div class="eyebrow">Governance</div>
+      <h1>Page under review.</h1>
+      <p>The c-ECO Institute governance page is temporarily offline while institutional information is reviewed and updated.</p>
+      <a class="btn" href="documents.html">Access documents</a>
     </section>
-  </section>
-
-</main>
-
-<footer>
-  <span>© 2026 c-ECO Institute</span>
-  <span><a href="documents.html">Documents</a><a href="contact.html">Contact</a></span>
-</footer>
-
-<script>
-  const nav = document.getElementById('s-nav');
-  const navBtn = document.getElementById('nav-btn');
-  const navLinks = document.getElementById('nav-links');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-  }
-  if (navBtn && navLinks) {
-    navBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-  }
-</script>
+  </main>
 </body>
 </html>
