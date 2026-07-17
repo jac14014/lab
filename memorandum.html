@@ -963,10 +963,40 @@ h3{font-size:18px!important;text-transform:none!important;margin:24px 0 10px!imp
 @media print{body:not(.print-all) .tab-content{display:none!important}body:not(.print-all) .tab-content.active{display:block!important}body.print-all .tab-content{display:block!important}}
 /* Avoid trailing blank pages when printing only the current memorandum tab. */
 @media print{body:not(.print-all) .tab-content:not(.active){display:none!important;height:0!important;overflow:hidden!important}body:not(.print-all) .tab-content.active .page:last-child{page-break-after:auto!important;break-after:auto!important}body.print-all .tab-content:last-child .page:last-child{page-break-after:auto!important;break-after:auto!important}}
+
+/* c-ECO Institute institutional document header. */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(245,244,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid #d5d3cf;height:64px;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:16px;text-decoration:none;color:#1a1a1a}
+.header-logo{width:56px;height:56px;border-radius:6px;object-fit:cover;filter:grayscale(30%);opacity:.85}
+.header-brand{display:flex;flex-direction:column;gap:2px}
+.brand-name{font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:500;letter-spacing:.02em;line-height:1.2;text-transform:none;color:#1a1a1a}
+.brand-tag{font-family:"Inter",-apple-system,sans-serif;font-size:10px;font-weight:500;color:#8a8884;text-transform:uppercase;letter-spacing:.12em;line-height:1.2}
+.header-nav{display:flex;gap:32px;align-items:center}
+.header-nav a{font-family:"Inter",-apple-system,sans-serif;font-size:12px;font-weight:500;color:#4a4a48;text-transform:uppercase;letter-spacing:.1em;text-decoration:none}
+.header-nav a:hover{color:#1a1a1a}
+@media screen{body{padding-top:64px}.nav-tabs{top:64px!important}.print-bar{z-index:130}}
+@media print{.site-header{display:none!important}body{padding-top:0!important}.nav-tabs{top:0!important}}
+@media(max-width:760px){.site-header{padding:0 22px}.header-nav{display:none}.brand-name{font-size:16px}.brand-tag{font-size:9px}}
 </style>
 </head>
 
 <body>
+
+<header class="site-header">
+  <a class="header-left" href="/index.html">
+    <img src="/assets/img/c-eco.png" alt="c-ECO Institute" class="header-logo" onerror="this.style.display='none'">
+    <div class="header-brand">
+      <span class="brand-name">c-ECO Institute</span>
+      <span class="brand-tag">Institutional Documents</span>
+    </div>
+  </a>
+  <nav class="header-nav">
+    <a href="/index.html">Home</a>
+    <a href="/governance.html">Governance</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
 
 <div class="nav-tabs">
   <button class="nav-tab active" onclick="showTab(event,'executive-brief')">Executive Brief</button>
