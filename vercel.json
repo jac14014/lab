@@ -2,5 +2,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "buildCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://www.c-eco.institute/:path*",
+      "permanent": true
+    }
+  ]
 }
