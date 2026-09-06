@@ -5,6 +5,11 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://www.c-eco.institute",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "destination": "https://www.c-eco.institute/:path*",
       "permanent": true
